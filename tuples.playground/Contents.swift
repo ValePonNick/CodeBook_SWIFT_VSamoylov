@@ -36,4 +36,4 @@ let (fruit, count, isFresh) = ("Apple", 12, true)
 print(fruit)
 print(count)
 print(isFresh)
-// комментарий: решено
+// комментарий: решена задача
