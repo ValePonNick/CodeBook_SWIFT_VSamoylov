@@ -56,3 +56,26 @@ for i in raportPoliceOfficer {
 }
 // почему в консоли удвоение???
 
+// создание кортежа с ТРЕМЯ параметрами
+// - это кортеж, содержащий ТРИ вложенных кортежа. Каждый: (String, Int)
+let violations = (speeding: ("превышение скорости", 7), drunkDriving: ("вождение нетрезвым", 12), withoutLicense: ("без прав", 8))
+print(violations)
+// доступ к ЭЛЕМЕНТАМ кортежа
+// 1. по ИНДЕКСУ
+let speedingCount = violations.speeding.1
+let drunkDrivingCount = violations.drunkDriving.1
+let withoutLicenseCount = violations.withoutLicense.1
+// 2. по ИМЕНОВАННОМУ ЭЛЕМЕНТУ
+print("Тип нарушения: \(violations.speeding.0), Количество: \(violations.speeding.1)")
+print("Тип нарушения: \(violations.drunkDriving.0), Количество: \(violations.drunkDriving.1)")
+print("Тип нарушения: \(violations.withoutLicense.0), Количество: \(violations.withoutLicense.1)")
+
+// пример использования этого кортежа в ФУНКЦИИ:
+func printViolations(violations: (speeding: (String, Int), drunkDriving: (String, Int), withoutLicense: (String, Int))) {
+    print("Тип нарушения: \(violations.speeding.0), Количество: \(violations.speeding.1)")
+    print("Тип нарушения: \(violations.drunkDriving.0), Количество: \(violations.drunkDriving.1)")
+    print("Тип нарушения: \(violations.withoutLicense.0), Количество: \(violations.withoutLicense.1)")
+}
+printViolations(violations: violations)
+/* этот код выведен инфу о КАЖДОМ типе нарушения и кол-ве нарушителей; удобно группирует связанные данные и упрощает доступ к ним */
+
