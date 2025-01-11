@@ -79,3 +79,32 @@ func printViolations(violations: (speeding: (String, Int), drunkDriving: (String
 printViolations(violations: violations)
 /* этот код выведен инфу о КАЖДОМ типе нарушения и кол-ве нарушителей; удобно группирует связанные данные и упрощает доступ к ним */
 
+// 4. создай кортеж напарника и задай другие значения
+let violations2 = (
+    speeding: ("превышение скорости", 11),
+    drunkDriving: ("вождение нетрезвым", 6),
+    withoutLicense: ("без прав", 13)
+)
+print(violations2)
+// 5. создай 3-ий кортеж как РАЗНИЦУ между первым и вторым
+var differencesViolations = (
+    speeding: (violations.speeding.1 - violations2.speeding.1),
+    drunkDriving: (violations.drunkDriving.1 - violations2.drunkDriving.1),
+    withoutLicense: (violations.withoutLicense.1 - violations2.withoutLicense.1)
+).self
+
+// ура! получилось!!!
+// вывести на консоль ТРЕМЯ способами
+// 5.1 - вывести кортеж ЦЕЛИКОМ
+print(differencesViolations)
+// 5.2 вывести по именованному значению
+print(differencesViolations.drunkDriving)
+print(differencesViolations.speeding)
+print(differencesViolations.withoutLicense)
+// вывести по индексу
+print(differencesViolations.drunkDriving)
+// по именованному элементу
+print(differencesViolations.0)
+print(differencesViolations.1)
+print(differencesViolations.2)
+// задача решена
