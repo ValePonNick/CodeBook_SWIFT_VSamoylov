@@ -32,5 +32,5 @@ techieBenedict = ("Benedict", 0, "", "iOS")
 
 // 5.
 
-// проверим!
+// проверим! поменяла почту на github desktop...
 
