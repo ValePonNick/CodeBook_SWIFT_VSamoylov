@@ -23,14 +23,75 @@ techieOliver = ("Oliver", 21, "", "")
 techieDavid = ("David", 0, "middle", "")
 techieLeo = ("Leo", 0, "senior", "")
 techieRobert = ("Robert", 0, "junior", "")
-techieHarry = ("Harry", 0, "junior", "iOS")
-techieBenedict = ("Benedict", 0, "", "iOS")
+techieHarry = ("Harry", 25, "junior", "iOS")
+techieBenedict = ("Benedict", 27, "middle", "iOS")
 
-/* 3. используя проверки if/else, выведи сообщение - логика: если возраст больше 23б есть опыт и специальность - это iOS - в консоль выведи имя и сообщение - принят на работу */
+/* 3. используя проверки if/else, выведи сообщение - логика: если возраст больше 23, есть опыт и специальность - это iOS - в консоль выведи имя и сообщение - принят на работу */
+if techieLiam.age > 23 && techieLiam.experiencs != "" && techieLiam.specialty == "iOS" {
+    print(techieLiam.name, "принят на работу")
+} else {
+    print(techieLiam.name, " не принят на работу")
+}
+if techieBenedict.age > 23 && techieBenedict.experiencs != "" && techieBenedict.specialty == "iOS" {
+    print(techieBenedict.name, "принят на работу")
+} else {
+    print(techieBenedict.name, " не принят на работу")
+}
+if techieHarry.age > 23 && techieHarry.experiencs != "" && techieHarry.specialty == "iOS" {
+    print(techieHarry.name, "принят на работу")
+} else {
+    print(techieHarry.name, " не принят на работу")
+}
+if techieJames.age > 23 && techieJames.experiencs != "" && techieJames.specialty == "iOS" {
+    print(techieJames.name, "принят на работу")
+} else {
+    print(techieJames.name, " не принят на работу")
+}
+// 4. тех, кто младше 23 - добавь в массив и отсортируй. Найди в массиве max значение и удали его.
+var arrayYoungTechie: [String] = []
+if techieLeo.age < 23 {
+    arrayYoungTechie.append(techieLeo.name)
+}
+if techieAnn.age < 23 {
+    arrayYoungTechie.append(techieAnn.name)
+}
+if techieLiam.age < 23 {
+    arrayYoungTechie.append(techieLiam.name)
+}
+if techieStive.age < 23 {
+    arrayYoungTechie.append(techieStive.name)
+}
+if techieJames.age < 23 {
+    arrayYoungTechie.append(techieJames.name)
+}
+if techieDavid.age < 23 {
+    arrayYoungTechie.append(techieDavid.name)
+}
+if techieOliver.age < 23 {
+    arrayYoungTechie.append(techieOliver.name)
+}
+if techieRobert.age < 23 {
+    arrayYoungTechie.append(techieRobert.name)
+}
+print(arrayYoungTechie)
 
-// 4.
+// выведи измененный масссив
+print(arrayYoungTechie)
+// Найди в массиве max значение и удали его.
+// шаг 1: находим max элемент
+var sortedArrayYoungTechie = arrayYoungTechie.sorted()
+// шаг 2: находим ИНДЕКС max элемента
+if let maxElement = sortedArrayYoungTechie.max() {
+    if let index = arrayYoungTechie.firstIndex(of: maxElement) {
+        // удалим max элемент
+        arrayYoungTechie.remove(at: index)
+    }
+}
+// выведи измененный масссив
+print(arrayYoungTechie)
 
-// 5.
+// 5. создай массив и в проверку из п.3 добавь условие: если специальность не iOS - добавить в созданный массив
 
-// проверим! поменяла почту на github desktop...
+
+// проверим! поменяла почту на github desktop... получилось!!!
 
