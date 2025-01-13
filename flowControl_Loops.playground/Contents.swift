@@ -73,3 +73,73 @@ func determinateDestination(age: Int) -> String {
 // пример испольования:
 let Alex = 16
 print(determinateDestination(age: Alex))
+
+// 6.3 в 'if' и в 'switch' создать систему оценивания студентов по 12 балльной системе и через 'print' дать оценку их знаниям
+// 6.3.1 'if-else'
+func determinateActivity(scores: Int) -> String {
+    if scores < 3 {
+        return "Знания очень слабые"
+    } else if scores >= 3 && scores <= 6 {
+        return "Знания низкие"
+    } else if scores >= 6 && scores <= 8 {
+        return " Знания есть, но бессистемные"
+    } else if scores >= 8 && scores <= 10 {
+        return "Знания хорошие"
+    } else {
+        return "Знания отличные!"
+    }
+}
+// пример испольования:
+let Stiven = 11
+print(determinateActivity(scores: Stiven))
+
+// 6.3.2 'switch'
+func determinateActivities(scores: Int) -> String {
+    switch scores {
+    case 0...3:
+        return "Знания с большими пробелами"
+    case 3...6:
+        return "Знания есть, но они бессистемные"
+    case 6...8:
+        return "Знания есть, но нет понимания"
+    case 8...10:
+        return "Есть знания и умения"
+    default:
+        return "Есть знания, умения и уверенные навыки!"
+    }
+}
+// пример испольования:
+let Artur = 12
+print(determinateActivities(scores: Artur))
+
+// 6.4 создай цикл в цикле: в первом цикле интервал 20 раз, во втором: доедем до 12 и выйти из ВСЕХ циклов
+// вар. 1 используй МЕТКИ для циклов, когда сумма достигнет 12:
+outerLoop: for i in 1...20 {
+    for j in 1...15 {
+        let sum = i + j
+        print("сумма \(sum)")
+        if sum == 12 {
+            print("выходим из обоих циклов")
+            break outerLoop
+        }
+    }
+}
+// вар.2 используй ФЛАГ 'exitAll':
+var exitAll = false
+for i in 1...20 {
+    if exitAll {
+        break
+    }
+    for j in 1...20 {
+        let sum = i + j
+        print("сумма: \(sum)")
+        if sum == 12 {
+            print("выходим из обоих циклоа")
+            exitAll = true
+            break
+        }
+        
+    }
+}
+/* комментарий: когда сумма жостигает 12, устанавливается флаг 'exitAll' - после выхода из внутреннего цикла также происходит выход из внешнего цикла */
+
