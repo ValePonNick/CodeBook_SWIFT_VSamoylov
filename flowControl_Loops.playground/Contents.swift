@@ -37,14 +37,39 @@ for day in daysInMonths {
    
 }
 /* 2. создай в 'if' и в 'switch' программу, которая исходя из возраста человека определит куда ему идти: в садик, школу, в универ, на работу, на пенсию */
-let age = (3, 18, 25, 55)
-let group = ("baby", "child", "schoolboy", "student", "adult", "senior citizen")
-let activity = ("kindergarten", "scool", "university", "work", "pension")
+// 2.1 'if-else'
+func determinateActivity(age: Int) -> String {
+    if age < 3 {
+        return "Stay at home"
+    } else if age >= 3 && age <= 7 {
+        return "Go to kindergarten"
+    } else if age >= 7 && age <= 18 {
+        return " Go to school"
+    } else if age >= 18 && age <= 55 {
+        return "Go to work"
+    } else {
+        return "Go to pension"
+    }
+}
+// пример испольования:
+let Ann = 56
+print(determinateActivity(age: Ann))
 
-// создай массив кортежей
-
-print(age)
-let ageAndActivities = [(group: String, age: Int, activity: String)]()
-
-
-
+// 2.2 'switch'
+func determinateDestination(age: Int) -> String {
+    switch age {
+    case 0...2:
+        return "Stay at home"
+    case 3...7:
+        return "Go to kindergarten"
+    case 7...18:
+        return " Go to school"
+    case 18...55:
+        return "Go to work"
+    default:
+        return "Go to pension"
+    }
+}
+// пример испольования:
+let Alex = 16
+print(determinateDestination(age: Alex))
