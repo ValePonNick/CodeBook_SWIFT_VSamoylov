@@ -37,6 +37,14 @@ for day in daysInMonths {
    
 }
 /* 2. создай в 'if' и в 'switch' программу, которая исходя из возраста человека определит куда ему идти: в садик, школу, в универ, на работу, на пенсию */
+let age = (3, 18, 25, 55)
+let group = ("baby", "child", "schoolboy", "student", "adult", "senior citizen")
+let activity = ("kindergarten", "scool", "university", "work", "pension")
+
+// создай массив кортежей
+
+print(age)
+let ageAndActivities = [(group: String, age: Int, activity: String)]()
 
 
 
