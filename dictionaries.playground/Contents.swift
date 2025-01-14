@@ -12,9 +12,14 @@ print(dictionaryCharacters)
 let dictIntAndString = [1: "Hobbit", 2: "Gorlum", 3: "Thorin", 4: "Legolas"]
 print(dictIntAndString)
 
-/* 1.3 сщздание словаря через функцию Dictionary(dictionaryLiteral:), которая принимает СПИСОК КОРТЕЖЕЙ, каждый кортеж определяет пару "kay: vaue" */
-Dictionary(dictionaryLiteral: ("Rivendell", 100), ("Hobbitone", 200), ("Mountains of Mirkwood", 300))
-// вопрос: как распечатать?
+let dictIntAndString2 = [1: "Hobbit", 2: "Gorlum", 3: "Thorin", 4: "Legolas"]
+print(dictIntAndString2)
+
+
+/* 1.3 создание словаря через функцию Dictionary(dictionaryLiteral:), которая принимает СПИСОК КОРТЕЖЕЙ, каждый кортеж определяет пару "kay: vaue" */
+
+let dictNames = Dictionary(dictionaryLiteral: ("Rivendell", 100), ("Hobbitone", 200), ("Mountains of Mirkwood", 300))
+print(dictNames)
 
 // 1.4 создание словаря с помощью Dictionary(uniqueKeysWithValues:) - на основе коллекции однотипных КОРТЕЖЕЙ
 // базовая коллекция КОРТЕЖЕЙ (пар ЗНАЧЕНИЙ)
@@ -66,12 +71,11 @@ type(of: valuesDictIntAndString)
 print(valuesDictIntAndString)
 
 // 2.3 все ключи / значения словаря Dictionary(dictionaryLiteral:)
-// не знаю как сделать???
+print(dictNames.keys)
+print(dictNames.values)
 
 // 2.4 все ключи / значения словаря baseCollection
-// ???
-
-// 2.5 ???
+type(of: baseCollection)
 
 // 2.6 все ключи / значения словаря dictIsEmpty
 let keysDictIsEmpty  = dictIsEmpty.keys

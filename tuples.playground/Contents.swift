@@ -60,6 +60,11 @@ for i in raportPoliceOfficer {
 // - это кортеж, содержащий ТРИ вложенных кортежа. Каждый: (String, Int)
 let violations = (speeding: ("превышение скорости", 7), drunkDriving: ("вождение нетрезвым", 12), withoutLicense: ("без прав", 8))
 print(violations)
+
+let violations1 = (speeding: 5, drunkDriving: 3, withoutLicense: 12)
+let violation2 = (5,3,12)
+
+
 // доступ к ЭЛЕМЕНТАМ кортежа
 // 1. по ИНДЕКСУ
 let speedingCount = violations.speeding.1
