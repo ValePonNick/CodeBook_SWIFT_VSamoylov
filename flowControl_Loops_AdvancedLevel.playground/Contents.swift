@@ -7,57 +7,63 @@ import UIKit
 
 // кортеж шахматных фигур
 let chessBoardRow = (
-    "Rook", "Knight", "Bishop", "Qeen", "King", "Bishop", "Knight", "Rook", "Pawn"
+    "Rook", "Knight", "Bishop", "Qeen", "King", "Bishop", "Knight", "Rook"
 )
 // использование 2-мерного МАССИВА для создания шахматной доски
-var chessboard: [[String]] = Array(repeating: Array(repeating: "Empty", count: 8), count: 8)
-// размещение фигур на доске
-chessboard[0][0] = "Rook"
-chessboard[2][2] = "Knight"
-chessboard[0][2] = "Bishop"
-chessboard[0][3] =  "Qeen"
-chessboard[0][4] = "King"
-chessboard[0][5] = "Bishop"
-chessboard[0][6] = "Knight"
-chessboard[0][7] = "Rook"
-chessboard[1][0] = "Pawn"
-chessboard[1][1] = "Pawn"
-chessboard[1][2] = "Pawn"
-chessboard[1][3] = "Pawn"
-chessboard[1][4] = "Pawn"
-chessboard[1][5] = "Pawn"
-chessboard[1][6] = "Pawn"
-chessboard[1][7] = "Pawn"
-chessboard[7][0] = "Pawn"
-chessboard[7][1] = "Pawn"
-chessboard[7][2] = "Pawn"
-chessboard[7][3] = "Pawn"
-chessboard[7][4] = "Pawn"
-chessboard[7][5] = "Pawn"
-chessboard[7][6] = "Pawn"
-chessboard[7][7] = "Pawn"
+var chessBoard: [[String]] = Array(repeating: Array(repeating: "Empty", count: 8), count: 8)
 
 // функция для вывода шахматной доски
-    for row in chessboard {
-        print(row)
-    }
+for row in chessBoard {
+    print(row)
+}
 // помечаем клетки шахматной доски
 for i in 0...7 {
     for j in 0...7 {
         if (i + j) % 2 == 0 {
-            chessboard[i][j] = "⬜"
+            chessBoard[i][j] = "⬜"
         } else {
-            chessboard[i][j] = "⬛"
+            chessBoard[i][j] = "⬛"
         }
     }
 }
+
 // выводим шахматную доску
 print(chessBoardRow)
 // NB: код создал шахматную доску 8 на 8 и разместил фигуры белых на 1-ой строке.
 // чтобы авто разместить фигуры - используй циклы для итерации по доске и установке фигур в зависимости от позиции:
-
-// если ход пересекается с координатой фигуры -> сообщать об этом в консоль
-
+// используй перечисления для перемещения фигур
+enum PieceType {
+    case king, qeen, rook, bishop, knight, pawn
+}
+struct Piece {
+    let type: PieceType
+    let color: String
+}
+// реализация логики хода для каждой фигуры
+func isValidMove(piece: Piece, from: (Int, Int), to: (Int, Int)) -> Bool {
+    switch piece.type {
+    case .pawn:
+        // логика хода пешки
+        return true
+    default:
+        return false
+    }
+}
+// функция для проверки пересечения с координатой др. фигуры -> сообщать об этом в консоль
+@MainActor func isIntersection(from: (Int, Int), to: (Int, Int)) -> Bool {
+    // проверяем: занята ли целевая клетка?
+    if chessBoard[to.0][to.1] != "⬜" && chessBoard[to.0][to.1] != "⬛" {
+        print( "Ход фигуры пересекается с координатой другой фигуры.")
+        return true
+    }
+    return false
+}
+    // проверяем: пересекается ли ПУТЬ c другими фигурами?
+    var dx = 1 // изменение по оси x
+    var dy = 1 // изменение по оси y
+    // исходные координаты фигуры
+    var x = 0
+    var y = 0
 // если ход попадает на опред. координату -> сообщать в консоль "шах" / "мат".
 
 // если ход поадает на опред. координату -> сделайте фигуру = nil
