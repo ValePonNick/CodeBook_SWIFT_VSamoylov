@@ -4,8 +4,23 @@ import UIKit
 
 // 7.1. создать ТРИ функции
 /* первая - принимает массив Int и сортирует его по порядку(возрастание). Затем распечатывает рез-т в консоль */
-
-/* вторая - принимает массив String, меняет 1,2,3 элементы и сортирует по алфавиту. Затем распечатывает рез-т в консоль */
+func sortNumbers(number: [Int]) -> [Int] {
+    return number.sorted()
+}
+// проверим на примере:
+let unsortedNums = [3, 6, 9, 1, 3, 2, 4, 12, 21,5]
+type(of: unsortedNums)
+let sortedNums = sortNumbers(number: unsortedNums)
+type(of: sortedNums)
+print(sortedNums)
+/* вторая - принимает массив String, меняет 1,2 и 3 элементы и сортирует по алфавиту. Затем распечатывает рез-т в консоль */
+func sortStrings(array: [String])  -> [String] {
+    return array.sorted()
+}
+let strings = ["apple", "banana", "kivi", "limon"]
+let sortedStrings = sortStrings(array: strings)
+print(sortedStrings)
+/* NB: эта функция использует встроенный метод 'sorted()' для сортировки массива строк в лексикографическом порядке */
 
 /* третья - принимает ДВА масссива String и складывает их. Затем распечатывает рез-т в консоль */
 
