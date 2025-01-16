@@ -32,11 +32,37 @@ let array2 = ["apple", "limon", "cheese"]
 twoArrays(_: array1, _: array2)
 
 /*2. создать журнал для учителя, который будет принимать имя студента, профессию и оценку и записывает все это в массив. И внестите 10 студентов туда и распечатайте через цикл for - in */
-func journal(name: String, profession: String, grade: Int) -> String {
-    return "имя: \(name), профессия: \(profession), оценка: \(grade)"
+// определение СТРУКТУРЫ для студента
+struct Student {
+    var name: String
+    var age: Int
+    var grade: Double
 }
-let info = journal(name: "иван", profession: "инженер", grade: 3)
-print(info)
+// функция для создания массива студентов
+func creatJournal() -> [Student] {
+    var students: [Student] = []
+    // добавление 10 студентов в журнал
+    students.append(Student(name: "Иванов", age: 21, grade: 4.5))
+    students.append(Student(name: "Петров", age: 20, grade: 4.7))
+    students.append(Student(name: "Сидоров", age: 21, grade: 4.9))
+    students.append(Student(name: "Катцын", age: 22, grade: 4.3))
+    students.append(Student(name: "Рева", age: 22, grade: 4.8))
+    students.append(Student(name: "Титов", age: 20, grade: 5.0))
+    students.append(Student(name: "Смирнов", age: 23, grade: 4.1))
+    students.append(Student(name: "Хохлов", age: 20, grade: 4.3))
+    students.append(Student(name: "Чудов", age: 19, grade: 4.0))
+    students.append(Student(name: "Шмидт", age: 24, grade: 4.9))
+    return students // возвращает массив студентов
+}
+// функция для вывода информации о студентах
+func printStudentsJournal(students:[Student]) {
+    for student in students {
+        print("Имя: \(student.name), Возраст: \(student.age), Оценка: \(student.grade)")
+    }
+}
+// основной код
+let studentsJournal = creatJournal() // создание журнала
+printStudentsJournal(students: studentsJournal) // вывод инфы о студентах на консоль
 
 
 /* 3. создать функцию, которая принимает имя и фамилию, потом положить это в массив и вывести рез-т в консоль */
