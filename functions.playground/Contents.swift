@@ -32,6 +32,12 @@ let array2 = ["apple", "limon", "cheese"]
 twoArrays(_: array1, _: array2)
 
 /*2. создать журнал для учителя, который будет принимать имя студента, профессию и оценку и записывает все это в массив. И внестите 10 студентов туда и распечатайте через цикл for - in */
+func journal(name: String, profession: String, grade: Int) -> String {
+    return "имя: \(name), профессия: \(profession), оценка: \(grade)"
+}
+let info = journal(name: "иван", profession: "инженер", grade: 3)
+print(info)
+
 
 /* 3. создать функцию, которая принимает имя и фамилию, потом положить это в массив и вывести рез-т в консоль */
 
