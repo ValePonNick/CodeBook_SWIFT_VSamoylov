@@ -137,4 +137,5 @@ var scoresStudents: [ScoreKey: ((String), (Double))] = [
 for(key, scoreInfo) in scoresStudents {
     print("ключ: \(key.name), имя: \(scoreInfo.0), оценка: \(scoreInfo.1)")
 }
-/* NB: 'ScoreKey' - это структура, которая реализует протокол 'hashable' - это позволяет использовать struct как ключ словаря */
+/* NB: 'ScoreKey' - это структура, которая реализует протокол 'hashable' -
+ это позволяет использовать struct как ключ словаря */
