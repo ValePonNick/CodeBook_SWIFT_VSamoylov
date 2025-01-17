@@ -66,7 +66,75 @@ printStudentsJournal(students: studentsJournal) // вывод инфы о сту
 
 
 /* 3. создать функцию, которая принимает имя и фамилию, потом положить это в массив и вывести рез-т в консоль */
+struct Person {
+    var name: String
+    var sername: String
+}
+func creatPersons() -> [Person] {
+    var hobbits: [Person] = []
+    hobbits.append(Person(name: "Bilbo", sername: "Baggins"))
+    hobbits.append(Person(name: "Frodo", sername: "Torbins"))
+    hobbits.append(Person(name: "Peregrin", sername: "Took"))
+    return hobbits
+}
+func printHobbitsNames(hobbits: [Person]) {
+    for person in hobbits {
+        print("Имя: \(person.name), Фамилия: \(person.sername)")
+    }
+}
+// основной код
+let hobbitsNames = creatPersons()
+printHobbitsNames(hobbits: hobbitsNames)
+// РАЗЪЯСНИ логику кода!!!
 
-/* 4. создай функцию, которая принимает парам етры и вычисляет площадь круга */
+// вар. 2 если нужна строка инфы вместо вывода в консоль: изменим функцию
+func logNameAndGrade(name: String, grade: Double) -> String {
+    return "Имя: \(name), Оценка: \(grade)"
+}
+// вызов функции
+let logInfo = logNameAndGrade(name: "John", grade: 5.0)
+print(logInfo)
 
-/* создайте Dictionary с именем ученика, где ключ: name и score, а значение - ( 1 tuple из 5 имен и второй тюпл - из 5 оценок. Распечатай только имена по ключу. */
+/* 4. создай функцию, которая принимает параметры и вычисляет площадь круга */
+func getAreaCircle (pi: Double, radius: Double) {
+    (pi * radius) * (pi * radius)
+}
+getAreaCircle(pi: 3.14, radius: 4.0)
+
+/* создайте Dictionary с именем ученика, где ключ: name и score, а значение -
+ ( 1 tuple из 5 имен и второй тюпл - из 5 оценок. Распечатай только имена по ключу. */
+// вар. 1
+/* создали словарь: ключ - кортеж из двух элементов('name', 'score'),
+ значение - тоже кортеж, НО это два отдельных кортежа: один - для иен, втотрой - для оценок.
+ NB: кортежи НЕ хэшируемые по умолчанию, => их НЕ используем напрямую как ключи для словаря.
+ Можно так: */
+var scores: [String: ((String), (Int))] = [
+    "student1": (("John"), (5)),
+    "student2": (("Mary"), (3)),
+    "student3": (("Stive"), (5)),
+    "student4": (("Ron"), (5)),
+    "student5": (("Ann"), (4))
+]
+// распечатай имена по ключу
+for (key, scoreInfo) in scores {
+    print("Ключ: \(key), Имя: \(scoreInfo.0), Оценка: \(scoreInfo.1)")
+}
+/* ключи: строки("student1", "student2" и др.), а значения - кортежи, содержащие 2 др. кортежа:
+один - для имен, второй - для оценок */
+// вар. 2
+/* если использовать кортежи в качестве ключей -> создай структуру, которая реализует протокол
+ 'hashable'. Чтобы распечатать имена по ключу, НО ключ = кортеж из 'name' + 'score', и хотим
+ использовать структуру для ключа: */
+struct ScoreKey: Hashable {
+    let name: String
+    let score: Double
+}
+var scoresStudents: [ScoreKey: ((String), (Double))] = [
+    ScoreKey(name: "Garry", score: 4.7): (("Garry"), (4.7)),
+    ScoreKey(name: "Pretty", score: 4.8): (("Pretty"), (4.8))
+]
+// распечатать имена по ключу
+for(key, scoreInfo) in scoresStudents {
+    print("ключ: \(key.name), имя: \(scoreInfo.0), оценка: \(scoreInfo.1)")
+}
+/* NB: 'ScoreKey' - это структура, которая реализует протокол 'hashable' - это позволяет использовать struct как ключ словаря */
