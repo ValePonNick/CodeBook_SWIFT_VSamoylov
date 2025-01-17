@@ -105,4 +105,31 @@ func addPunctuation(_ text: String, wordsToPeriod: [String]) -> String {
 let wordsToPeriod = ["knock", "door", "stick"]
 let textWithPunct = addPunctuation(resultString, wordsToPeriod: wordsToPeriod)
 print(textWithPunct)
-// код от perplexity не сработал и я подправила! УРА! получилось! Кто молодец - я молодец!
+/* код от perplexity не сработал и я подправила! УРА! получилось!
+Кто молодец - я молодец! */
+// добавим заглавные/прописные буквы
+func capitalizeBeforeDots(text: String) -> String {
+    let sentences = text.components(separatedBy: ".")
+    var result = " "
+    for (index, sentence) in sentences.enumerated() {
+        if !sentence.isEmpty {
+            // удалить ведущие пробелы и сделать первую букву заглавной
+            let trimmedSentence = sentence.trimmingCharacters(in: .whitespaces)
+            let capitalizedSentence = trimmedSentence.prefix(1).uppercased() + trimmedSentence.dropFirst()
+            
+            result += capitalizedSentence
+            // добавить точку после предложения, если оно - не последнее
+            
+            if index < sentences.count - 1 {
+                result += ".\n"
+            } else {
+                result += "."
+            }
+        }
+    }
+    return result
+}
+// пример использования
+let formattedText = capitalizeBeforeDots(text: textWithPunct)
+print(formattedText)
+// получилось: осталось добавить запятые, но не сегодня
