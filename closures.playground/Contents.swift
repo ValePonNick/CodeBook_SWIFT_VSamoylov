@@ -23,7 +23,78 @@ let captureClosure = { print(externalVar) }
 captureClosure()
 
 // 2. Напиши 10 замыканий на примере сортировок массивов.
+/* NB: в Swift замыкания широко используются для сортировки массивов - ??? -
+т.к. позволяюи ГИБКО настраивать критерии сортировки */
+// 2. 1 встроенный метод sort() ИЗМЕНЯЕТ исходный массив
+var nums = [2, 4, 6, 8, 1, 3, 5, 7, 9, 12, 0, -12]
+nums.sort { $0 > $1 }
+print(nums)
+nums.sort { $0 < $1 }
+print(nums)
+// 2.2 встроенный метод sort() ИЗМЕНЯЕТ исходный массив: сортирует по ДЛИНЕ строк
+var nameDwarve = ["Oin", "Gloin", "Bifur", "Bofur", "Bambur", "Thorin", "Fili", "Kili"]
+nameDwarve.sort { $0.count < $1.count }
+print(nameDwarve)
+nameDwarve.sort { $0.count > $1.count }
+print(nameDwarve)
 
+// 2.3 встроенный метод sorted() НЕ изменяя исходный массив, возвращает НОВЫЙ отсортированный массив
+// - сортировка ЧИСЕЛ по убыванию:
+var numbers = [1,12,33,4,55,16,7]
+let sortedNumClosure = numbers.sorted { $0 > $1 }
+ print(sortedNumClosure)
+// - сортировка чисел по возрастанию:
+let sortedNumbers = numbers.sorted { $0 < $1 }
+print(sortedNumbers)
+// 2.4 сортировка СТРОК по алфавиту: по возрастанию ( от А до Я)
+let namesDwarves = ["Oin", "Gloin", "Bifur", "Bofur", "Bambur", "Thorin", "Fili", "Kili"]
+var sortedNamesDwarves = namesDwarves.sorted { $0 > $1 }
+print(sortedNamesDwarves)
+// сортировка строк по алфавиту: по убыванию ( от Я до А)
+sortedNamesDwarves = namesDwarves.sorted { $0 < $1 }
+print(sortedNamesDwarves)
+// 2.5 сортировка ОБЪЕКТОВ по свойству:
+// создала структуру с двумя параметрами: имя типа String и возраст типа Int
+struct Person {
+    let name: String
+    let age: Int
+}
+// создала константу people и присвоила/инициализировала? ей значения: имя + возраст
+// этот код изменил исходный массив и вывел отсортированные данные
+let people = [
+    Person(name: "Ann", age: 21),
+    Person(name: "Benedict", age: 37),
+    Person(name: "David", age: 12)
+]
+let sortedPeople = people.sorted { $0.age < $1.age }
+for person in sortedPeople {
+    print("имя: \(person.name), возраст: \(person.age)")
+}
+// 2.6 сортировка объектов по нескольким СВОЙСТВАМ:
+struct Child {
+    let name: String
+    let age: Int
+}
+let children = [
+    Child(name: "John", age: 3),
+    Child(name: "Alice", age: 5),
+    Child(name: "Bob", age: 7),
+    Child(name: "Ron", age: 4)
+]
+let sortedChildren = children.sorted { (lhs, rhs) in
+    if lhs.age == rhs.age {
+        return lhs.name < rhs.name
+    } else {
+        return lhs.age < rhs.age
+    }
+}
+// выведем результат
+for child in sortedChildren {
+    print("имя: \(child.name), возраст: \(child.age)")
+}
+/* вопрос: почему print() в двух случаях НЕ сработал,
+ а с for-in все ОК? спросить у Арсентия */
+// 2.7 
 /* 3. Напиши функцию, которая принимает массив, проверяет: пустой/нет.
 И если пуст - добавь значение и выведи на консоль */
 
