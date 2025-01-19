@@ -118,6 +118,25 @@ var text3: [String] = []
 checkAndAdd1?(&text3)
 print(text3)
 
+// используй универсальный подход: функция работает с массивами любого типа
+func checkAndAdd<T>(_ array: inout [T], value: T) {
+    if array.isEmpty {
+        array.append(value)
+    }
+}
+// пример использования
+var numbs: [Int] = []
+checkAndAdd(&numbs, value: 12)
+print(numbs)
+
+var numbs2: [Int]  = [2, 4, 6, 8]
+checkAndAdd(&numbs2, value: 12)
+print(numbs2)
+
+var strings: [String] = []
+checkAndAdd(&strings, value: "Hi!")
+print(strings)
+
 /* 4. Напиши функцию - сайт с именем, фамилией, ником, e-mail, паролем
 и выведи в консоль */
 
