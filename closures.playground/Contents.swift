@@ -208,8 +208,6 @@ printGreeting(userSift)
 3.вызываем замыкание, чтобы вывести приветстве
  */
 
-/* 5. Напиши функции, которые принимают в кач-ве аргументов массивы/словари и проверяют: пуст/нет. Если пустые - добавь значение, выведи на консоль */
-
 // создание массива словарей
 var actors = [
     ["name": "Ian McKellen", "age": "71", "film": "Unexpected Journey", "role": "Gandalth"],
@@ -226,3 +224,26 @@ for actor in actors {
               actors.append(["name": "Orlando Bloom", "age": "36", "film": "Unexpected Journey", "role": "Legolas"])
 // вывод обновленного массива
               print(actors)
+/* 5. Напиши функции, которые принимают в кач-ве аргументов массивы/словари и проверяют: пуст/нет. Если пустые - добавь значение, выведи на консоль */
+func checkAndAdding(dict: inout [String: String]) {
+    if dict.isEmpty {
+        dict["key"] = "value"
+        print("словарь был пуст, добавлено значение: \(dict)")
+    } else {
+        print("словарь стал НЕ пуст: \(dict)")
+    }
+}
+// пример использования
+var emptyDict: [String: String] = [:]
+var nonEmptyDict: [String: String] = ["existinKey": "existingValue"]
+checkAndAdding(dict: &emptyDict)
+checkAndAdding(dict: &nonEmptyDict)
+/*
+ КОММЕНТАРИЙ:
+ 1. функция 'checkAndAdding' проверяет: пуст ли переданный словарь
+ 2. если словарь пуст, она добавляет значение с ключом 'key' и выводит обновленный словарь на консоль
+ 3. если словарь НЕ ПУСТ,  - она просто выводит его текущее слостояние
+ NB:
+ - используем ключевое слово 'inout' - что позволяет функции ИЗМЕНЯТЬ переданный словарь
+ - для этого нужно указать АМПЕРСАНД '&' перед словарем при вызове функции
+ */
