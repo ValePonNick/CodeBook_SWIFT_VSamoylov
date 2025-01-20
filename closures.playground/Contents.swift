@@ -82,16 +82,23 @@ let children = [
     Child(name: "Ron", age: 4)
 ]
 let sortedChildren = children.sorted { (lhs, rhs) in
+    print(lhs)
+    print(rhs)
     if lhs.age == rhs.age {
+        print(lhs)
+        print(rhs)
         return lhs.name < rhs.name
     } else {
+        print(lhs)
+        print(rhs)
         return lhs.age < rhs.age
     }
 }
+
 // выведем результат
-for child in sortedChildren {
-    print("имя: \(child.name), возраст: \(child.age)")
-}
+// for child in sortedChildren {
+//    print("имя: \(child.name), возраст: \(child.age)")
+//}
 /* вопрос: почему print() в двух случаях НЕ сработал,
  а с for-in все ОК? спросить у Арсентия */
 // 2.7 
@@ -247,3 +254,13 @@ checkAndAdding(dict: &nonEmptyDict)
  - используем ключевое слово 'inout' - что позволяет функции ИЗМЕНЯТЬ переданный словарь
  - для этого нужно указать АМПЕРСАНД '&' перед словарем при вызове функции
  */
+
+func name(name: String, hobby: String) -> String {
+    return "my name is \(name), my hobby is \(hobby)"
+}
+name(name: "Valery", hobby: "Swift")
+var name1 = name(name: "Valery", hobby: "Swift")
+print(name1)
+
+
+

@@ -6,6 +6,63 @@ import UIKit
  1. создай func, которая принимает массив Double. Напиши алгоритм, который находит в массиве min значение. Распечатай рез-т на консоль
  */
 /*
+ 1. Эта функция возвращает min значение в массиве, если он НЕ пуст.
+ 2. Если он пуст, она возвращает nil
+ */
+let numbers = [3.14, 2.12, 7.77, -4.23]
+    if let minNumber = numbers.min() {
+        print("минимальное значение: \(minNumber)")
+    } else {
+        print("массив пуст")
+}
+// вручную с помощью ЦИКЛА это можно сделать так:
+let nums = [1, 3, 6, 9, 12, -2, -12]
+var minNumber: Int = Int.max
+for number in nums {
+    if number < minNumber {
+        minNumber = number
+    }
+}
+print("минимальное значение: \(minNumber)")
+/*
+ NB:
+ 1. 'Int.max' используется для инициализации 'minNumber', чтобы гарантировать,
+ что ЛЮБОЙ элемент в массиве будет меньше него. */
+ 
+// чтобы найти два min значения в массиве:
+ // 1. сортировка массива по возрастанию и взять два первых элемента:
+let sortedNums = nums.sorted()
+if sortedNums.count >= 2 {
+    let min1 = sortedNums[0]
+    let min2 = sortedNums[1]
+    print("первое min значение: \(min1), второе min значение: \(min2)")
+} else {
+    print("массив содержит менее двух чисел")
+}
+// поиск min значения с помощью цикла
+var min1 = nums.min() ?? 0
+var min2: Int?
+
+nums.forEach { number in
+    if number < min1 {
+        min2 = min1
+        min1 = number
+    } else if min2 == nil || (number < min2! && number != min1) {
+        min2 = number
+    }
+}
+if let min2 = min2 {
+    print("первое min значение: \(min1), второе min значение: \(min2)")
+} else {
+    print("массив содержит менее двух чисел")
+}
+// удаление min значения
+if let min1 = nums.min() {
+    print("первое min значение: \(min1), второе min значение: \(min2)")
+} else {
+    print("массив содержит менее двух чисел")
+}
+/*
  2. в этом же массиве найди max значение. Распечатай рез-т на консоль
  */
 /*
