@@ -139,6 +139,33 @@ print(strings)
 
 /* 4. Напиши функцию - сайт с именем, фамилией, ником, e-mail, паролем
 и выведи в консоль */
+struct User {
+    let name: String
+    let sername: String
+    var nick: Any
+    let email: Any
+    var password: Any
+}
+let users = [
+    User(name: "Martin", sername: "Freeman", nick: "B1lbo", email: "mart1n@gmail.com", password: "B@gg1n$"),
+    User(name: "Kate", sername: "Blanchett", nick: "Galadriel", email: "kate@gmail.com", password: "Galadr!el"),
+    User(name: "Richard", sername: "Armitage", nick: "Thor1n", email: "richard@gmail.com", password: "Oakensh!eld")
+]
+for user in users {
+    print("имя: \(user.name), фамлия: \(user.sername), ник: \(user.nick), почта: \(user.email), пароль: \(user.password)")
+}
+ 
+func printInfo(name: String, sername: String, nickname: String, email: String, password: String, formatter: (String, String, String, String, String) -> String) {
+    let output = formatter(name, sername, nickname, email, password)
+    print(output)
+}
+ /* вызов func: замыкание использовано для формирования строки вывода на основе переданных имени, ника и др. */
+printInfo(name: "Martin", sername: "Freeman", nickname: "B1lbo", email: "mart1n@gmail.com", password:  "B@gg1n$") { name, sername, nickname, email, password in return "имя: \(name), фамлия: \(sername), ник: \(nickname), почта: \(email), пароль: \(password)"
+}
+
+    
+
+
 
 /* 5. Напиши функции, которые принимают в кач-ве аргументов массивы/словари
  и проверяют: пустые/нет. Если пустые - добавь значение, выведи на консоль */
