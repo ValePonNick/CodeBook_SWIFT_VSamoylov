@@ -185,6 +185,44 @@ performOperation { name, nickname in
  
  */
 // это код со СТРУКТУРОЙ и ЗАМЫКАНИЕМ:
+struct UserSwift {
+    var name: String
+    var nickname: String
 
-/* 5. Напиши функции, которые принимают в кач-ве аргументов массивы/словари
- и проверяют: пустые/нет. Если пустые - добавь значение, выведи на консоль */
+func greeting() -> String {
+    return "Hi, my name is \(name), my nickname is \(nickname)."
+    }
+}
+// определение замыкания
+let printGreeting: (UserSwift) -> Void =
+{ userSwift in print(userSwift.greeting())
+}
+// создание экземпляра структуры и вызов замыкания
+let userSift = UserSwift(name: "Gandalth", nickname: "wizard")
+printGreeting(userSift)
+// КОММЕНТАРИЙ:
+/*
+1. определим структуру 'UserSwift' с методом 'greeting'
+2. создай замыкание 'printGreeting', которое принимает экземпляр
+ 'userSwift'
+3.вызываем замыкание, чтобы вывести приветстве
+ */
+
+/* 5. Напиши функции, которые принимают в кач-ве аргументов массивы/словари и проверяют: пуст/нет. Если пустые - добавь значение, выведи на консоль */
+
+// создание массива словарей
+var actors = [
+    ["name": "Ian McKellen", "age": "71", "film": "Unexpected Journey", "role": "Gandalth"],
+    ["name": "Richard Armitage", "age": "50", "film": "Unexpected Journey", "role": "Thorin Oakenshild"],
+    ["name": "Benedict Cumberbatch", "age": "42", "film": "Unexpected Journey", "role": "Smaug"]
+]
+// перебор массива словарей
+for actor in actors {
+    if let name = actor["name"], var age = actor["age"], let film = actor["film"], let role = actor["role"] {
+        print("имя: \(name), возраст: \(age), фильм: \(film), роль: \(role)")
+    }
+}
+// добавление нового словаря в массив
+              actors.append(["name": "Orlando Bloom", "age": "36", "film": "Unexpected Journey", "role": "Legolas"])
+// вывод обновленного массива
+              print(actors)
