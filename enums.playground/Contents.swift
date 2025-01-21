@@ -35,6 +35,7 @@ case .summer:
 case .autumn:
     print("In the other gardens and all up the vale; From the autumn bonfires see the smoke trail! 'Pobert Louis Stevenson'")
 }
+
 // итерация и печать всех случаев перечисления
 for currentSeason in Season.allCases {
     print(currentSeason)
@@ -42,8 +43,9 @@ for currentSeason in Season.allCases {
 /*
  КОММЕНТАРИЙ:
  1. enum Season имеет 4 значения
- 2. используя свойство '.allCases' -> пройди по каждому значению
- 3. выведи их на экран
+ 2. используя оператор 'switch' - проверь значение константы 'favoriteSeason'
+ 3. используя свойство '.allCases' -> пройди по каждому значению
+ 4. выведи их на экран
  */
 // 2.2 ассоциированные значения: каждый случай имеет доп. значения РАЗНЫХ типов
 enum Person {
@@ -63,15 +65,41 @@ enum MeasurementUnit: Double {
     case kilometer = 1000.0
     case centimeter = 0.01
 }
-    
-   
-    
-    
+/* 2.4 альтернативы использования 'switch' для обработки значений enum: условный
+оператор  'if-else' */
+enum Direction {
+    case north
+    case south
+    case east
+    case west
+}
+
+let directionToHead = Direction.south
+
+if case .north = directionToHead {
+    print("Heading north")
+} else if case .south = directionToHead {
+    print("Heading south")
+}
 
 /*
  3. создай свое резюме, используя enum: имя, проф., возраст, навыки, образование, хобби и пр.
  Пропусти резюме через if-else/switch - ??? - пойми читаемость/красоту кода.
- Оцени первый/второй вариант написания */
+ 
+ // Оцени первый/второй вариант написания */
+/*
+ преимущества оператора 'switch' перед конструкцией 'if-else':
+ 1. наглядность + структурированность + (типо)безопасность
+ 2. производительность
+ 3. устойчивость к ошибкам - блок 'default': когда ни одно из значений НЕ совпадает
+ 4. идеально для работы с enum, т.к. позволяет ЯВНО обрабатывать КАЖДЫЙ случай
+ 
+ преимущества конструкции if-else перед оператором switch:
+ 1. сложные ЛОГИЧЕСКИЕ поверки - '&&' / '||' -> 'if-else' > читабелен + удобен
+ 2. диапазоны значений - >/<, 'между 1...12' т.к. 'switch' НЕ ПОДДЕРЖИВАЕТ ДИАПАЗОНЫ!
+ 3. когда условия зависит от РАЗНЫХ ТИПОВ данных/сложных выражений именно 'if-else'
+ позволяет > точно формулировать ЛОГИКУ
+ 4. если меньшее кол-во случаев -> проще использовать if-else */
 
 /*
  4. используй enum и задай цвета для MacBook, IPhone, IPad, AppleWatch.
