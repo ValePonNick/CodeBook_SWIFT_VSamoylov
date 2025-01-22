@@ -164,3 +164,84 @@ myResume.display()
  4. используй enum и задай цвета для MacBook, IPhone, IPad, AppleWatch.
  Девайсы располагаем в теле функции. Итог программы: "Айфон - розовый" */
                                                                                    
+/* ЗАДАЧА от Perplexity: создай резюме с доп. функциями -
+ 1. добавь в хобби еще неск. вариантов - рисование, кулинария, фото
+ 2. добавь новое поле в структуру resume - город
+ 3. метод для подсчета кол-ва хобби и реализуй его в структуре resume - он будет возвращать кол-во хобби у человека
+ 4. метод для вывода инфы о хобби:
+ - создай метод, который выведет инфу о каждом хобби отдельно
+ - используй 'switch' для вывода уникального сообщения для каждого типа хобби
+ 5. обработка пустого массива хобби - убедись, что программа корректно обрабатывает случай, когда массив пуст и выводит соотв. сообщение
+ 6. ПРИМЕР использования: создай объект resume, заполно его данными, вызови методы для отображения инфы о человеке и его хобби
+ 7. доп. рекомендации:
+ - протестируй програму с разными наборами данных
+ - используй РАЗНЫЕ конструкции 'if-else' / 'switch' - увидишь КАК они влияют на вывод инфы */
+
+// примерный шаблон кода
+
+// ваше перечисление хобби
+enum Hobbies: String, CaseIterable {
+    case sport = "tennis, nordick walking"
+    case reeding = "detectives, fantasy, histopical novells"
+    case drawing = "oil drawing, watercolor drawing"
+    case cooking = "bakery, cakes"
+}
+// структура резюме
+struct Resumes: CustomStringConvertible {
+    var description: String
+    let name: String
+    let sername: String
+    let nickname: String
+    var hobbies: [Hobbies]
+    let country: String
+    let sity: String
+    var age: Int
+    
+    var descriptions: String {
+        "Резюме: \nимя: \(name), фамилия: \(sername), профессиональный ник: \(nickname), хобби: \(hobbies.map { $0.rawValue }.joined(separator: ",")), страна: \(country), город: \(sity), возраст: \(age)"
+    }
+    
+    func countHobbies() {
+        let countHobbies = hobbies.count
+        print("виды хобби: их - \(countHobbies)")
+    }
+        
+   func display() {
+       print(self.description)
+                
+       if hobbies.isEmpty {
+            print("массив пуст. У Джейми Оливера нет хобби")
+       } else {
+            print("хобби: \(hobbies.map { $0.rawValue } )")
+                    
+        if let firstHobby = hobbies.first {
+            switch firstHobby {
+            case .sport:
+                print("основное хобби - спорт. Здоровый образ жизни важен!")
+            case .reeding:
+                print("основное хобби - чтение. Это - увлекательно и полезно!")
+            case .drawing:
+                print("основное хобби - живопись. Это позволяет увидеть новые места и познакомиться с интересными людьми")
+            case .cooking:
+                print("основное хобби - кулинария. Она разнообразит жизнь человека")
+                    }
+                }
+            }
+        }
+    }
+
+// пример создания кода
+let myResumes = Resumes(
+    description: "описание",
+    name: "James",
+    sername: "Trevor",
+    nickname: "Jamie Oliver",
+    hobbies: [ .cooking, .drawing, .reeding, .sport],
+    country: "England",
+    sity: "London",
+    age: 27
+)
+// вызов методов для отображения инфы
+myResumes.countHobbies()
+myResumes.display()
+print(myResumes)
