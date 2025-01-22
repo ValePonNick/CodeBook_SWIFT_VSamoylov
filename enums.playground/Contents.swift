@@ -180,15 +180,37 @@ myResume.display()
 // примерный шаблон кода
 
 // ваше перечисление хобби
-enum Hobbies: String, CaseIterable {
+
+// объявляем перечисление Hobbies
+enum Hobbies: String {
     case sport = "tennis, nordick walking"
     case reeding = "detectives, fantasy, histopical novells"
     case drawing = "oil drawing, watercolor drawing"
     case cooking = "bakery, cakes"
+    
+    var info: HobbiesInfo {
+        switch self {
+        case .sport:
+            return HobbiesInfo(name: "Спорт", description: self.rawValue, benefits: "здоровый образ жизни")
+        case .reeding:
+            return HobbiesInfo(name: "Чтение", description: self.rawValue, benefits: "Развитие воображения, расширение словарного запаса")
+        case .drawing:
+            return HobbiesInfo(name: "Живопись",
+                               description: self.rawValue,
+                               benefits: "развитие творчеких способностей")
+        case .cooking:
+            return HobbiesInfo(name: "Кулинария", description: self.rawValue, benefits: "развитие вкуса, эксперименты с новыми рецептами")
+        }
+    }
+}
+// структура для информации о хобби
+struct HobbiesInfo {
+    let name: String
+    let description: String
+    let benefits: String
 }
 // структура резюме
 struct Resumes: CustomStringConvertible {
-    var description: String
     let name: String
     let sername: String
     let nickname: String
@@ -197,7 +219,7 @@ struct Resumes: CustomStringConvertible {
     let sity: String
     var age: Int
     
-    var descriptions: String {
+    var description: String {
         "Резюме: \nимя: \(name), фамилия: \(sername), профессиональный ник: \(nickname), хобби: \(hobbies.map { $0.rawValue }.joined(separator: ",")), страна: \(country), город: \(sity), возраст: \(age)"
     }
     
@@ -205,34 +227,42 @@ struct Resumes: CustomStringConvertible {
         let countHobbies = hobbies.count
         print("виды хобби: их - \(countHobbies)")
     }
+    
+    func display() {
+        print(self.description)
         
-   func display() {
-       print(self.description)
-                
-       if hobbies.isEmpty {
+        if hobbies.isEmpty {
             print("массив пуст. У Джейми Оливера нет хобби")
-       } else {
+        } else {
             print("хобби: \(hobbies.map { $0.rawValue } )")
-                    
-        if let firstHobby = hobbies.first {
-            switch firstHobby {
-            case .sport:
-                print("основное хобби - спорт. Здоровый образ жизни важен!")
-            case .reeding:
-                print("основное хобби - чтение. Это - увлекательно и полезно!")
-            case .drawing:
-                print("основное хобби - живопись. Это позволяет увидеть новые места и познакомиться с интересными людьми")
-            case .cooking:
-                print("основное хобби - кулинария. Она разнообразит жизнь человека")
-                    }
+            
+            if let firstHobby = hobbies.first {
+                switch firstHobby {
+                case .sport:
+                    print("основное хобби - спорт. Здоровый образ жизни важен!")
+                case .reeding:
+                    print("основное хобби - чтение. Это - увлекательно и полезно!")
+                case .drawing:
+                    print("основное хобби - живопись. Это позволяет увидеть новые места и познакомиться с интересными людьми")
+                case .cooking:
+                    print("основное хобби - кулинария. Она разнообразит жизнь человека")
                 }
             }
         }
     }
 
+func displayHobbiesInfo() {
+    for hobby in hobbies {
+        let info = hobby.info
+        print("Хобби: \(info.name)")
+        print("Описание: \(info.description)")
+        print("Преимущество: \(info.benefits)")
+        print()
+        }
+    }
+}
 // пример создания кода
 let myResumes = Resumes(
-    description: "описание",
     name: "James",
     sername: "Trevor",
     nickname: "Jamie Oliver",
@@ -244,4 +274,31 @@ let myResumes = Resumes(
 // вызов методов для отображения инфы
 myResumes.countHobbies()
 myResumes.display()
+myResumes.displayHobbiesInfo()
 print(myResumes)
+// ПОЛУЧИЛОСЬ!!!
+
+
+// КОММЕНТАРИЙ:
+/*
+ 1. перечисление 'hobbies':
+ - 'CaseItarale' перебирает ВСЕ случаи перечисления
+ - 'CaseItarale' == ручное создание массива всех случаев */
+let allHobbies: [Hobbies] = [.sport, .cooking, .drawing, .reeding]
+// использование массива
+for hobby in allHobbies {
+    print(hobby.rawValue) // это все авто/заменил 'CaseItarale'
+}
+/*
+2. структура 'Resumes':
+ - ее свойства: имя, ник, город
+ - 'CustomStringConvertible' - протокол, который требует реализации свойства 'description' - это свойство возвращает строку, которая описывает ЭКЗЕМПЛЯР структуры
+
+- 'description' - вычисляемое СВОЙСТВО, оно формирует строку с инфой о резюме
+- '.countHobbies()' - метод, выводит кол-во хобби у человека
+- '.display()' - метод, выводит инфу о резюме, включая хобби и их описание на экран
+3. создание ЭКЗЕМПЛЯРА резюме и вывод методов:
+ - для Джейми Оливера с заданными хобби и др. данными
+ - вызов методов:
+    '.countHobbies()' - выводит кол-во хобби
+      print(myResumes) - выводит краткое описание резюме благодаря реализации протокола 'CustomStringConvertible' */
