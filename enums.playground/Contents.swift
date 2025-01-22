@@ -82,15 +82,36 @@ if case .north = directionToHead {
     print("Heading south")
 }
 /* 3. создай свое резюме, используя enum: имя, проф., возраст, навыки, образование, хобби и пр. Пропусти резюме через if-else/switch - ??? - пойми читаемость/красоту кода. */
-enum User {
-    case name
-    case nick
-    case age
-    case profession
-    case edication
-    case programming
-    case hobby
+// перечисления для хобби
+enum Hobby: String {
+    case sport = "trekking"
+    case programming = "Swift"
+    case treveling = "treveling by car"
+    case music = "juzz"
 }
+// структура для резюме
+struct Resume {
+    let name: String
+    var nickname: String
+    var sername: String
+    var hobby: [Hobby]
+    var age: Int
+    
+    func display() {
+        print("Резюме:")
+        print("имя: \(name), фамилия: \(sername), ник: \(nickname), возраст: \(age), хобби: \(hobby.map { $0.rawValue }.joined(separator: ","))")
+    }
+}
+// пример использования
+let myResume = Resume(
+    name: "Valery",
+    nickname: "ValePonick",
+    sername: "Ponomareva",
+    hobby: [.music, .programming, .sport, .treveling],
+    age: 57
+)
+// вывод резюме
+myResume.display()
 
 
 /* преимущества оператора 'switch' перед конструкцией 'if-else':
