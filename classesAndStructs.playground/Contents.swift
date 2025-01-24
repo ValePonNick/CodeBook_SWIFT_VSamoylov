@@ -40,6 +40,61 @@ writer.name = "R.L. Stivenson"
 writer.country = "England"
 writer.nickname = "R.L."
 writer.mainBook = "Treasure island"
-print("\(writer.name) was born in \(writer.country). He is an author of the variety of books, but most famoius - \(writer.mainBook).")
+print("\(writer.name) was born in \(writer.country). He is an author of the variety of books, but most famous - \(writer.mainBook).")
 // сделала САМА и НИКУДА ни разу НЕ ПОДСМотрела!!!
+/*
+ сравним с вариантом от perplexity: определение класса для представления любимых писателей
+ NB: прозвище писателя - опционально!
+*/
+enum Gender {
+    case male, female
+}
 
+class favoriteWriters {
+    // свойства класса: имя, страна, прозвище и главная книга
+    let name: String
+    let country: String
+    var nickname: String?
+    let mainBook: String
+    let gender: Gender // добавим свойство для указания пола
+    
+    // инициализация класса для задания свойства при создании экземпляра
+    init(name: String, country: String, nickname: String? = nil, mainBook: String, gender: Gender) {
+        self.name = name
+        self.country = country
+        self.nickname = nickname
+        self.mainBook = mainBook
+        self.gender = gender
+        
+    }
+    // метод для вывода инфы о писателе
+    /*
+     COMMENTS:
+     1. формирование строки с прозвищем
+     2. если 'nickname' не 'nil' - добавим скобки
+     3. если 'nickname' - 'nil' - то возвращается пустая строка
+     */
+    func printInfo() {
+        // формирование строки с прозвищем, если оно есть
+        let nicknameText = nickname.map { " (\($0))" } ?? ""
+        let pronoun: String
+        switch gender {
+        case .male:
+            pronoun = "He"
+        case .female:
+            pronoun = "She"
+        }
+        
+        // вывод инфы о писателе
+        print("\(name) was born in \(country). \(pronoun) is an author of the variety of books, but most famous - \(mainBook).")
+        }
+    }
+
+// использование класса
+var favoriteWriter1 = favoriteWriters(name: "Agatha Christie", country: "England", nickname: "", mainBook: "Murder on the Orient Express", gender: .female)
+// вывод инфы о ПЕРВОМ писателе
+favoriteWriter1.printInfo()
+// создание нового экземпляра для второго писателя
+var favoriteWriter2 = favoriteWriters(name: "Arthur Conan Doyle", country: "England", nickname: "", mainBook: "The White Company", gender: .male)
+// вывод инфы о ВТОРОМ писателе
+favoriteWriter2.printInfo()
