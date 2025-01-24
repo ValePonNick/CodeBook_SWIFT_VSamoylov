@@ -20,7 +20,64 @@ import UIKit
 // 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!"
 
 // это КЛАСС БЕЗ наследования
+class Car {
+    let make: String
+    let model: String
+    let year: Int
+    let enginePower: Int
+    
+    // инициализатор
+    init(make: String, model: String, year: Int, enginePower: Int)
+    {
+        self.make = make
+        self.model = model
+        self.year = year
+        self.enginePower = enginePower
+    }
+    // метод для отображения инфы о машине
+    func displayInfo() {
+        print("марка: \(make), модель: \(model), год выпуска: \(year), мощность двигателя в л/с: \(enginePower)")
+    }
+}
+// создание ЭКЗЕМПЛЯРА класса Car
+let myCar = Car(make: "Toyota", model: "Rav-4", year: 2015, enginePower: 182)
+// вызов метода для отображения
+myCar.displayInfo()
+/* COMMENTS:
+1. класс Car имеет четыре свойства: марка, модель, год, мощность двигателя в л/с
+2. инициализатор - метод 'init' -> для создания экз-ра класса с ЗАДАННЫМИ значениями свойств
+3. NB: этот класс НЕ наследует от др. классов и м. б. использован АВТОНОМНО */
 
+// КЛАСС С НАСЛЕДОВАНИЕМ
+class Animal {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    func makeSound() {
+        print("Animal sound")
+    }
+}
+class Dog: Animal {
+    
+    override func makeSound() {
+        print("Woof! Woof!")
+    }
+}
+class Cat: Animal {
+    override func makeSound() {
+        print("Meow! Meow!")
+    }
+}
+//
+// пример использования
+let dog = Dog(name: "Rex")
+dog.makeSound()
+let cat = Cat(name: "Shadow")
+cat.makeSound()
+
+// это чисто/конкретно мой код
 class Writers {
     var name: String = ""
     var country: String = ""
@@ -44,7 +101,7 @@ print("\(writer.name) was born in \(writer.country). He is an author of the vari
 // сделала САМА и НИКУДА ни разу НЕ ПОДСМотрела!!!
 /*
  сравним с вариантом от perplexity: определение класса для представления любимых писателей
- NB: прозвище писателя - опционально!
+ NB: прозвище писателя - опционально + добавила пол автора!
 */
 enum Gender {
     case male, female
