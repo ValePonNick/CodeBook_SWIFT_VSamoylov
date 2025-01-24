@@ -19,4 +19,27 @@ import UIKit
 
 // 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!"
 
+// это КЛАСС БЕЗ наследования
+
+class Writers {
+    var name: String = ""
+    var country: String = ""
+    var nickname: String = ""
+    var mainBook: String = ""
+}
+
+var writer = Writers()
+
+writer.name = "J.R.R. Tolkien"
+writer.country = "England"
+writer.nickname = "J.R.R."
+writer.mainBook = "Hobbit"
+print("\(writer.name) was born in \(writer.country). He is an author of the variety of books, but most famoius - \(writer.mainBook).")
+
+writer.name = "R.L. Stivenson"
+writer.country = "England"
+writer.nickname = "R.L."
+writer.mainBook = "Treasure island"
+print("\(writer.name) was born in \(writer.country). He is an author of the variety of books, but most famoius - \(writer.mainBook).")
+// сделала САМА и НИКУДА ни разу НЕ ПОДСМотрела!!!
 
