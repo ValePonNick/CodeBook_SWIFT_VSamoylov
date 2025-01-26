@@ -198,7 +198,7 @@ class Names {
             }
             
             for (letter, names) in groupedNames {
-                print("\(letter): \(names))")
+                print("\(letter): \(names)")
             }
     }
 }
@@ -243,14 +243,70 @@ myNames.groupNames()
  
  1. Практика с классами и объектами
      •    Создайте класс для описания книги с свойствами `title`, `author`, и `yearOfPublication`.
-     •    Реализуйте функцию, которая выводит информацию о книге.
+     •    Реализуйте функцию, которая выводит информацию о книге.*/
+class Book {
+    let title: String
+    let author: String
+    let yearOfPublication: Int
+    
+    init(title: String, author: String, yearOfPublication: Int) {
+        self.title = title
+        self.author = author
+        self.yearOfPublication = yearOfPublication
+    }
+    
+    func displayBook() {
+        print("Книга \(title) написана \(author) в \(yearOfPublication) году.")
+    }
+}
+    
+// создай экземпляр класса ВНЕ класса!
+var myBook = Book(title: "'The Shining'", author: "Stephen King", yearOfPublication: 1977)
+myBook.displayBook()
+myBook = Book(title: "'Грокаем алгоритмы'", author: "Адитья Бхаргава", yearOfPublication: 2022)
+myBook.displayBook()
+
+/* COMMENTS:
+1. в методе 'displayBook()' НЕ НУЖНО передавать параментры, т.к. он использует СВОЙСТВА КЛАССА
+2. экземпляр класса д.б. создан ВНЕ КЛАССА
+3. при вызове метода 'displayBook()' НЕ НУЖНО передавать параметры т.к. они УДАЛЕНЫ из метода
+ ЛОГИКА КОДА:
+ создает класс 'Book()' - экземпляр которого выводит инфу о книге в консоль */
+
+/*
  2. Работа со словарями
      •    Создайте словарь, где ключом является название страны, а значением — ее столица.
-     •    Напишите функцию, которая принимает название страны и возвращает ее столицу.
- 3. Группировка данных
+     •    Напишите функцию, которая принимает название страны и возвращает ее столицу.*/
+
+var countriesCapitals = ["USA": "Vashington", "Albania": "Tirana", "Italy": "Rom", "Finland": "Helsinki", "Vatican City": "Vatican City"]
+
+@MainActor func getCapital(for country: String) -> String? {
+    return countriesCapitals[country]
+}
+// пример использования
+if let capital = getCapital(for: "France") {
+    print("Столица Франции - \(capital)")
+} else {
+    print("Столица не найдена")
+}
+if let capital = getCapital(for: "Vatican City") {
+    print("Столица Ватикана - \(capital)")
+} else {
+    print("Столица не найдена")
+}
+
+/* COMMENTS:
+1. словарь 'countriesCapitals' хранит название стран как ключи и столицы как значения
+2. функция 'getCapital(for:)' принимает название страны и возвращает ее столицу. ЕСЛИ страна НЕ НАЙДЕНА, функия возвращает 'nil'  */
+
+
+    
+  
+
+/* 3. Группировка данных
      •    Создайте массив структур (или классов), представляющих людей с именем и возрастом.
-     •    Напишите функцию, которая группирует людей по возрасту.
+     •    Напишите функцию, которая группирует людей по возрасту. */
+/*
  4. Работа с массивами
      •    Создайте массив чисел и напишите функцию, которая находит максимальное и минимальное значения в массиве.
-     •    Реализуйте функцию сортировки массива по возрастанию или убыванию.
- */
+     •    Реализуйте функцию сортировки массива по возрастанию или убыванию. */
