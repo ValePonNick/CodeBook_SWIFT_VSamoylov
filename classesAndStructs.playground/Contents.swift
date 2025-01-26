@@ -299,13 +299,54 @@ if let capital = getCapital(for: "Vatican City") {
 1. словарь 'countriesCapitals' хранит название стран как ключи и столицы как значения
 2. функция 'getCapital(for:)' принимает название страны и возвращает ее столицу. ЕСЛИ страна НЕ НАЙДЕНА, функия возвращает 'nil'  */
 
-
-    
-  
-
 /* 3. Группировка данных
      •    Создайте массив структур (или классов), представляющих людей с именем и возрастом.
      •    Напишите функцию, которая группирует людей по возрасту. */
+// создай структуру студента
+struct Student {
+    var name: String
+    var age: Int
+}
+// напиши функцию, которая группирует студентов по возрасту
+func groupedStudentsByAge(students: [Student]) -> [Int: [Student]] {
+    var grupedStudents = [Int: [Student]]()
+    for student in students {
+        // если ключа еще НЕТ в словаре, создай новый массив
+        if grupedStudents[student.age] == nil {
+            grupedStudents[student.age] = []
+        }
+        // добавь студента в соотв. массив
+        grupedStudents[student.age]?.append(student)
+        }
+    return grupedStudents
+}
+// пример использования
+var students: [Student] = [
+    Student(name: "Ann", age: 12),
+    Student(name: "Alice", age: 15),
+    Student(name: "Alex", age: 10)
+    ]
+let grouped = groupedStudentsByAge(students: students)
+// вывод результата
+for (age, students) in grouped {
+    print("Возраст \(age):")
+    for student in students {
+        print(" - \(student.name)")
+    }
+}
+/* COMMENTS:
+1. структура 'Student' определяет модель данных с двумя свойствами: имя + возраст
+2. функция 'groupedStudentsByAge'
+    - принимает массив студентов
+    - создает пустой СЛОВАРЬ 'grupedStudents', где ключ - это возраст, а значение - это массив студентов
+    - передирает КАЖДОГО студента в массиве и добавляет его в соотв. массив по возрасту
+3. ПРИМЕР ИСПОЛЬЗОВАНИЯ:
+    - создай массив студентов
+    - вызови функцию для группировки
+    - результат выведи в консоль
+4.
+5. */
+
 /*
  4. Работа с массивами
      •    Создайте массив чисел и напишите функцию, которая находит максимальное и минимальное значения в массиве.
