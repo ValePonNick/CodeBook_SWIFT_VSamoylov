@@ -230,14 +230,59 @@ myNames.groupNames()
  2. логика группировки: основана на переборе массива имен и использовании словаря для группировки по первой букве каждого имени
  РЕЗУЛЬТАТ: этот код демонстирует базовые концепции Swift и ПРОСТУЮ логику группировки данных. */
 
-
-
 /*
- 4. напиши класс, который формирует массив учеников, сортирует и считает кол-во этих учеников. Если учеников >  30, то выведи сообщение 'в школе нет мест'.
- */
+ 4. напиши класс, который формирует массив учеников, сортирует и считает кол-во этих учеников. Если учеников >  30, то выведи сообщение 'в школе нет мест'. */
+
+class Child {
+    let name: String
+    let age: Int
+    let gender: String
+    
+    init(name: String, age: Int, gender: String) {
+        self.name = name
+        self.age = age
+        self.gender = gender
+    }
+    
+    func groupedChildrensByName(children: [Child]) -> [String: [Child]] {
+        var groupedChildren = [String: [Child]]()
+        for child in children {
+            var firstLetter = String(child.name.first!)
+            if groupedChildren[firstLetter] == nil {
+                groupedChildren[firstLetter] = []
+            }
+            // добавь школьника в соотв. массив
+        groupedChildren[firstLetter]?.append(child)
+        }
+        return groupedChildren
+    }
+}
+// пример использования
+var children = [
+    Child(name: "Bob", age: 11, gender: "male"),
+    Child(name: "Brendan", age: 14, gender: "male"),
+    Child(name: "Anthony", age: 10, gender: "male"),
+    Child(name: "Arthur", age: 13, gender: "male"),
+    Child(name: "Anna", age: 11, gender: "female"),
+    Child(name: "Alf", age: 12, gender: "male"),
+    Child(name: "Alex", age: 10, gender: "male"),
+    Child(name: "Barac", age: 11, gender: "male"),
+    Child(name:  "Brad", age: 15, gender: "male"),
+    Child(name: "Ann", age: 12, gender: "female")
+]
+let child = Child(name: "Example", age: 0, gender: "uncnown")
+let group = child.groupedChildrensByName(children: children)
+                                
+for (key, value) in group {
+    print("Группа по букве \(key):")
+for child in value {
+    print("Имя: \(child.name), Возраст: \(child.age), Пол: \(child.gender)")
+    }
+}
+ /*
 // 5. Создай 5 - 10 своих структур.
 
-// 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!"
+// 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!" */
 
 /* ЗАДАНИЯ от PERPLEXITY:
  
@@ -339,7 +384,7 @@ for (age, students) in grouped {
 2. функция 'groupedStudentsByAge'
     - принимает массив студентов
     - создает пустой СЛОВАРЬ 'grupedStudents', где ключ - это возраст, а значение - это массив студентов
-    - передирает КАЖДОГО студента в массиве и добавляет его в соотв. массив по возрасту
+    - перебирает КАЖДОГО студента в массиве и добавляет его в соотв. массив по возрасту
 3. ПРИМЕР ИСПОЛЬЗОВАНИЯ:
     - создай массив студентов
     - вызови функцию для группировки
