@@ -279,11 +279,47 @@ for child in value {
     print("Имя: \(child.name), Возраст: \(child.age), Пол: \(child.gender)")
     }
 }
- /*
+
 // 5. Создай 5 - 10 своих структур.
+struct Flawer {
+    let rose: String
+    let pulip: String
+    let peony: String
+    let aster: String
+    let daffodil: String
+    let lily: String
+    let carnation: String
+    let lavender: String
+    let chamomile: String
+    var count: Int
+    mutating func countingFlowers() {
+        count += 1
+    }
+}
 
-// 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!" */
+//
+/* 6. создай список покупок! Код пишет продукты в массив. Если вызываем опр. продукт -> в консоли пиши типа "Мед - куплено!" */
+class Product {
+    let name: String
+    let count: Int
+    let price: Double
+    
+    init(name: String, count: Int, price: Double) {
+        self.name = name
+        self.count = count
+        self.price = price
+    }
+    func displayProduct() {
+        print("\(name) в количестве \(count) по цене \(price) - куплено!")
+    }
+}
+// создай экземпляр ВНЕ класса
+var myProducts = Product(name: "Ananas", count: 2, price: 212.5)
+myProducts.displayProduct()
 
+myProducts = Product(name: "Apple", count: 12, price: 312.2)
+myProducts.displayProduct()
+//
 /* ЗАДАНИЯ от PERPLEXITY:
  
  1. Практика с классами и объектами
