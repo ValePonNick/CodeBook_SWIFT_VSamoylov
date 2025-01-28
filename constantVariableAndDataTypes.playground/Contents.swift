@@ -53,18 +53,30 @@ if let bounds = minMax(array: [8, -2, 12, 36, 44, -21]) {
  5. сохранение ЛОГИКИ - ВСЕ сохраненные результаты остаются сгруппированы ВМЕСТЕ -> код более ЛОГИЧЕН
  */
 
-// доработаем код - добавим поиск СРЕДНЕГО ЗНАЧЕНИЯ и КОЛИЧЕСТВА элементов в массиве
-func averageCount (of array:[Int]) -> Int? {
+/* 2. доработаем код:
+ добавим поиск СРЕДНЕГО ЗНАЧЕНИЯ и КОЛИЧЕСТВА элементов в массиве */
+
+func averageCount(of array:[Int]) -> Int? {
     guard !array.isEmpty else { return nil }
     
-    let sum = array.reduce(0, +)  // суммируем ВСЕ элементы массива
-    let average = sum/Int(array.count) // находим среднее значение
+    let sum = array.reduce(0, +)
+    let average = sum/Int(array.count)
+    let count = array.count
     
     return average
 }
 // пример использования
-if let avg = averageCount(of: [8, -2, 12, 36, 44, -21]) {
-    print("среднее значение:  \(avg)")
+let numbers = [8, -2, 12, 36, 44, -21]
+let count = numbers.count
+if let avg = averageCount(of: numbers) {
+    print("среднее значение:  \(avg), количество элементов в массиве:  \(count)")
 } else {
     print("массив пуст")
 }
+
+
+
+
+
+  
+
