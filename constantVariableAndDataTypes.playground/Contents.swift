@@ -164,54 +164,75 @@ printProductInfo(productName: "Rice")
 //ОПТИМИЗАЦИЯ КОДА:
 // используем СТРУКТУРУ вместо КОРТЕЖА
 // структуры гибки + понятны + легко добавить новое поле
-struct Good {
+struct Good { // эта структура имеет три СВОЙСТВА
     let name: String
     let count: Int
     let price: Double
 }
-struct GoodFeatures {
+struct GoodFeatures { //  эта структура имеет два СВОЙСТВА
     let category: String
     let groupGoods: String
 }
-// улучшим безопасность обработки ошибок
+// улучшим безопасность: используй перечисление для обработки ошибок
 enum GoodError: Error {
-    case goodNotFound
-    case invalidData
+    case goodNotFound // ошибка, если товар НЕ НАЙДЕН
+    case invalidData // ошибка, если данные НЕ КОРРЕКТНЫ
 }
-
+// определение класса для управления товарами и их характеристиками
 class GoodManager {
-    var goods: [String: Good] = [:]
+    var goods: [String: Good] = [:] // СЛОВАРЬ для ХРАНЕНИЯ товаров: ключ - название товара
     var goodFeatures: [String: GoodFeatures] = [:] // определено как ХРАНИМОЕ СВОЙСТВО
-       
-        func addGood(_ good: Good,features: GoodFeatures) {
-            goods[good.name] = good
-            goodFeatures[good.name] = features
+       // СЛОВАРЬ для ХРАНЕНИЯ хар-тик товаров: ключ - ТАКЖЕ название товара
+        
+    // функция для ДОБАВЛЕНИЯ товара и его хар-тик в СЛОВАРИ
+    func addGood(_ good: Good,features: GoodFeatures) {
+           // проверка на существование товара с таким же названием
+        if goods[good.name] != nil {
+            //если товар УЖЕ существует - выводим сообщение
+            print("Товар с таким названием УЖЕ СУЩЕСТВУЕТ")
+            return
         }
-    
+        // добавление товара в словарь по его НАЗВАНИЮ
+        goods[good.name] = good
+        // добавление характеристик товара в словарь по его НАЗВАНИЮ
+        goodFeatures[good.name] = features
+        }
+    // функция для вывода ИНФЫ о товаре по его названию
     func printGoodInfo(goodName: String) throws {
+        // проверка на пустое занвание товара
+        if goodName.isEmpty {
+            // если название ПУСТОЕ - выбрасываем ОШИБКУ
+            throw GoodError.invalidData
+        }
+        //безопасное МЗВЛЕЧЕНИЕ товара и его хар-тик из СЛОВАРЕЙ
         guard let good = goods[goodName],
               let featuers = goodFeatures[goodName] else {
+            // если товар или его хар-ки НЕ НАЙДЕНЫ - выбрасиваем ошибку
             throw GoodError.goodNotFound
         }
-            
+        // вывод ИНФЫ о товаре
         print("Товар: \(good.name)")
-            print("Цена: \(good.price)")
-            print("Количество: \(good.count)")
-            print("Характиеристики:")
-            print(" - категория: \(featuers.category)")
-            print(" - группа товаров: \(featuers.groupGoods)")
-        }
+        print("Цена: \(good.price)")
+        print("Количество: \(good.count)")
+        print("Характиеристики:")
+        print(" - категория: \(featuers.category)")
+        print(" - группа товаров: \(featuers.groupGoods)")
     }
+}
 // пример использования ОПТИМИЗИРОВАННОГО кода
+// создание ЭКЗЕМПЛЯРА класса 'GoodManager' для управления товарами
 let manager = GoodManager()
-
+// создание нового товара
 let apple = Good(name: "Apple", count: 12, price: 322.6)
+// создание хар-тик для яблока
 let appleFeatures = GoodFeatures(category: "Gastronomy", groupGoods: "Fruits")
+// добавление яблока в словари
 manager.addGood(apple, features: appleFeatures)
-
+// выод ИНФЫ о бобавлении товара с обработкой ошибок
 do {
     try manager.printGoodInfo(goodName: "Apple")
 } catch {
+    // вывод ОШИБКИ, если она возникла
     print("Ошибка: \(error)")
 }
 // этот код более модульный + безопасный + удобный для расширения
