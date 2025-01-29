@@ -161,3 +161,59 @@ printProductInfo(productName: "Rice")
     ЛОГИКА: см. - КАК можно использовать функцию для получения ИНФЫ о РАЗНЫХ товарах
  */
 
+//ОПТИМИЗАЦИЯ КОДА:
+// используем СТРУКТУРУ вместо КОРТЕЖА
+// структуры гибки + понятны + легко добавить новое поле
+struct Good {
+    let name: String
+    let count: Int
+    let price: Double
+}
+struct GoodFeatures {
+    let category: String
+    let groupGoods: String
+}
+// улучшим безопасность обработки ошибок
+enum GoodError: Error {
+    case goodNotFound
+    case invalidData
+}
+
+class GoodManager {
+    var goods: [String: Good] = [:]
+    var goodFeatures: [String: GoodFeatures] = [:] // определено как ХРАНИМОЕ СВОЙСТВО
+       
+        func addGood(_ good: Good,features: GoodFeatures) {
+            goods[good.name] = good
+            goodFeatures[good.name] = features
+        }
+    
+    func printGoodInfo(goodName: String) throws {
+        guard let good = goods[goodName],
+              let featuers = goodFeatures[goodName] else {
+            throw GoodError.goodNotFound
+        }
+            
+        print("Товар: \(good.name)")
+            print("Цена: \(good.price)")
+            print("Количество: \(good.count)")
+            print("Характиеристики:")
+            print(" - категория: \(featuers.category)")
+            print(" - группа товаров: \(featuers.groupGoods)")
+        }
+    }
+// пример использования ОПТИМИЗИРОВАННОГО кода
+let manager = GoodManager()
+
+let apple = Good(name: "Apple", count: 12, price: 322.6)
+let appleFeatures = GoodFeatures(category: "Gastronomy", groupGoods: "Fruits")
+manager.addGood(apple, features: appleFeatures)
+
+do {
+    try manager.printGoodInfo(goodName: "Apple")
+} catch {
+    print("Ошибка: \(error)")
+}
+// этот код более модульный + безопасный + удобный для расширения
+// COMMENTS:
+
