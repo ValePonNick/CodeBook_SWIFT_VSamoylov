@@ -18,9 +18,29 @@ func minMax (array:[Int]) -> (min: Int, max: Int)? {
     }
     return(currentMin, currentMax)
 }
-
+// пример использования:
 if let bounds = minMax(array: [8, -2, 12, 36, 44, -21]) {
     print("min is \(bounds.min) and max is \(bounds.max)")
+}
+/* 2. доработаем код:
+ добавим поиск СРЕДНЕГО ЗНАЧЕНИЯ и КОЛИЧЕСТВА элементов в массиве */
+
+func averageCount(of array:[Int]) -> Int? {
+    guard !array.isEmpty else { return nil }
+    
+    let sum = array.reduce(0, +)
+    let average = sum/Int(array.count)
+    let count = array.count
+    
+    return average
+}
+// пример использования
+let numbers = [8, -2, 12, 36, 44, -21]
+let count = numbers.count
+if let avg = averageCount(of: numbers) {
+    print("среднее значение:  \(avg), количество элементов в массиве:  \(count)")
+} else {
+    print("массив пуст")
 }
 /* COMMENTS:
 1. объявим функцию с именем minMax ()
@@ -50,33 +70,63 @@ if let bounds = minMax(array: [8, -2, 12, 36, 44, -21]) {
  2. упрощение - можем НЕ создавать две отдельные переменные для min, max  -> УПРОСТИЛИ КОД
  3. гибкость - если будет нужно ДОБАВИТЬ доп. ВОЗВРАЩАЕМЫЕ значения (среднее значение/количество элементов) - сможем ЛЕГКО расширить КОРТЕЖ
  4. масштабируемость - кортежи удобны для добавления новых элементов БЕЗ изменения структуры вызова функции
- 5. сохранение ЛОГИКИ - ВСЕ сохраненные результаты остаются сгруппированы ВМЕСТЕ -> код более ЛОГИЧЕН
+ 5. сохранение ЛОГИКИ - ВСЕ сохраненные результаты остаются сгруппированы ВМЕСТЕ -> код более ЛОГИЧЕН */
+
+/*
+ 2. Создай СПИСОК товаров с различными характеристиками (кол-во, название). Используй typealias */
+// создай псевдоним типа для кортежа 'ТОВАР' с параметрами/значениями: название, кол-во, цена
+typealias  Product = (name: String, count: Int, price: Double)
+// псевдоним типа для кортежа 'ХАРАКТЕРИСТИКИ ТОВАРА'
+typealias ProductFeatures = (category: String, group: String)
+
+// создай СПИСОК товаров
+var products: [Product] = [
+    ("Apple", 12, 322.6),
+    ("Buckwheat", 2, 164.8),
+    ("Lemon", 2, 56.8),
+    ("Potato", 24, 120.1),
+    ("Carriot", 4, 54.9),
+    ("Trout", 1, 1862.2),
+    ("Onion", 12, 128.2),
+    ("Rice", 2, 344.8)
+]
+ // создай СЛОВАРЬ с характеристиками товаров
+var productFeatures: [String: ProductFeatures] = [
+    "Apple": ("Gastronomy", "Fruits"),
+    "Lemon": ("Gastronomy", "Fruits"),
+    "Potato": ("Gastrinomy", "Vegetables"),
+    "Carriot":("Gastrinomy", "Vegetables"),
+    "Troit": ("Gastrinomy", "Fish and seafood"),
+    "Onion": ("Gastrinomy", "Vegetables"),
+    "Rice": ("Grocery", "Cereals"),
+    "Buckwheat": ("Grocery", "Cereals")
+]
+// функция для вывода информации о товаре
+@MainActor func printProductInfo(productName: String) {
+    
+if let product = products.first(where: { $0.name == productName }),
+   let features = productFeatures[productName] {
+    print("Товар: \(productName)")
+    print("Цена: \(product.price)")
+    print("Количество: \(product.count)")
+    print( "Характеристики:")
+    print(" - категория: \(features.category)")
+    print(" - группа товаров: \(features.group)")
+    } else {
+print("товар НЕ НАЙДЕН")
+    }
+}
+//пример использования
+printProductInfo(productName: "Apple")
+printProductInfo(productName: "Rice")
+// COMMENTS: - САМА попробую
+/*
+ 1.
+ 2.
+ 3.
+ 4.
+ 5.
+ 6.
+ 7.
  */
-
-/* 2. доработаем код:
- добавим поиск СРЕДНЕГО ЗНАЧЕНИЯ и КОЛИЧЕСТВА элементов в массиве */
-
-func averageCount(of array:[Int]) -> Int? {
-    guard !array.isEmpty else { return nil }
-    
-    let sum = array.reduce(0, +)
-    let average = sum/Int(array.count)
-    let count = array.count
-    
-    return average
-}
-// пример использования
-let numbers = [8, -2, 12, 36, 44, -21]
-let count = numbers.count
-if let avg = averageCount(of: numbers) {
-    print("среднее значение:  \(avg), количество элементов в массиве:  \(count)")
-} else {
-    print("массив пуст")
-}
-
-
-
-
-
-  
 
