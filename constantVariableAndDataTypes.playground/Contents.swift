@@ -206,7 +206,7 @@ class GoodManager {
         }
         //безопасное МЗВЛЕЧЕНИЕ товара и его хар-тик из СЛОВАРЕЙ
         guard let good = goods[goodName],
-              let featuers = goodFeatures[goodName] else {
+              let features = goodFeatures[goodName] else {
             // если товар или его хар-ки НЕ НАЙДЕНЫ - выбрасиваем ошибку
             throw GoodError.goodNotFound
         }
@@ -215,8 +215,8 @@ class GoodManager {
         print("Цена: \(good.price)")
         print("Количество: \(good.count)")
         print("Характиеристики:")
-        print(" - категория: \(featuers.category)")
-        print(" - группа товаров: \(featuers.groupGoods)")
+        print(" - категория: \(features.category)")
+        print(" - группа товаров: \(features.groupGoods)")
     }
 }
 // пример использования ОПТИМИЗИРОВАННОГО кода
@@ -236,5 +236,73 @@ do {
     print("Ошибка: \(error)")
 }
 // этот код более модульный + безопасный + удобный для расширения
+
+// создай систему для управления книгами в библиотеке.
+
+struct Book {
+    let name: String
+    let author: String
+}
+
+struct BookFeatures {
+    let yearOfPublication: Int
+    let genre: String
+}
+
+enum BookError: Error {
+    case bookNotFound
+    case invalidDate
+}
+
+class LibraryManager {
+    var books: [String: Book] = [:]
+    var bookFeatures: [String: BookFeatures] = [:]
+    
+    func addBook(_ book: Book, features: BookFeatures) {
+        if books[book.name] != nil {
+            print("Книга с таким названием в библиотеке УЖЕ ИМЕТСЯ")
+            return
+        }
+        books[book.name] = book
+        bookFeatures[book.name] = features
+    }
+    func printBookInfo(bookName: String) throws {
+        if bookName.isEmpty {
+            throw BookError.invalidDate
+        }
+        
+        guard let book = books[bookName],
+              let features = bookFeatures[bookName] else {
+                  throw BookError.bookNotFound
+                  }
+            
+            print("Название книги: \(book.name)")
+            print("Автор: \(book.author)")
+            print("Характеристики книги:")
+            print("- год издания: \(features.yearOfPublication)")
+            print("- жвнр: \(features.genre)")
+        }
+    }
+// пример создания кода
+let librManager = LibraryManager() // создай хранилище для экземпляра класса "управление библтотекой'
+let hobbit = Book(name: "Hobbit", author: "J.R.R.Tolkien")
+let hobbitFeatures = BookFeatures(yearOfPublication: 1937, genre: "Fantasy")
+librManager.addBook(hobbit, features: hobbitFeatures)
+
+let lordOfRings = Book(name: "The Lord of the Rings", author: "J.R.R.Tolkien")
+let lordOfRingsFeatures = BookFeatures(yearOfPublication: 1954, genre: "Fantasy")
+librManager.addBook(lordOfRings, features: lordOfRingsFeatures)
+ 
+do {
+    try librManager.printBookInfo(bookName: "Hobbit")
+} catch {
+    print("Ошибка: \(error)")
+}
+
+do {
+    try librManager.printBookInfo(bookName: " The Lord of the Rings")
+} catch {
+    print("Ошибка: \(error)")
+}
 // COMMENTS:
 
