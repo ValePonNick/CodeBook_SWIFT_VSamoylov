@@ -237,7 +237,7 @@ do {
 }
 // этот код более модульный + безопасный + удобный для расширения
 
-// создай систему для управления книгами в библиотеке.
+/* создай систему для управления книгами в библиотеке.
 
 struct Book {
     let name: String
@@ -289,6 +289,7 @@ let hobbit = Book(name: "Hobbit", author: "J.R.R.Tolkien")
 let hobbitFeatures = BookFeatures(yearOfPublication: 1937, genre: "Fantasy")
 librManager.addBook(hobbit, features: hobbitFeatures)
 
+
 let lordOfRings = Book(name: "The Lord of the Rings", author: "J.R.R.Tolkien")
 let lordOfRingsFeatures = BookFeatures(yearOfPublication: 1954, genre: "Fantasy")
 librManager.addBook(lordOfRings, features: lordOfRingsFeatures)
@@ -300,9 +301,81 @@ do {
 }
 
 do {
-    try librManager.printBookInfo(bookName: " The Lord of the Rings")
+    try librManager.printBookInfo(bookName: "The Lord of the Rings")
 } catch {
     print("Ошибка: \(error)")
-}
-// COMMENTS:
+} */
 
+// УЛУЧШЕННЫЙ КОД: задача - создай систему для управления книгами в библиотеке.
+struct BookInLibrary {
+    let name: String
+    let author: String
+}
+
+struct BookInLibraryfeatures {
+    let yearOfPublication: Int
+    let genre: String
+}
+
+enum BookError: Error {
+    case bookNotFound
+    case invalidData
+    case invalidBookName
+    case duplicateBook
+}
+
+class LibrariesManager {
+    var library: [String: (book: BookInLibrary, features: BookInLibraryfeatures)] = [:]
+    
+    func addBook(_ book: BookInLibrary, features: BookInLibraryfeatures) throws {
+        if library[book.name] != nil {
+            throw BookError.duplicateBook // ошибка для дубликатов
+        }
+        library[book.name] = (book, features)
+    }
+    
+    func printBookInfo(bookName: String) throws {
+        let trimmedBookName = bookName.trimmingCharacters(in: .whitespaces)
+        if trimmedBookName.isEmpty {
+            throw BookError.invalidBookName // ошибка для ПУСТОГО названия книги
+        }
+        
+        guard let entry = library[trimmedBookName] else {
+            throw BookError.bookNotFound
+        }
+        
+        let (book, features) = entry
+        print("Название книги: \(book.name)")
+        print("Автор: \(book.author)")
+        print("Характеристики книги:")
+        print("- год издания: \(features.yearOfPublication)")
+        print("- жанр: \(features.genre)")
+    }
+}
+// пример использования класса
+do {
+    // создаем экземпляр класса LibrariesManager
+    let librManager = LibrariesManager()
+    
+    // создаем книги и их характеристики
+    let poisonBelt = BookInLibrary(name: "The Poison Belt", author: "Sir Arthur Conan Doyle")
+    let poisonBeltFeatures = BookInLibraryfeatures(yearOfPublication: 1913, genre: "Science fiction")
+    
+    let houndBaskervilles = BookInLibrary(name: "The Hound of the Baskervilles", author: "Sir Arthur Conan Doyle")
+    let houndBaskervillesFeatures = BookInLibraryfeatures(yearOfPublication: 1902, genre: "Detective")
+
+// добавляем книги в библиотеку
+try librManager.addBook(poisonBelt, features: poisonBeltFeatures)
+try librManager.addBook( houndBaskervilles, features: houndBaskervillesFeatures)
+
+//печатаем инфу о книгах
+try librManager.printBookInfo(bookName:  "The Hound of the Baskervilles")
+try librManager.printBookInfo(bookName:  "The Poison Belt")
+
+} catch BookError.bookNotFound {
+    print("Ошибка: Книга НЕ найдена.")
+} catch BookError.invalidBookName {
+    print("Ошибка: Некорректное название книги.")
+} catch {
+    print("Неизвестная ошибка: \(error)")
+}
