@@ -52,3 +52,62 @@ travelManager.printTrips()
     - метод массива 'append' добавляет элемент в КОНЕЦ МАССИВА
 ЗАКЛЮЧЕНИЕ:
  этот код демонстрирует понимание основ Swift, включая структуры и классы. Он организован и легко читаем. */
+
+// ЗАДАЧА 3. Создай систему управления библиотекой книг
+
+struct Book {
+    let title: String
+    let author: String
+    let year: Int
+    let genre: String
+}
+enum BookError: Error {
+    case bookNotFound
+}
+
+class Library {
+    var books:[Book] = [] // пустое хранилище - МАССИВ всех книг
+    
+    func addBook(book: Book) { // метод, он добавляет книгу в МАССИВ книг по названию
+        books.append(book)
+        print("Книга \(book.title) добавлена в библиотеку")
+    }
+    
+    func removeBook(byTitle title: String) {
+        if let index = books.firstIndex(where: { $0.title.lowercased() == title.lowercased() }) {
+            let removeBook = books.remove(at: index)
+            print("Книга \(removeBook.title) удалена из библиотеки")
+        } else {
+            print("Книга с названием \(title) не найдена")
+        }
+    }
+    
+   // метод для поиска книг по названию
+func findBook(title: String) throws -> Book? {
+    if let book = books.first(where: { $0.title.lowercased() == title.lowercased() }) {
+            return book
+        } else {
+            throw BookError.bookNotFound
+        }
+    }
+}
+// пример использования
+let library = Library()
+// добавь книгу в библиотеку
+library.addBook(book: Book(title: "1984", author: "G.Orwell", year: 1949, genre: "Dystopian"))
+
+// ищем книгу по названию
+do {
+    if let foundBook = try library.findBook(title: "1984") {
+        print("Вы можете взять книгу \(foundBook.title)")
+    } else {
+        print("Книга не найдена")
+    }
+} catch BookError.bookNotFound {
+    print("Книга не доступна или не найдена")
+} catch {
+    print("Произошла неизвестная ошибка")
+}
+// удаляем книгу по названию
+library.removeBook(byTitle: "1984")
+// осилила!
