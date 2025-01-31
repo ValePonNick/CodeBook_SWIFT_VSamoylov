@@ -95,7 +95,7 @@ func findBook(title: String) throws -> Book? {
 let library = Library()
 // добавь книгу в библиотеку
 library.addBook(book: Book(title: "1984", author: "G.Orwell", year: 1949, genre: "Dystopian"))
-
+library.addBook(book: Book(title: "Hobbit", author: "J.R.R.tolkien", year: 1934, genre: "Fantasy"))
 // ищем книгу по названию
 do {
     if let foundBook = try library.findBook(title: "1984") {
