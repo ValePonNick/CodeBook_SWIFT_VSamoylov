@@ -93,3 +93,69 @@ if let age = result.age, let avgGrade = result.avrgGrade {
     - если инфа найдена, выводим ее, если нет - сообщение об ОШИБКЕ
  ЗАКЛЮЧЕНИЕ: этот код - основы работы :
  - со словарями и кортежами, функциями и опциональными значениями */
+
+// ЗАДАЧА 3: Фильтрация выдающихся программистов
+// Используя МАССИВ СТРУКТУР 'famousIT' напиши функцию, которая возвращает МАССИВ программистов старше определенного возраста
+
+struct FamousIT {
+    let name: String
+    let yearOfBirth: Int
+}
+// создай МАССИВ СТРУКТУР и инициализируй его значениями
+var allFamousIT: [FamousIT] = [
+    FamousIT(name: "Steve Jobs", yearOfBirth: 1955),
+    FamousIT(name: "Jeff Bezos", yearOfBirth: 1964),
+    FamousIT(name: "Bill Gates", yearOfBirth: 1955),
+    FamousIT(name: "Mertha Lane Fox", yearOfBirth: 1973)
+]
+// пример использования
+for person in allFamousIT {
+    print("\(person.name) was born in \(person.yearOfBirth)")
+}
+// функция принимат год и возвращает МАССИВ имен тех IT, кто родился ДО этого года
+@MainActor func findFamousIT(bornBefore year: Int) -> [String] {
+    // ЛОГИКА функции
+    var result: [String] = [] // создай ПУСТОЙ МАССИВ для результатов
+    for person in allFamousIT {
+        if person.yearOfBirth < year {
+            result.append(person.name)
+        }
+    }
+    return result
+}
+// пример использования
+let famousITBornBefore1960 = findFamousIT(bornBefore: 1960)
+print("Известные IT-специалисты, родившиеся до 1960 года: \(famousITBornBefore1960)")
+// ЗАДАЧА 4: Поиск пиратов по количеству кораблей
+/*
+ Создай массив структур 'Pirate', который содержит инфу о пиратах. Напиши функцию, которая принимает min количество кораблей и возвращает массив пиратов, у которых среднее количество кораблей выше указанного значения */
+struct Pirate {
+    let name: String
+    let frase: String
+    let numberOfShips: [Int]
+}
+// создай МАССИВ СТРУКТУР и инициализируй его значениями
+let pirates: [Pirate] = [
+    Pirate(name: "Richard Grenville", frase: "Cor blimey", numberOfShips: [1, 2, 3, 1]),
+    Pirate(name: "Henry Morgan", frase: "Yo-ho-ho", numberOfShips: [12, 12, 12]),
+    Pirate(name: "Francis Drake", frase: "All hand on deck", numberOfShips: [7, 7, 7]),
+    Pirate(name: "William Kidd", frase: "Shiver my timbers", numberOfShips: [1, 2, 2])
+]
+// создай функцию для фильтрации пиратов по среднему количеству кораблей
+func newArrayPirates(for minAverageShips: Int) -> [Pirate] {
+    // фильтруем пиратов по среднему количеству судов
+    return pirates.filter { pirate in
+        let totalShips = pirate.numberOfShips.reduce(0, +) // суммируем количество судов
+        let average = Double(totalShips) / Double(pirate.numberOfShips.count) // вычисляем среднее
+        return average > Double(minAverageShips) // проверяем условие
+    }
+}
+// пример использования кода
+let filteredPirates = newArrayPirates(for: 5)
+print("Пираты со средним количеством судов больше 5: ")
+for pirate in pirates {
+    let averageShips = pirate.numberOfShips.reduce(0, +) / pirate.numberOfShips.count
+    print("\(pirate.name) со средней численностью судов \(averageShips)")
+}
+    
+    
