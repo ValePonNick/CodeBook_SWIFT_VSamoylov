@@ -1,18 +1,15 @@
 import UIKit
-
+// ТЕМА: Tuple, Dictionary, Function
 // ЗАДАЧА: статистика отметок
 // Создай структуру 'Course' - название и массив студентов. Напиши функцию, которая вернет средний балл по курсу.
-
 struct Course {
     let courseName: String
     let students: [Student]
 }
-
 struct Student {
     let name: String
     let marks: [Int]
 }
-
 func averageAllMarks(for course: Course) -> Double {
     // собираем ВСЕ оценки в один МАССИВ
     let allMarks = course.students.flatMap { $0.marks }
@@ -29,7 +26,6 @@ let stu3 = Student(name: "Alex", marks: [5,4,3,5,5])
 let course = Course(courseName: "IT", students: [stu1, stu2, stu3])
 let average = averageAllMarks(for: course)
 print("Average mark for \(course.courseName): \(average)")
-
 /*
  COMMENTS:
  1. sruct Course содержит МАССИВ студентов типа 'Student' - это позволяет ХРАНИТЬ и использовать инфу о студентах
@@ -44,7 +40,6 @@ let students: [String: (age: Int, grades: [Double])] = [
     "Sam": (age: 20, grades: [32.6, 11.21, 94.5, 48.6]),
     "Arnold": (age: 22, grades: [42.6, 71.1, 24.52, 58.8]),
 ]
-
 func avrgStu(for name: String) -> (age: Int?, avrgGrade: Double?) {
     // проверь: наличие студента в СЛОВАРЕ
     guard let stuInfo = students[name] else {
@@ -53,7 +48,6 @@ func avrgStu(for name: String) -> (age: Int?, avrgGrade: Double?) {
     }
     // собираем ВСЕ оценки в один МАССИВ
     let allGrades = stuInfo.grades
-    
     // вычисляем средний балл
     let total = allGrades.reduce(0, +)
     let average = allGrades.isEmpty ? 0 : Double(total) / Double(allGrades.count)
@@ -98,6 +92,4 @@ if let age = result.age, let avgGrade = result.avrgGrade {
     - используй УСЛОВНУЮ ПРИВЯЗКУ 'if let' для БЕЗОПАСНОГО извлечения значений из возвращаемого КОРТЕЖА
     - если инфа найдена, выводим ее, если нет - сообщение об ОШИБКЕ
  ЗАКЛЮЧЕНИЕ: этот код - основы работы :
- - со словарями,
- - кортежами,
- - функциями и опциональными значениями */
+ - со словарями и кортежами, функциями и опциональными значениями */
