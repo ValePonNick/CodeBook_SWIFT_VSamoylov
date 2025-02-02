@@ -192,9 +192,64 @@ func choosePirate(for frase: String, from pirares: [Pirate]) -> [Pirate] {
     return filteredPirates
 }
 // пример использования
-let resultFrase = choosePirate(for: "ho-ho", from: pirates)
 // выводит инфу о пиратах, чьи фразы содержат слово 'ho-h0'
+let resultFrase = choosePirate(for: "ho-ho", from: pirates)
 
+// 4.3  Пираты с максимальным количеством судов.
+struct Corsar {
+    let name: String
+    let numberOfShips: [Int]
+}
+    
+func maxShipsCorsar(from corsars: [Corsar]) -> [Corsar] {
+    // находим max количество судов среди всех пиратов
+    guard let maxShips = corsars.map({ $0.numberOfShips.reduce(0, +) }).max() else {
+        return [] // возвращаем пустой массив, если пиратов нет
+    }
+    // фильтруем пиратов с max количеством судов
+    return corsars.filter { corsar in
+        corsar.numberOfShips.reduce(0,+) == maxShips
+    }
+}
+// пример использования кода
+let corsars = [
+    Corsar(name: "R. Grenville", numberOfShips: [1, 2, 3, 1]),
+    Corsar(name: "H. Morgan", numberOfShips: [12, 12, 12]),
+    Corsar(name: "F. Drake", numberOfShips: [7, 7, 7]),
+    Corsar(name: "W. Kidd", numberOfShips: [1, 2, 2])
+]
 
-      
-       
+let powerfulCorsars = maxShipsCorsar(from: corsars)
+print("Корсары с наибольшим количеством судов: ")
+for corsar in powerfulCorsars {
+    print("\(corsar.name) с количеством судов: \(corsar.numberOfShips)")
+}
+// НО если свойство 'numberOfShips' - это ЦЕЛОЕ ЧИСЛО - код такой
+struct Captain {
+    let name: String
+    let numberOfShips: Int // количество судов у капитана
+}
+    
+func maxShipsCaptain(from captains: [Captain]) -> [Captain] {
+    // находим max количество судов среди всех пиратов
+    guard let maxShips = captains.map({ $0.numberOfShips }).max() else {
+        return [] // возвращаем пустой массив, если пиратов нет
+    }
+    // фильтруем пиратов с max количеством судов
+    return captains.filter { captain in
+        captain.numberOfShips == maxShips
+    }
+}
+// пример использования кода
+let captains = [
+    Captain(name: "R. Grenville", numberOfShips: 5),
+    Captain(name: "H. Morgan", numberOfShips: 12),
+    Captain(name: "F. Drake", numberOfShips: 7),
+    Captain(name: "W. Kidd", numberOfShips: 21)
+]
+
+let powerfulCaptains = maxShipsCaptain(from: captains)
+print("Капитаны с наибольшим количеством судов: ")
+for сaptain in powerfulCaptains {
+    print("Капитан \(сaptain.name) с количеством судов: \(сaptain.numberOfShips)")
+}
