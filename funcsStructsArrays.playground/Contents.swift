@@ -126,6 +126,7 @@ for person in allFamousIT {
 // пример использования
 let famousITBornBefore1960 = findFamousIT(bornBefore: 1960)
 print("Известные IT-специалисты, родившиеся до 1960 года: \(famousITBornBefore1960)")
+
 // ЗАДАЧА 4: Поиск пиратов по количеству кораблей
 /*
  Создай массив структур 'Pirate', который содержит инфу о пиратах. Напиши функцию, которая принимает min количество кораблей и возвращает массив пиратов, у которых среднее количество кораблей выше указанного значения */
@@ -177,4 +178,23 @@ for pirate in pirates {
      •    Пираты с определенной фразой.
      •    Пираты с определенным диапазоном количества судов.
  */
-    
+  // Задача 4.1 Пираты с определенной фразой.
+// создай функцию для фильтрации пиратов по фразе
+func choosePirate(for frase: String, from pirares: [Pirate]) -> [Pirate] {
+    // фильтруем пиратов по фразе
+    let filteredPirates = pirares.filter { pirate in
+        pirate.frase.contains(frase)
+    }
+    // выводим инфу о найденных пиратах
+    for pirate in filteredPirates {
+        print("\(pirate.name) известен следующей фразой: \(pirate.frase)")
+    }
+    return filteredPirates
+}
+// пример использования
+let resultFrase = choosePirate(for: "ho-ho", from: pirates)
+// выводит инфу о пиратах, чьи фразы содержат слово 'ho-h0'
+
+
+      
+       
