@@ -55,8 +55,21 @@ print(closure(12, 21))
 func addNumbers(_ f: Int, _ g: Int, operation: (Int, Int) -> Int) -> Int {
     return operation(f,g)
 }
-    
-// используй ЗАМЫКАНИЕ для умножения
-    let multiplicationResult = addNumbers(7,8) { $0 * $1 }
-    print(multiplicationResult)
+//используй ЗАМЫКАНИЕ для умножения
+let multiplicationResult = addNumbers(7,8) { $0 * $1 }
+print(multiplicationResult)
+
+var person: [String] = ["Ann", "Bob", "Sam"]
+person.append("HI")
+
+var persons: [String: Int] = [
+    "Add": 12,
+    "Adudi": 21
+]
+var coord: (x: Int, y: Int) = (0,0)
+print(coord.0)
+print(coord.1)
+print(person[0])
+print(persons["Add"])
+
 
