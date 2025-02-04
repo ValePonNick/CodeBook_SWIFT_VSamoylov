@@ -46,7 +46,8 @@ let arrayIntNumbers: [Int] = [1,2,3,4,5,6,7]
 let arrayDoubleNumbers: [Double] = [2.12, 3.14, 4.45]
 let arrayBool: [Bool] = [true, true, false, false] // ИТОГО: 12 примеров
 
-/* Tuple -  КОРТЕЖ - это объект, ХРАНИТ значения РАЗЛИЧНЫХ типов данных в ОДНОМ оставном значении => строго упорядоченом плорядке => можно обратиться по индексу
+/* TUPLES: кортежи
+ КОРТЕЖ - это объект, ХРАНИТ значения РАЗЛИЧНЫХ типов данных в ОДНОМ оставном значении => строго упорядоченом плорядке => можно обратиться по индексу
  идеален для возврата нескольких значений из ФУНКЦИИ и м.б. объявлены как именованные, так и безымянные. */
 
 let workingDogs = ("Akita", 12, "Alaskan malamute", 21,  "Boxer", 3, "Siberian husky", 7, "Doberman pinscher", 3, true, false) // неименованный кортеж
@@ -104,3 +105,93 @@ let kapeOfGoodHopeCoord = (geographicalName: "Мыс Доброй Надежды
 print(kapeOfGoodHopeCoord)
 // доступ к значениям кортежа
 print("Координаты \(kapeOfGoodHopeCoord.geographicalName): Южная широта: \(kapeOfGoodHopeCoord.southLatitude), Восточная долгота: \(kapeOfGoodHopeCoord.eastLongitude)") // Результат: 21 кортеж
+
+// DICTIONARY: словари
+/*
+СЛОВАРЬ - это НЕупорядоченная коллекция элнментов, для доступа к ним - ключи. Каждый элемент = пара: 'ключ + значение'. НО ключ  - НЕ авто.сгенерированный индекс(как в МАССИВАХ) - ключ - это УНИКАЛЬНОЕ значение ПРОИЗВОЛЬНОГО/ НО хэшируемого! типа(чаще: Int, String). Все ключи д.б. ОДНОГО типа данных. Равно - все значения.
+ ИДЕЯ СЛОВАРЯ: используй уникальные / пользовательские ключи для доступа к значениям. */
+let dict = [
+    "a": "alfa",
+    "b": "beta",
+    "g": "gamma",
+    "d": "delta"
+]
+var dicti = [
+    1: "Tom",
+    2: "Bill",
+    3: "Bert"
+]
+let dictio = [
+    "troll": "Bert",
+    "hobbit": "Frodo",
+    "elf": "Legolas",
+    "dwarth": "Gimli"
+]
+let arithmeticProgression = [
+    1: 1,
+    2: 4,
+    3: 7,
+    4: 10,
+    5: 13
+]
+let geometryProgression = [
+    1: 1,
+    2: 2,
+    3: 4,
+    4: 8,
+    5: 16,
+    6: 32
+]
+let islandsNorthernHemisphereOfAtlanticOcean = [
+    "Group of nine vulcan islands": "Azores",
+    "Popular islends: beach and resorts": "Canary Islands",
+    "Mountainous island": "Madera",
+    "subtropical islands": "Bermuda",
+    "Archipelago, popular for tourism": "Bagamas"
+]
+let islandsSouthernHemisphereOfAtlanticOcean = [
+    "Volcanical island": "Ascension Island",
+    "Historical significance": "Saint Helena",
+    "most inhabited archipelago in word": "Tristan da Cunha"
+    ]
+let deepesrPointofOceans = [
+    "Pasific Ocean": 11.000,
+    "Atlantic Ocean": 8.742,
+    "Indian Ocean": 7.729,
+    "Arctic Ocean": 5.5,
+    "Southeren Ocean": 8.264
+]
+let historicBays = [
+    "Canada": "Charleur Bay",
+    "USA": "Delavware Bay",
+    "Portugal": "Bays of the Tagus and Sado Rivers"
+]
+let riversOfSibiria = [
+    "Repablic of Sakha(Yakutia)": "Lena",
+    "Krasnoyyarsk region": "Enisey",
+    "Irkutsk region": "Angara"
+]
+var bestWorks = [
+    "Hamlet": 1601,
+    "Harry Potter and the Philosopher's Stone": 1997,
+    "Prude and Prejudice": 1813
+]
+let englishWriters = [
+    "W.Shakespeare":  "Hamlet",
+    "C.Dickens": "Great Expecations",
+    "A.Christy": "Murder on the Orient express",
+    "O.wild": "The Picture of Dorian Gray"
+]
+let englishChildrenWriters = [
+    "Lewis Carroll": "Alice's Adventures in Wonderland",
+    "Beatrix Potter": "The tale of Peter Rabbit",
+    "C.S.Lewis": "The Lion, the Witch and the Wardrobe"
+]
+let namberNamesOfLotto = [
+    21: "очко",
+    12: "дюжина",
+    11: "барабанные палочки",
+    2: "гуси-лебеди",
+    61: "Гагарин",
+    90: "дед"
+] // Результат: 14
