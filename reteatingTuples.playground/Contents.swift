@@ -3,11 +3,71 @@ import UIKit
 var greeting = "Hello, playground"
 /* TUPLES: кортежи
  
- КОРТЕЖ - это объект, ХРАНИТ значения РАЗЛИЧНЫХ типов данных в ОДНОМ оставном значении => строго упорядоченом плорядке => можно обратиться по индексу
- идеален для возврата нескольких значений из ФУНКЦИИ и м.б. объявлены как именованные, так и безымянные. */
+ КОРТЕЖ - это объект,самый ПРОСТОЙ СПОСОБ:
+    - ХРАНИТСЯ В let/var также как и значения фундамент. типов данных
+    - содержит значения РАЗЛИЧНЫХ типов данных в ОДНОМ составном значении
+    -> строго упорядоченый порядок => можно обратиться по индексу
+    - идеален для возврата нескольких значений из ФУНКЦИИ
+    - кортежи м.б. объявлены как именованные, так и безымянные.
+    - MAX 7 -> иначе используй struct, class, enum
+ СИНТАКСИС:
+ let имя константы = (значение_1, значение_2, значение_3)
+ объявляем let/var и инициализируем ей литерал кортежа, состоящего из N элементов в качестве ЗНАЧЕНИЯ */
+let myProgramStatus = (500, "In Work", true)
+/*
+ ТИП КОРТЕЖА - фиксированная упоряжоченная по=>ть имен типов данных элементов кортежа */
+
+let floatStatus: (Float, String, Bool) = (500, "In Work", true) // объяви кортеж с ЯВНО ЗАДАННЫМ типом
+print(floatStatus)
+var (statusCode, statusText, statusConnect) = myProgramStatus // записываем ЗНАЧЕНИЯ кортежа в переменные
+// выводим инфу
+print("Код ответа - \(statusCode)")
+print("Текст ответа - \(statusText)")
+print("Связь с сервером - \(statusConnect)")
+
+var(myName, myAge) = ("Добби", 127) // инициализируем значение НЕСКОЛЬКИМ параметрам: в ПРАВОЙ части выражения ПОСЛЕ оператора инициализации -> передаем литерал кортежа
+print("Мое имя \(myName) и мне \(myAge) лет.")
+// var myName, myGroup инициализированы соотв. значениями элементов КОРТЕЖА("Добби", 127)
+let(statusCodes, _, _) = myProgramStatus
+// доступ к элементам кортежа через ИНДЕКСЫ
+print("Мое имя - \(myProgramStatus.0)")
+print("Мое имя - \(myProgramStatus.1)")
+print("Мое имя - \(myProgramStatus.2)")
+
+// доступ к элементам кортежа через ИМЕНА - УДОБНО + НАГЛЯДНО
+let statusTuple = (statusCode: 150, statusText: "Non Work", statusConnect: false)
+
+// выводи инфу, используй ИНДЕКСЫ
+print("Код ответа - \(statusTuple.0)")
+print("Текст ответа - \(statusTuple.1)")
+print("Связь с сервером - \(statusTuple.2)")
+let anotherStatusTuple: (statusCode: Int, statusText: String, statusConnect: Bool) = (789, "Non Work", false)
+anotherStatusTuple.statusConnect // Связь с сервером - false
+
+// редактирование КОРТЕЖА - инициализация значения ОДНОГО кортежа -> в ДРУГОЙ
+var myFirstTuple:(Double, String) = (3.14, "pi") // тип данных задан ЯВНО
+var mySecondTuple = (2.71828, "число Эйлера")
+myFirstTuple = mySecondTuple // тип данных задан через ИНИЦИАЛИЗИРУЕМОЕ ЗНАЧЕНИЕ
+print(myFirstTuple)
+var myThirdTuple = (1.61803, "золотое сечение")
+myFirstTuple = myThirdTuple // тип данных задан через ИНИЦИАЛИЗИРУЕМОЕ ЗНАЧЕНИЕ
+print(myFirstTuple)
+
+// изменяй значения отдельных элементов, используя индексы и имена
+var someTuple = ("Troll", "Bert") // объявляем кортеж
+someTuple.1 = "Harry Potter" // изменяем значение отдельного элемента
+someTuple.0 = "Goblin"
+print(someTuple)
+
+/* сравнение кортежей: сначала срааним первые элементы ОБОИХ кортежей -> если они идентичны, то сравниваем следующую пару - ДО тех пор, пока не обнаружатся НЕидентичные элементы */
+(1, "Tom") < (2, "Bert") // true
+(1, "Tom") < (3, "Bill") // true т.к. ВСЕ соотв. элементы ИДЕНТИЧНЫ
+(3, "Bill") < (2, "Bert") // false т.к. элементы НЕидентичны
+
 
 let tupleGaleon = ("Galeon", "gold", 1, "Sicle", "silver", 17, "Knut", "bronze", 493) // НЕименованный кортеж
 tupleGaleon.8 // доступ к элементу по индексу
+
 let oneGaleon = (name: "Galeon", metal: "gold", count: 1) // именованный кортеж
 let oneSicle = (name: "Sicle", metal: "silver", count: 1)
 let oneKnut = ((name: "Knut", metal: "bronze", count: 1))
@@ -18,13 +78,17 @@ print("Один галеон равен 17 \(oneSicle.name) или 493 \(oneKnut
 let sicle: (String, String,Int) = ("Sicle", "Silver", 1) // кортеж с ЯВНО заданным типом
 print(sicle.1) // индексы в кортежах МОЖНО задействовать ВСЕГДА
 print(sicle.0)
+
 var(person, name) = ("домашний эльф", "Добби") // объявляем переменные и иницилизируем их значения
 print("я - \(person), мое имя \(name)")
 name = "Кикимер"
 print("я - \(person), мое имя \(name)")
-(1, "alpha") < (2, "beta") // СРАВНЕНИЕ кортежей
+
+// СРАВНЕНИЕ кортежей
+(1, "alpha") < (2, "beta")
 (5, "alpha") < (3, "gamma")
 (3.14, "pi") == (3.14, "pi") // элементы идентичны
+
 var sevenHorcruxes: [String] = ["Tom Riddle's Diary", "Marvolo Gaunt's Ring", "Salasar Slytherin's Locket", "Helga Hufflepuff's Cup", "Rowena Rawenclaw's Diadem", "Nagini"]
 sevenHorcruxes.count
 sevenHorcruxes.append("Harry Potter")
@@ -55,8 +119,10 @@ let elfWinky = ("elf", "Winky", "female")
 let schoolGryffindor = (name: "Gryffindor", colors: "scarlet", "gold", mascots: "Lion")
 var griffindor = (schoolGryffindor.name, schoolGryffindor.1, elfDobby.1)
 print(griffindor)
+
 var elves = (elfDobby.1, elfWinky.1, elfKrecher.1) // удобно!!!
 print(elves)
+
 var booksDate = (booksAndReleaseDates.0, booksAndReleaseDates.2)
 print(booksDate)
 booksDate = (booksAndReleaseDates.3, booksAndReleaseDates.5)
@@ -65,7 +131,8 @@ booksDate = (booksAndReleaseDates.12, booksAndReleaseDates.14) // работае
 print(booksDate)
 
 let dataMovies = (booksAndReleaseDates.2, booksAndReleaseDates.5,booksAndReleaseDates.8,booksAndReleaseDates.11,booksAndReleaseDates.14, booksAndReleaseDates.17)
-print("Фильмы по книгам Дж.Роулинг о Гарри Поттере вышли в мировой прокат в \(dataMovies) годах.") // как скобки лишние убрать? // 17 кортежей
+print("Фильмы по книгам Дж.Роулинг о Гарри Поттере вышли в мировой прокат в \(dataMovies) годах.") // как скобки лишние убрать? 
+
 // Tuple representing a character and their house
 let harryPotter = ("Harry Poter", "Griffindor", "student")
 let ronWeasley = ("Ron Weasley", "Griffindor", "student")
@@ -82,6 +149,7 @@ let horcruxes = ("MagicalArtifact", "Horcruxes")
 let marauderMap = ("MagicalArtifact", "The Marauder's Map")
 let timeTurner = ("MagicalArtifact", "Time-Turner")
 let swordOfGryffindor = ("MagicalArtifact", "The Sword of gryffindor")
+
 // Tuple representing a magical creature and its description
 let ollivanders = ("Shops in DiagonAlley", "Ollivanders")
 let florishAndBlotts = ("Shops in DiagonAlley", "Florish and Blotts")
@@ -94,10 +162,11 @@ let qualityQuidditchSupplies = ("Shops in DiagonAlley",   "Quality Quidditch Sup
 var agePorter = (name: "Harry Potter", age: 11, status: "wizard")
 var magicalCreatures = ("elves", "gragons", "dementors", "goblins", "thedtrals", "centaur")
 type(of: magicalCreatures)
+
 // Tuple representing a spell and its effect
 let expeliarmus = ("spell", "Expeliarmus", "Disarms of opponent")
 let lumos = ("spell", "Lumos", "Produses light from the wand")
 let stupefy = ("spell", "Stupefy", "Stuns the target, rendering them unconscious temporarily")
 let accio = ("spell", "Accio", "Summons objects to the caster, regardless of distance")
 let protego = ("spell", "Protego", "Creates a magical shield that deflects spells and physical entities")
-let riddikulus = ("spell", "Riddikulus", "Transforms a Boggart into somrthing humorous^ allowing it to be defeated") // 48
+let riddikulus = ("spell", "Riddikulus", "Transforms a Boggart into somrthing humorous^ allowing it to be defeated") // 56 finis
