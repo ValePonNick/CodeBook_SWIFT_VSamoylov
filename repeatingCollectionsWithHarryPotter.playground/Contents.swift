@@ -61,4 +61,49 @@ let mainCastOfActors: [String] = ["Daniel Radcliff", "Rupert Grint", "Emma Watso
 
 let supportingCastOfActors: [String] = ["Richard Harris", "Michael Gambon", "Alan Rickman", "Maggie Smith", "Robbie Coltrane", "Tom Felton"] // 30 примеров массивов
 
+let otherNotableCharacters: [String] = ["Bonnie Wright", "Matthew Lewis", "Julie Walters", "David Bradley"]
 
+let actorsFamilyOfWeasley: [String] = ["Rupert Grin", "Bonnie Wright", "James Phelps", "Oliver Phelps", "Mark Williams", "Julie Walters"]
+
+let actorsFamilyMalfoy: [String] = ["Tom Felton", "Jason Isaacs", "Helen McCrory", "Jamie Waylett", "Josh Herdman"]
+
+let typesOfdragons: [String] = ["Norwegian Ridgeback", "Welsh Green", "Hungarian Horntail", "Chinese Fireball", "Swedish Short-Snout", "Herbidean Black", "Ukrainian Ironbelly"]
+
+let filmsHarryPotter: [String] = [
+"Harry Potter and the Philosopher's stone",
+"Harry Potter and the Chamber of Secrets",
+"Harry Potter and the Prisoner of Azkaban",
+"Harry Potter and the Goblet of Fire",
+"Harry Potter and the Order of Phoenix",
+"Harry Potter and the Half-Blood Prince",
+"Harry Potter and the Deathly Hallows. Part 1",
+"Harry Potter and the Deathly Hallows. Part 2"] // 35
+
+let namesOfElves: [String] = ["Dobby", "Winky", "Krecher", "Hokey"]
+
+let ghostsOfHogwarts: [String] = ["nearly Headless Nick", "The Gray Lady", "The Bloody Baron", "The Fat Friar"]
+
+let otherGhostOfHogwarts: [String] = ["Moaning Mirtle", "Professor Binns"]
+
+let ministerOfMagic: [String] = ["Cornelius Fudge", "Rufus Scrimgeour", "Kingsley Snacklebolt"]
+
+let assistsMinisterOfMagic: [String] = ["Dolores Umbridge", "Persy Weasley"]
+
+let repartmentsMinisteryOfMagic: [String] = ["Department of Magical Law", "Department for the Regulation and Control of Magical Creatures", "Department of International Magical Cooperation", "Department of Mysteries", "Department of Magical Transformation"]
+let wizardingSchool: [String] = ["Hogwarts", "beauxbatons Academy of Magic", "Durmstrang Instirute"] // 42
+
+let citiesVisitedHarryPotter: [String] = ["Little Whinging", "Godric's Hollow", "Hogsmeade", "London"]
+
+let namesOfGoblins: [String] = ["Griphook", "Bogrod", "Gnash"]
+
+let realStreetsInLondon: [String] = ["Chaing Cross Road", "Piccadily Circus", "Lambeth Bridge", "Leadenhall Market", "King's Cross Station"]
+
+let fictionStreetsOfLondon: [String] = ["Diagon Alley", "Knockturn Alley", "Grimmauld Place"]
+
+let shopsOfDiagonAlley: [String] = ["Ollivanders", "Florish and Blotts", "Madam Malkin's Robes for All Occasions", "Eeylops Owl Emporium", "Weasleys' wizard Wheezes", "Gringotts Wizarding Bank", "Quality Quidditch Supplies", "Magical menagerie", "Slug & Jiggers Apothecary", "Florean Fortescue's Ice Cream Parlour", "Potage's Cauldron Shop"]
+
+let typesOfCoins: [String] = ["Galleon", "Sicle", "Knut"]
+
+let metalOfCoints: [String] = ["Gold", "Silver", "Bronze"]
+
+let mostImportentMagicalArtifact: [String] = ["The Philosopher's Stone", "The Invisible Cloak", "The Elder Wand", "The Resurrection Stone", "horcruxes", "The marauder's Map", "Time-Turner", "The Sword of gryffindor"] // 50. Finis
