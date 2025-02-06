@@ -2,7 +2,7 @@ import UIKit
 
 // DICTIONARY: словари
 /*
-СЛОВАРЬ - это НЕупорядоченная коллекция элементов, для доступа к ним - ключи.
+СЛОВАРЬ - это НЕупорядоченная коллекция элементов, для доступа к ним - КЛЮЧИ.
     - Каждый элемент = пара: 'ключ + значение'.
     - НО ключ  - НЕ авто.сгенерированный индекс(как в МАССИВАХ) - это УНИКАЛЬНОЕ значение ПРОИЗВОЛЬНОГО/ НО хэшируемого! типа(чаще: Int, String).
     - Все ключи д.б. ОДНОГО типа данных. Равно как и все значения.
@@ -13,7 +13,7 @@ let dictionaryLetters: [String: String] = ["a": "alfa", "b": "beta", "g": "gamma
 print(dictionaryLetters)
 
 /* СИНТАКСИС:
-[ключ_1: зеачение_1, ключ_2: зеачение_2, ключ_3: зеачение_3] // - это ЛИТЕРАЛ словаря */
+[ключ_1: значение_1, ключ_2: значение_2, ключ_3: значение_3] // - это ЛИТЕРАЛ словаря */
 [200: "success", 300: "warning", 400: "error"] // создание словаря с помощью ЛИТЕРАЛА словаря
 let dictLetters = [1: "alfa", 2: "beta", 3: "gamma", 4: "delta"] // ключи: 1, 2, 3, 4 - они позволяют получить ДОСТУП к значениям словаря
 dictLetters.keys   // Dictionary.Keys([4, 1, 2, 3])
@@ -215,3 +215,146 @@ let namberNamesOfLotto = [
     61: "Гагарин",
     90: "дед"
 ] // Результат: 38
+let mixDict: [String: Any] = ["Ron Weasley": 11, "pi": 3.14, "isValid": true]
+print(mixDict) // ["isValid": true, "pi": 3.14, "Ron Weasley": 11]
+
+let mixDictNumbers: [String: Any] = ["целое число": 21, "число с плавающей точкой": 3.1414, "булево значение": false]
+
+let mixDictInt: [Int: Any] = [12: "дюжина", 888: 8.888, 21: "очко"]
+
+let mixDictDouble: [Double: String] = [3.14: "pi", 3.14159: "pi", 3.141: "pi"]
+
+let mixDictBool: [String: Bool] = ["yes": true, "no": false]
+
+let mixDictBools: [Bool: String] = [true: "It's cold outside", false: "It's warm outside"]
+
+let mixDictPassword: [Bool: String] = [true: "Password is correct", false: "Password is incorrect"]
+
+struct Door {
+    var isLocked: Bool
+    var isOpen: Bool
+    mutating func open(isLocked: Bool) {
+        
+        if isLocked {
+            self.isLocked = false
+        }
+        isOpen = true
+    }
+    mutating func close() {
+        isOpen = false
+    }
+    mutating func lock() {
+        isLocked = true
+    }
+    mutating func unlock() {
+        isLocked = false
+    }
+}
+// создаем СЛОВАРЬ ДВЕРЕЙ, где КЛЮЧ: название комнаты, а ЗНАЧЕНИЕ - экземпляр структуры Door
+var doors: [String: Door] = [
+    "Main Entrance": Door(isLocked: true, isOpen: false),
+    "Bedroom": Door(isLocked: false, isOpen: false),
+    "Bathroom": Door(isLocked: true, isOpen: true) // для разнообразия пусть дверь в ВАННУЮ будет ОТКРЫТА и ЗАПЕРТА
+]
+// пример использования СЛОВАРЯ и функций структуры Door
+// получаем ВХОДНУЮ ДВЕРЬ главной комнаты
+if var mainEntranceDoor = doors["Main Entrance"] {
+    print("Main Entrance door is locked: \(mainEntranceDoor.isLocked), and open: \(mainEntranceDoor.isOpen)")
+    
+// открываем дверь
+    mainEntranceDoor.open(isLocked: true)
+print("Opening Main Entrance Door...")
+    
+// обновляем значение в словаре
+doors["Main Entrance"] = mainEntranceDoor
+    print("Maim Entrance door is now locked; \(doors["Main Entrance"]!.isLocked), and open: \(doors["Main Entrance"]! .isOpen)")
+          } else {
+        print("Main Entrance door not found.")
+    }
+// пример работы с дверью в спальне
+if var bedroomDoor = doors["Bedroom"] {
+    print("Bedroom door is locked: \(bedroomDoor.isLocked), and open: \(bedroomDoor.isOpen)")
+    
+    // закрываем дверь
+    bedroomDoor.close()
+    print("Closing Bedroom door...")
+    doors["Bedroom"] = bedroomDoor
+    
+    // Блокируем дверь
+    bedroomDoor.lock()
+    print("Locking Bedroom door...")
+    doors["Bedroom"] = bedroomDoor
+    print("Bedroom is now locked: \(doors["Bedroom"]!.isLocked), and open: \(doors["Bedroom"]!.isOpen)")
+    } else {
+        print("Bedroom door is not found.")
+}
+// пример с ванной комнатой
+if var bathroomDoor = doors["BathroomDoor"] {
+    print("Bathroom Door is locked: \(bathroomDoor.isLocked), and open: \(bathroomDoor.isOpen)")
+// разблокируем дверь
+    bathroomDoor.unlock()
+    print("Unlocking Bathroom door...")
+    doors["Bathroom"] = bathroomDoor
+    print("Bathroom Door is now locked: \(doors["Bathroom"]!.isLocked), and open: \(doors["Bathroom"]!.isOpen)")
+} else {
+    print("Bathroom door is not found.")
+}
+/* COMMENTS:
+1. СТРУКТУРА 'Door' определяет:
+    - СВОЙСТВА двери ('isLocked', 'isOpen')
+    - МЕТОДЫ для изменения ее состояния ('open', 'close', 'lock', 'unlock')
+2. СЛОВАРЬ 'Doors', где
+    - КЮЧИ - это название комнат
+    - значения - это ЭКЗЕМПЛЯРЫ структуры 'Door'
+3. ПРИМЕР ИСПОЛЬЗОВАНИЯ:
+    - проверь: существует ли дверь с определенным КЛЮЧОМ в словаре
+    - если дверь НАЙДЕНА -> получаем ее ЭКЗЕМПЛЯР
+    - выполняем операции с дверью (открой, закрой, заблокируй)
+    - обновляем ЗНАЧЕНИЕ в словаре, чтобы СОХРАНИТЬ изменения состояния двери
+4. ОЧЕНЬ ВАЖНО!
+    - использование 'if var' для ИЗМЕНЕНИЯ значения из словаря чтобы изменить СТРУКТУРУ, полученную из словаря, а затем обновить словрь НОВЫМ ЗНАЧЕНИЕМ.
+    - в SWIFT структуры - это value types т.е. "типы значений" => при извлечении структуры из словаря получаем ЕЕ КОПИЮ!
+ ЗАКЛЮЧЕНИЕ:
+ это отличный пример использования СЛОВАЯ для
+    - ХРАНЕНИЯ данных о нескольких дверях
+    - УПРАВЛЕНИЯ их состоянием посредством Bool + методов 'struct Door'  */
+
+let dict1 = ["A": 1, "B": 2, "C": 3]
+
+let dict2: [String: String] = ["A": "a", "B": "b", "C": "c"]
+
+let dict3 = [("Sam", "Hobbit"), ("Pin", "Hobbit"), ("Thorin", "Dwarth")]
+
+let dict4: Dictionary<Int,Int> = [12: 21, 31: 13, 41: 14]
+
+let dictionaryBool: [String: Bool] = ["isEmpty": true, "isn'tEmpty": false]
+                             
+let dictionaryInt: [Int: Bool] = [12: true, 13: false]
+
+let dictDouble: [Double: Int] = [3.14: 3, 3.14159: 3]
+
+let dictCity = ["Rom": "Italy", "Paris": "France", "London": "UK"]
+
+let dictPlanets = [1: "Earth", 2: "Mars", 3: "Venus", 4: "Mercury"]
+
+let dictKings = ["George I": "XVIII century", "George II": "XVIII century", "George III": "XVIII century", "Anna": "XVIII century"]
+
+let englishLawyers = ["Lawyer": "criminal law", "jurist": "Judge", "attorney": "USA", "solicitor": "UK"]
+
+let branchOfCivilLaw = ["Civil Law": 1, "Real Estate Law": 2, "Family Law": 3]
+
+let branchOfPublicLaw = ["Military Law": 1, "Administrative Law": 2, "Criminal Law": 3]
+
+let dictTermins = ["Tax": 1, "Contract": 2, "Patent": 3, "Notary": 4]
+
+let legalPhrases = ["The spirit of the law": true, "The letter of the law": true, "Open and shut case": true]
+
+let legalFictionPerson = ["John Doe": "one party in a lawsuit", "Richard Roe": "second party in a lawsuit"]
+
+let legalFictionInEnglish = ["Corporate Personhood": "legal person", "Electronic Signatures": "equivalent to handwritten signatures"]
+
+let dictCoordLatitude: [Double: String] = [51.30334: "Big Ben, London", 48.512954: "Eiffel Tower, Paris", 33.512424: "Sydney Opera House, Australia"]
+
+let dictCoordLongitude:  [Double: String] = [0.72872: "Big Ben, London", 2.173969: "Eiffel Tower, Paris", 151.125417: "Sydney Opera House, Australia"] // 65 examples Dict
+
+
