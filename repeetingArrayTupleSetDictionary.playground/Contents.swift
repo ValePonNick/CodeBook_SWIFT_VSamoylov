@@ -1,6 +1,6 @@
 import UIKit
 
-// REPETING: Arrays, Puples, Sets, Dictionaries
+// REPETING: ARRAYS
 
 // Array - это массив как упорядоченная коллекция значений одного Типа => есть доступ по ИНДЕКСУ
 
