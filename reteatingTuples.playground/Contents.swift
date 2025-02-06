@@ -1,6 +1,7 @@
 import UIKit
 
-var greeting = "Hello, playground"
+// Sintax and Logics: Collection in SWIFT
+
 /* TUPLES: кортежи
  
  КОРТЕЖ - это объект,самый ПРОСТОЙ СПОСОБ:
@@ -157,7 +158,7 @@ let madamMalkinRobes = ("Shops in DiagonAlley","Madam Malkin's Robes for All Occ
 let eeylopsOwlEmporium = ("Shops in DiagonAlley", "Eeylops Owl Emporium")
 let weasleyWizardWheezes = ("Shops in DiagonAlley",  "Weasleys' wizard Wheezes")
 let gringottsBank = ("Shops in DiagonAlley", "Gringotts Wizarding Bank")
-let qualityQuidditchSupplies = ("Shops in DiagonAlley",   "Quality Quidditch Supplies")
+let qualityQuidditchSupplies = ("Shops in DiagonAlley", "Quality Quidditch Supplies")
 //
 var agePorter = (name: "Harry Potter", age: 11, status: "wizard")
 var magicalCreatures = ("elves", "gragons", "dementors", "goblins", "thedtrals", "centaur")
@@ -170,3 +171,52 @@ let stupefy = ("spell", "Stupefy", "Stuns the target, rendering them unconscious
 let accio = ("spell", "Accio", "Summons objects to the caster, regardless of distance")
 let protego = ("spell", "Protego", "Creates a magical shield that deflects spells and physical entities")
 let riddikulus = ("spell", "Riddikulus", "Transforms a Boggart into somrthing humorous^ allowing it to be defeated") // 56 finis
+
+// Tuple representing planets
+
+let planetEarthInfo = (name: "Earth", distance: 149.6, hasLife: true)
+var planetMarsInfo = (name: "Mars", distance: 228.0, hasLife: false)
+let planetVenusInfo = (name: "Venus", distance: 108.1, hasLife: false)
+let planetMercuryInfo = (name: "Mercury", distance: 58.2, hasLife: false)
+let planetJupiterInfo = (name: "Jupiter", distance: 778.1, hasLife: false)
+let planetSaturnInfo = (name: "Saturn", distance: 1429.0, hasLife: false)
+let planetUranusInfo = (name: "Uranus", distance: 2875.1, hasLife: false)
+let planetNeptuneInfo = (name: "Neptune", distance: 4497.0, hasLife: false)
+let planetPlutoInfo = (name: "Pluto", distance: 5913.1, hasLife: false) // 65
+// доступ к элементам КОРТЕЖА
+planetEarthInfo.distance
+planetEarthInfo.hasLife
+planetEarthInfo.name
+print("Planet: \(planetPlutoInfo.name), Distance: \(planetPlutoInfo.distance) million km, Life: \(planetPlutoInfo.hasLife).")
+// Изменение элементов кортежа
+planetMarsInfo.hasLife = true
+print("Planet: \(planetMarsInfo.name), Life: \(planetMarsInfo.hasLife).")
+
+var tupleAddress = ("London", "UK", "Earth")
+var(city, couttry, planet) = tupleAddress
+print(planet)
+
+var tupleLondon = (city: "London", people: 8776535, data: 43)
+var tupleLids = (city: "Lids", people: 536321, data: 1086)
+let tupleOxford = (city: "Oxford", people: 170798, data: 912)
+let tupleKembridge = (city: "Kembridge", people: 152725, data: 901)
+let tupleYork = (city: "York", people: 275599, data: 71)
+let tupleDerby = (city: "Derby", people: 170798, data: 600)
+let tupleSauthgempton = (city: "OSauthgempton", people: 249604, data: 43)
+let tupleSanderland = (city: "Sanderland", people: 168277, data: 674)
+let tupleMidlsboro = (city: "Midlsboro", people: 148219, data: 1830)
+let tupleExeter = (city: "Exeter", people: 126156, data: 1050)
+
+// КОРТЕЖ РЕКИ МИРА
+let tupleNil = (name: "Nil", length: 6670, drainage: 3349000, pool: "Mediterranean Sea")
+let tupleAmazon = (name: "Amazon", length: 7100, drainage: 6915000, pool: "Athlantic Ocean")
+let tupleHuangHe = (name: "Huang He", length: 5500, drainage: 745000, pool: "Boxai Bay")
+let tupleYenisei = (name: "Yenisei", length: 4100, drainage: 258000, pool: "Kara Sea")
+let tupleYukon = (name: "Yukon", length: 3200, drainage: 85000, pool: "Bering Sea")
+let tupleDunai = (name: "Dunai", length: 2850, drainage: 817000, pool: "Black Sea") // 83
+// доступ к элементам кортежа через имен
+tupleNil.name // Nil
+tupleYukon.length // 3200
+tupleDunai.3 // "Black Sea"
+tupleAmazon.3 //"Athlantic Ocean"
+print("")
