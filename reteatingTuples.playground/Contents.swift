@@ -219,4 +219,19 @@ tupleNil.name // Nil
 tupleYukon.length // 3200
 tupleDunai.3 // "Black Sea"
 tupleAmazon.3 //"Athlantic Ocean"
-print("")
+print("Самые известные реки мира: \(tupleNil.name), \(tupleAmazon.name)")
+
+// создать программу, открывающую дверь в Гриффиндор
+// массив паролей
+let password = ["Caput Draconis", "Pure blood", "Fortuna Major", "Fairy Lights", "Pig snout", "Mimbulus Mimbletonia"]
+// создать КОРТЕЖ, открывающий дверь в Гриффиндор
+var openDoorGriffindor = (house: "Griffindor", doorGuard: "Fat Ledy", password: "Mimbulus Mimbletonia")
+var openDoorSlytherin = (house: "Slytherin", doorGuard: "Blood Baron", password: "Pure blood")
+// 86
+
+       
+        
+  
+    
+   
+
