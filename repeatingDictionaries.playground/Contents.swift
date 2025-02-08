@@ -355,6 +355,20 @@ let legalFictionInEnglish = ["Corporate Personhood": "legal person", "Electronic
 
 let dictCoordLatitude: [Double: String] = [51.30334: "Big Ben, London", 48.512954: "Eiffel Tower, Paris", 33.512424: "Sydney Opera House, Australia"]
 
-let dictCoordLongitude:  [Double: String] = [0.72872: "Big Ben, London", 2.173969: "Eiffel Tower, Paris", 151.125417: "Sydney Opera House, Australia"] // 65 examples Dict
+let dictCoordLongitude: [Double: String] = [0.72872: "Big Ben, London", 2.173969: "Eiffel Tower, Paris", 151.125417: "Sydney Opera House, Australia"] // 65 examples Dict
+
+let dictAlphabet: [String: Character] = ["Anna": "a", "Bob": "b", "Cara": "c", "Dilan": "d"]
+
+let dictNumbers: [Int: String] = [1: "one", 2: "two", 3: "three", 4: "four", 5: "five"]
+
+let dict: [Int: Double] = [12: 12.12, 11: 11.111, 10: 10.0000, 9: 9.99999]
+
+let di: [Int: Any] = [ 12: "дюжина", 0: "ноль", -12: "отрицательное число", 3: 3.14, 22: false]
+
+let dictionary = [1: "in", 2: "the", 3: "Hole", 4: "lived", 5: "a", 6: "Hobbit"]
+
+let dictArrays = [(1, 12.12), (2, 2112), (3, 3.14), (4, 444)] // это словарь массивов
+
+let dictionar = ["когда моряк на берегу": "Agata Cristy", "когда я на почте служил ямщиком": "Agata Cristy"] // 72 примера словарей
 
 
