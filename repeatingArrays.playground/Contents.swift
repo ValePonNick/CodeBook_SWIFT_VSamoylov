@@ -1,6 +1,6 @@
 import UIKit
 
-// REPETING ARRAYS: массивы
+// REPEATING ARRAYS: повторяем массивы
 
 // Array - это массив как упорядоченная коллекция значений одного Типа => есть доступ по ИНДЕКСУ
 
@@ -168,7 +168,7 @@ let metalOfCoints: [String] = ["Gold", "Silver", "Bronze"]
 
 let mostImportentMagicalArtifact: [String] = ["The Philosopher's Stone", "The Invisible Cloak", "The Elder Wand", "The Resurrection Stone", "horcruxes", "The marauder's Map", "Time-Turner", "The Sword of gryffindor"] // 62 массива
 
-let hogwarts1Course:[String] = ["Transfiguration", "Charms", "Potions", "History of Magic", "Defence Against the Dark Arts", "Astronomy", "Herbology", "Flying Lesson"]
+var hogwarts1Course:[String] = ["Transfiguration", "Charms", "Potions", "History of Magic", "Defence Against the Dark Arts", "Astronomy", "Herbology", "Flying Lesson"]
 
 let hogwarts1CourseInRusian = ["Трансфигурация", "Заклинания", "Зельеварение", "История магии", "Защита от темных искусств", "Астрономия", "Травология", "Полеты на метле"]
 
@@ -185,9 +185,9 @@ let arrayProfessorsDefenceDarkArtsInRuss = ["професор Квирелл", "
 
 let terminsInSwift = ["variable", "constanta", "Data Type", "String", "String Literal"]
 
-var commentVariable = ["переменная - это именованное место в ПАМЯТИ, которое хранит значение, изменяющееся во время выполнения программы", "var pi = 3.14159", "var alternating current = 220", "var AC = 220"]
+var commentVariable = ["переменная - это именованное место/контейнер в ПАМЯТИ, хранящие значение, которые могут изменяться во время выполнения программы", "var pi = 3.14159", "var alternating current = 220", "var AC = 220"]
 
-var commentConstanta = ["постоянная - это именованное место в ПАМЯТИ, она хранит значение, которое НЕ может быть изменено ПОСЛЕ его установки", "let maxEnemies = 10", "в игре установлено max количество врагов одновременно - 10", "это контроль сложности игры либо ограничение ресуросов"]
+var commentConstanta = ["постоянная - это именованное место/контейнеры в ПАМЯТИ, хранящие значение, которое НЕ м.б. изменено после установки/ИНИЦИАЛИЗАЦИИ", "let maxEnemies = 10", "в игре установлено max количество врагов одновременно - 10", "это контроль сложности игры либо ограничение ресуросов"]
 
 var commentDataType: [Any] = ["Data Type", "тип данных",  "это классификация, определяющая ВИД значения, которое может ХРАНИТЬ let/var", "Int", "Bool", "Double", "Float", "String", "Character", "Reference Types", "Value Types", "Optional", ("abstract Types:", "Stack", "Queue", "Linked List", "Trees", "Graphs")]
 print(type(of: commentDataType))
@@ -196,7 +196,7 @@ var commentString = ["String", "Строка", "это последовател�
 
 var commentStringLiteral = ["String Literal", "Строковый литерал", "строка, ЯВНО определенная в коде с использованием двойных кавычек", "let gameOverText = 'Game Over!'"]
 
-let collections = ["Array", "Set", "Dictionary"]
+var collections = ["Array", "Set", "Dictionary"]
 
 var collectComment = ["Collect", "Коллекция", "в языке Swift - это СТРУКТУРА ДАННЫХ, которая может ХРАНИТЬ и управлять группами значений"]
 
@@ -212,4 +212,91 @@ var commentTuples = ["Tuples", "Кортежи", "Кортежи - НЕИЗМЕ�
 
 var commentOptionals = ["Optionals", "Опционалы", "ОПЦИОНАЛЫ - это значения, которые позволяют представить ОТСУТСТВИЕ значения или его присуствие"] // 84
 
+var commentAnnotationLet = ["объявление переменных", "в Swift переменные объявляются с помощью ключевого слова 'var', а константы - 'let'", "указание имени и типа переменной или константы", "var baby: String"]
+
+var commentDefinition = ["определение", "присвоение конкретного типа данных переменной", "var pi = 3.14159"]
+
+var commentInitiation = ["Initialisation", "Инициализация - это присвоение начального значения переменной или константе"]
+
+var methodsWithSets = ["insert() - добавление элемента", "remove(), removeAll(), removeIndex(), removeFirst() - удаление элемента", "contains() - проверка: присутствуел ли элемент?", "union() - объединение двух множеств", "intersection() - нахождение ОБЩИХ элементов двух множеств"]
+
+var methodsRemoveFromSets = ["remove(), removeAll(), removeIndex(), removeFirst() - удаление элемента"]
+
+let methodOfArray = ["append()", "это добавление нового элемента в массив", "var addNewElementToArray = hogwarts1Course.append("]// 90
+hogwarts1Course.append("Care of Magical Creatures")
+print(hogwarts1Course) // ["Transfiguration", "Charms", "Potions", "History of Magic", "Defence Against the Dark Arts", "Astronomy", "Herbology", "Flying Lesson", "Care of Magical Creatures"]
+
+var methodsOfIteration = ["for-in", "enumerated()", "map", "filter", "reduce"] // для коллекций
+print(collections.remove(at: 0)) // Array
+print(collections) // ["Set", "Dictionary"]
+
+var methodsOfSets = ["insert()", "используется для добавления элементов в МНОЖЕСТВО", "contains()", "используется для проверки НАЛИЧИЯ элемента в множестве"]
+
+let numbers = [2, 4, 6, 8, 10, 12]
+let sum = numbers.reduce(0, +) // 42 -? - используем оператор сложения (+) как ЗАМЫКАНИЕ
+print(sum)
+
+var words = ["Swift", "is", "a", "powerful", "languaage"]
+let sentence = words.reduce("")
+{ (result, word) -> String in
+    return result.isEmpty ? word :
+    result + " " + word
+}
+print(sentence)
+
+// более КОРОТКАЯ версия с использованием ТЕРНАРНОГО оператора
+var wordsOfHobbit = ["In", "a", "Hole", "in", "the", "ground", "Lived", "a", "hobbit"]
+let sentenceHobbit = wordsOfHobbit.reduce("")
+{ (result, word) -> String in
+    return result.isEmpty ? word :
+    result + " " + word
+}
+print(sentenceHobbit) // In a Hole in the ground Lived a hobbit
+
+// есть массив объектов. Сгруппируй их по определенному свойству и создай СЛОВАРЬ
+
+struct Book: CustomStringConvertible {
+    
+    let title: String
+    let author: String
+    let ISBN: String
+    
+    var description: String {
+        return "Title: \(title), Author: \(author), ISBN: \(ISBN)"
+    }
+}
+let books = [
+    Book(title: "Hobbit", author: "Tolkien", ISBN: "978-0618260246"),
+    Book(title: "Prude and Prejudice", author: "Austen", ISBN: "978-0141439518")
+]
+let booksByISBN = books.reduce(into: [String: Book]())
+{ (result, book) in result[book.ISBN] = book
+}
+if let Hobbit = booksByISBN["978-0618260246"] {
+    print("Title: \(Hobbit.title), Author: \(Hobbit.author)")
+}
+print(booksByISBN)
+
+// ЗАДАЧА: есть массив целых чисел. Создай словарь: ключи - остатки от деления каждого числа на 3, а значениями - массивы чисел с соответствующим остатком.
+
+let nums = [1, 2, 3, 4, 5, 6, 7]
+
+let dictOfNums = nums.reduce(into: [Int: [Int]]())
+{ (result, number) in
+    let remainder = number % 3 // вычисляем остаток
+    
+    if result[remainder] == nil {
+        result[remainder] = [number]
+    } else {
+        result[remainder]?.append(number)
+    }
+}
+print(dictOfNums) // [1: [1, 4, 7], 2: [2, 5], 0: [3, 6]]
+
+let dictNums = nums.reduce(into: [Int:
+    [Int]]()) { (result, number) in
+    let remainder = number % 3
+    result[remainder, default: []].append(number)
+}
+print(dictOfNums)  // 100 Dictionaries. Finis!
 
