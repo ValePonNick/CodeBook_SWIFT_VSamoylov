@@ -227,9 +227,35 @@ let password = ["Caput Draconis", "Pure blood", "Fortuna Major", "Fairy Lights",
 // создать КОРТЕЖ, открывающий дверь в Гриффиндор
 var openDoorGriffindor = (house: "Griffindor", doorGuard: "Fat Ledy", password: "Mimbulus Mimbletonia")
 var openDoorSlytherin = (house: "Slytherin", doorGuard: "Blood Baron", password: "Pure blood")
-// 86
 
-       
+let tupleSingAC = (autor: "Глеб Самойлов", team: "Agata Cristy", text: "Сказочная тайга", "облака в небо спрятались...")
+
+let tupleSingsAC = (autor: "Вадим Самойлов", team: "Agata Cristy", name: "Viva, Calman!", text: "Пегой луной наступает вечер...")
+
+let tupleBeatles = ("Ringo Starr", 4, "Liverpool", "ливерпульская четверка", "Beatles")
+
+let tupleLP = ("Laura Pergolizzi", "LP", 43, "Hantington", "USA", "Lost on You", "Проиграла, поставив на тебя")
+
+let tupleLauraP = ("LP", "Lost on You", 2016, "When you get older, plainer, saner...") // 91 tuples - кортеж
+
+let tuplesongsLP = ("LP", ("Lost on You", "Other people"), ("Go to sleep", "One last time"), "Angels") // это КОРТЕЖ, где его элементы - КОРТЕЖИ!
+
+let tupleAgataCristyAlbuoms = ("Опиум", "Ураган", "Чудеса", "Майн Кайф?", "Декаданс", "Позорная звезда", "Коварство и любовь", "Второй фронт", "Эпилог")
+
+let pupleACAlbuom1997 = (1997, "Ураган",( "Два корабля", "Моряк", "Корвет уходит в небеса"))
+
+let pupleACAlbuom1998 = (1998, "Чудеса", ("Ковер-вертолет", "Сны", "Вервольф", "Я вернусь", "Дорога паука"))
+
+let pulpeACA1995 = (1995, "Опиум", ("Хали_Гали кришна", "Абордаж", "Черная луна", "Сказочная тайга", "Опиум для никого", "Насилие"))
+
+let tupleAgataCristie = (1988, "Вадим Самойлов", "Глеб Самойлов", "Александр Козлов", "Андрей Котов")
+
+let tupleACJanrs = ("Готик-рок", "Арт-рок", "Хфрд-рок", "Глэм-рок", "Постпанк")
+
+let tupleFavouriteSongsAC = ("Viva, Calman!", "Как на войне", "Истерика", "Опиум для никого", "Сказочная тайга", "Черная луна", "Моряк", "Ковер-вертолет")
+
+let tupleGSMatrixx = (2008, "Глеб Самойлоff & The Matrixx", "The Matrixx")  //100 tuples - FINIS!!!
+
         
   
     
