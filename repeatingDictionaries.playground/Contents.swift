@@ -325,7 +325,7 @@ let dict2: [String: String] = ["A": "a", "B": "b", "C": "c"]
 
 let dict3 = [("Sam", "Hobbit"), ("Pin", "Hobbit"), ("Thorin", "Dwarth")]
 
-let dict4: Dictionary<Int,Int> = [12: 21, 31: 13, 41: 14]
+let dict4: Dictionary<Int,Int> = [12: 21, 31: 13, 41: 14] // 50 Dictionaries
 
 let dictionaryBool: [String: Bool] = ["isEmpty": true, "isn'tEmpty": false]
                              
@@ -370,5 +370,64 @@ let dictionary = [1: "in", 2: "the", 3: "Hole", 4: "lived", 5: "a", 6: "Hobbit"]
 let dictArrays = [(1, 12.12), (2, 2112), (3, 3.14), (4, 444)] // это словарь массивов
 
 let dictionar = ["когда моряк на берегу": "Agata Cristy", "когда я на почте служил ямщиком": "Agata Cristy"] // 72 примера словарей
+
+let dictLP = [1981: "Laura Pergolizzi", 2015: "Lost on You"]
+
+let textLostOnYou1 = [1.1: "When you get older, planer, saner", 1.2: "Когда ты станешь старше, роще, разумнее"]
+
+let textLostOnYou2 = [2.1: "Will you remember allbthe danger we came from?", 2.2: "Будешь ли помнить о той опасности, что породила нас?"]
+
+let textLostOnYou3 = [3.1: "Burning like embers, failing, tender", 3.2: "Тлея, словно угольки, медленно угасающие,"]
+
+let textLostOnYou4 = [4.1: "WLonging for the days of no surrender", 4.2: "Тоскуем по дням непокорности,"]
+
+let textLostOnYou5 = [5.1: "Years ago", 5.2: "Годы спустя..."]
+
+let textLostOnYou6 = [6.1: "And well you know", 6.2: "И ... ты знаешь"]
+
+let textLostOnYou7 = [7.1: "Smoke em if you got em cause it's going down", 7.2: "Кури, если тебе есть чем, ведь все идет под откос"] // 80 dictionaries
+
+let textLostOnYou8 = [8.1: "All I ever wanted was you", 8.2: "Все, что мне было нужно - это ты,"]
+
+let textLostOnYou9 = [9.1: "I'll never get to heaven cause I don;t now how", 9.2: "Я никогда не попаду в рай, потому что не знаю как"]
+
+let textLostOnYou10 = [10.1: "Let;s raise a glass", 10.2: "Давай поднимем бокал"]
+
+let textLostOnYou11 = [11.1: "Or two", 11.2: "Или два"]
+
+let textLostOnYou12 = [12.1: "To all the things I've lost on you", 12.2: "За все, что я потеряла из-за тебя."]
+
+let textLostOnYou13 = [13.1: "Oh", 13.2: "О-о,"]
+
+let textLostOnYou14 = [14.1: "Tell me are hey lost on you", 14.2: "Скажи, это-то до тебя дошло?"]
+
+let textLostOnYou15 = [15.1: "Oh", 15.2: "О-о,"]
+
+let textLostOnYou16 = [16.1: "Just that you could cut me loose", 16.2: "Ты же могла подарить мне свободу."]
+
+let textLostOnYou17 = [17.1: "Oh", 17.2: "О-о,"] // 90 dictionaries
+
+let textLostOnYou18 = [18.1: "After eveything I've lost on you", 18.2: "После всего, что я потеряла из-за тебя."]
+
+let textLostOnYou19 = [19.1: "Is that lost on you", 19.2: "Неужели ты это не осознала?"]
+
+let textLostOnYou20 = [20.1: "Oh", 20.2: "О-о,"]
+
+let textLostOnYou21 = [21.1: "Baby is that lost on you", 21.2: "Детка, неужели ты это не осознала?"]
+
+let textLostOnYou22 = [22.1: "Is that lost on you", 22.2: "Неужели ты это не осознала?"]
+
+let textLostOnYou23 = [23.1: "Wishin' I could see the machinations", 23.2: "Хотелось бы мне замечать манипуляции,"]
+
+let textLostOnYou24 = [24.1: "Understand the toil of extectations in your mind", 24.2: "Изнурительность ожиданий в твоей голове."]
+
+let textLostOnYou25 = [25.1: "Hold me like you never lost your patience", 25.2: "Обними меня как, словно ты никогда не теряла терпения,"]  // That;s ALL! 100 dictionaries
+
+let textLostOnYou26 = [26.1: "Tell me that you love me more than hate me all the time", 26.2: "Скажи мне, что любишь меня больше, чем ненавидишь постоянно."]
+let textLostOnYou27 = [28.1: "And you're still mine", 28.2: "И ты все еще моя."] // That;s ALL! 100 dictionaries
+
+
+
+
 
 
