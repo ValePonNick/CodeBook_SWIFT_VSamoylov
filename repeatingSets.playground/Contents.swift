@@ -157,4 +157,31 @@ let triller: Set = ["The Silence of the Lambs, The Sixth Sense", "The Da Vinci C
 let war: Set = ["War of the Worlds", "Shindler's List", "Life is Deautiful", "Braveheart"]
 let western: Set = ["The Good, the Bad and the Ugly", "Mackenna's Gold", "The Hateful Eight"]
 let kids: Set = ["Home Alone", "Treasure Island", "The Jungle Book", "Cruella", "The Lion King"]
-let melodrama: Set = ["Titanic", "Pride and Prejudence", "Emma"] // 37
+let melodrama: Set = ["Titanic", "Pride and Prejudence", "Emma"]
+let chars: Set = ["a", "b", "c", "d", "e"]
+let char: Set = ["A", "B", "C", "D", "E"]
+let charRussian: Set = ["Ц", "Ч", "Й", "Ш", "Я"]
+
+let charRuss: Set = ["ц", "й", "ч", "и", "р", "з"]
+let numDouble: Set = [3.14, 2.12, 0.3, 4.44, 8.888, 7.765]
+let numFloat: Set = [3.14159, 2.121212, 4.12345, 7.54432, 8.8888889]
+let bools: Set = [true, false]
+let operation: Set = ["a = b", "a - b", "a * c", "a / b", "a % b"]
+
+let letts: Set = ["альфа", "бета", "гамма", "дельта"]
+let notes: Set = ["do", "re", "mi", "fa", "sol", "la", "si"]
+let nite: Set = ["C", "D", "E", "F", "G", "A", "B"]
+let musicalTerms: Set = ["note", "melody", "harmony", "rhythm", "meter", "pitch", "musical tone"]
+let genres: Set = ["jazz", "rock", "pop", "folk", "R&B"] // 50 множеств
+
+let musicalStyles: Set = ["folk", "spiritual", "popular", "academic music"]
+let performanceMethods: Set = ["vocal", "instrumental", "vocal-instrumental"]
+let musicalContext: Set = ["secular", "sacred"]
+let musicalCompositionsVocal: Set = ["songs", "arias", "arioso", "vocalises"]
+let musicalCompositionInstrumental: Set = ["sonatas", "symphonies", "concertos"]
+
+let musicalDance: Set = ["minuet", "sarabande", "polonaise", "waltz", "polka"]
+let musucalForms: Set = ["mass", "legend", "piece", "opera", "cassation", "prelude"]
+let musicalDefinition: Set = ["arioso", "ballad", "Cantata", "nocturne", "romance", "serenade", "symphony", "sonata"]
+let operaForms: Set = ["Aria", "Rechitative", "Vocal Ensemble", "Choruses", "Orchestral Pieces"]
+let musicleName: Set = ["Cats", "The Phantom of the Opera", "Les Miserables", "Evita"] // 60 множеств
