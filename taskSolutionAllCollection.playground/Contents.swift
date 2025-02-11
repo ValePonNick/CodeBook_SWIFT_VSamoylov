@@ -43,3 +43,65 @@ print(allMounths)
  - print() - выводится сообщение, что июль не найден
  7. выводит на консоль ВЕСЬ словарь 'months' - видим КАКИЕ элементы в нем содержатся ПОСЛЕ слияния
  */
+// ЗАДАЧА 4: преобразование МАССИВА чисел в МНОЖЕСТВО(удали дубли). Выведи в консоль КОЛИЧЕСТВО элементов в получ. мн-ве.
+var numbersArray = [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7]
+let numArr: Set<Int> = Set(numbersArray)
+print("Количество элементов в множестве \(numArr.count)") // 7
+
+// ЗАДАЧА 5: Фильтрация масссива чисел: создай новый массив чисел из исходного массива > 30. Выведи в консоль новый массив.
+let numbersInt = [10, 20, 30, 40, 12, 22, 32, 42]
+var newArray: [Int] = []
+for number in numbersInt {
+    if number > 30 {
+        newArray.append(number)
+    }
+    print(newArray) // [40, 32, 42]
+}
+
+// ЗАДАЧА 6: Преобразование словаря в массив кортежей,
+/* где каждый кортеж содержит имя + возраст. Выведи в консоль первый элемент полученного массива. */
+let agesDict = ["Alice": 30, "Bob": 25, "Charlie": 35]
+var agesTuplesArray: [(name: String, age: Int)] = [] // создай ПУСТОЙ массив кортежей
+for (name, age) in agesDict {
+    agesTuplesArray.append((name: name, age: age))
+}
+print((agesTuplesArray).first)
+// альтернативный вариант: БОЛЕЕ КОМПАКТНО
+let agesTupleArray = agesDict.map { (name: $0.key, age: $0.value) }
+print(agesTupleArray.first)
+/*
+COMMENTS:
+    - метод 'map' преобразует КАЖДЫЙ элемент словаря в КОРТЕЖ и создает НОВЫЙ массив из этих КОРТЕЖЕЙ.
+    - '$0' = каждая пара ключ-значение в словаре
+    - '$0.key' - это ключ (имя),
+    - '$0.value' - это значение(возраст).  */
+
+/*
+ ЗАДАЧА 7: Преобразуй массив в словарь, где ключ - слово, значение - количество раз, которое это слово встречается в массиве. Выведите словарь в консоль. */
+let words = ["tomato", "potato", "tomato", "carrot", "potato", "potato", "pepper", "cabbage", "onion", "cucumber", "onion", "onion"] // массив слов
+var wordsDict: [String: Int] = [:] // создай пустой словарь
+for word in words {
+    wordsDict[word, default: 0]
+    += 1
+}
+print("Словарь овощей: \(wordsDict)")
+    
+/*
+ ЗАДАЧА 8: преобразуй словарь(ключ - название продукта, значение - цена) в МАССИВ КОРТЕЖЕЙ, где каждый кортеж = название продукта + его цена, отсортированный по УБЫВАНИЮ цены. Выведи массив кортежей в консоль. */
+let productPrices: [String: Double] = ["Яблоко": 50.0, "Банан": 30.0, "Апельсин": 70.0, "Манго": 150.0]
+var productTuplesArray =  productPrices.map { (product: $0.key, price: $0.value) }
+let sortedProductTuplesArray = productTuplesArray.sorted { $0.price > $1.price }
+
+print(sortedProductTuplesArray) // [(product: "Манго", price: 150.0), (product: "Апельсин", price: 70.0), (product: "Яблоко", price: 50.0), (product: "Банан", price: 30.0)]
+// COMMENTS:
+/*
+ 1. преобразуй СЛОВАРЬ в МАССИВ кортежей прежде, чем сортировать его: используй метод 'map' для этого:
+    -  productPrices.map { (product: $0.key, price: $0.value) } - создает НОВЫЙ массив кортежей, где каждый кортеж содержит название продукта(key) + его цену(value) из словаря 'productPrices'
+    - '$0' = каждая пара ключ-значение в словаре
+    - $0.key - это ключ(название продукта)
+    - $0.value - это значение(цена)
+ 2. Сортировка МАССИВА кортежей используй метод 'sorted(by:)' для сортировки МАССИВА 'productTuplesArray' по убыванию ЦЕНЫ:
+    - productTuplesArray.sorted { $0.price > $1.price } создает НОВЫЙ ОТСОРТИРОВАННЫЙ массив кортежей
+    - $0 и $1 - это два соседних КОРТЕЖА в массиве
+    - '$0.price > $1.price' сравни цены двух кортежей. Если цена первого кортежа >, то он будет идти РАНЬШЕ в отсортированном массиве (сортировка по УБЫВАНИЮ)
+ 3. выведи отсортированный массив кортежей в консоль 'sortedProductTuplesArray' */
