@@ -185,3 +185,24 @@ let musucalForms: Set = ["mass", "legend", "piece", "opera", "cassation", "prelu
 let musicalDefinition: Set = ["arioso", "ballad", "Cantata", "nocturne", "romance", "serenade", "symphony", "sonata"]
 let operaForms: Set = ["Aria", "Rechitative", "Vocal Ensemble", "Choruses", "Orchestral Pieces"]
 let musicleName: Set = ["Cats", "The Phantom of the Opera", "Les Miserables", "Evita"] // 60 множеств
+
+// ЗАДАЧА: создай из одних и тех же элементов массив, кортеж, словарь и множество с фруктами. Как можно преобразовать их друг в друга
+
+// ARRAY - массив
+let fruitsArray = ["apple", "banana","orange", "limon", "apple", "orange", "kivi", "kivi", "kivi", "kivi", "apple", "apple"] // это массив строк
+fruitsArray.count // 12
+print("Массив фруктов: \(fruitsArray)") // Массив: ["apple", "banana", "orange", "limon", "apple", "orange", "kivi", "kivi", "kivi", "kivi", "apple", "apple"]
+
+// DICTIONARY - словарь
+let
+var fruitsDictionary = ["apple": 4, "banana": 1, "orange": 2, "limon": 1, "kivi": 4]
+fruitsDictionary.count // 5
+fruitsDictionary.keys // ["banana", "limon", "apple", "kivi", "orange"]
+print(fruitsDictionary.keys)
+fruitsDictionary.values //
+print(fruitsDictionary.values) // [1, 4, 4, 1, 2]
+print(fruitsDictionary) // ["banana": 1, "limon": 1, "apple": 4, "orange": 2, "kivi": 4]
+
+// SET - множество
+let fruitsSet: Set<String> = Set(fruitsArray) // создай МНОЖЕСТВО для хранения только УНИКАЛЬНЫХ элементов uniquie fruits = uniqueFruits
+print(fruitsSet) // ["apple", "limon", "kivi", "orange", "banana"]
