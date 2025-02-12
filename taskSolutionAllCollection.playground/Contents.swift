@@ -212,3 +212,87 @@ for i in stride(from: 0, to: array.count - 1, by: 2) {
     dictio[array[i]] = array[i + 1]
 }
 print(dictio) // ["1.12": "4.14", "3.14": "2.12"]
+
+// ЗАДАЧА 10. Напиши функцию, которая принимает МАССИВ Int и возвращает их сумму и среднее значение в виде КОРТЕЖА.
+let arrayNum = [2, 4, 6, 8, 10, 12] // массив чисел
+var tuple: (Double, Double) // объявляем кортеж для хранения результата(сумма и среднее)
+
+func getNums(_ array: [Int]) -> (Double, Double) {
+    let count = arrayNum.count // 6
+    let summa = arrayNum.reduce(0, +) // 42
+    let average = Double(summa) / Double(count) // вычисляем среднее + преобразуем в Double для точности
+    return (Double(summa), average) // возвращаем кортеж с суммой и средним
+}
+tuple = getNums(arrayNum) // вызываем функцию и присваиваем результат кортежу
+
+print("Сумма: \(tuple.0), Среднее значение: \(tuple.1)") // Сумма: 42.0, Среднее значение: 7.0
+
+// ЗАДАЧА 11. Напиши функцию, которая принимает МАССИВ чисел типа Double и возвращает КОРТЕЖ, содержащий max/min значение в массиве и разницу между ними. Если массив ПУСТОЙ, функция должна вернуть nil.
+let numsArray = [3.0, 2.0, 1.0, 4.0, 1.0, 2.0, 3.0, 5.0]
+let maximum  = numsArray.max()!
+let minimum = numsArray.min()!
+
+func getMinMaxRenge(_ array: [Double]) -> (maximum: Double, minimum: Double, renge: Double)? {
+    guard !array.isEmpty else { // проверь: не ПУСТ ли массив?
+        return nil // возвращаем nil, если массив пустой
+    }
+    guard let maximum = numsArray.max(), let minimum = numsArray.min() else {  // находим max / min
+        return nil // возвращаем nil, если не нашли min/max
+    }
+    let renge = maximum - minimum // вычисли разницу
+    return (maximum: maximum, minimum: minimum, renge: renge)
+    }
+// пример использования
+if let result = getMinMaxRenge(numsArray) {
+    print("Максимум: \(result.maximum), минимум: \(result.minimum), разница: \(result.renge)")
+} else {
+    print("Массив пустой")
+} // Максимум: 5.0, минимум: 1.0, разница: 4.0
+
+// пример с ПУСТЫМ МАССИВОМ
+let emptyArray: [Double] = []
+if let result = getMinMaxRenge(emptyArray) {
+    print("Максимум: \(result.maximum), минимум: \(result.minimum), разница: \(result.renge)")
+} else {
+    print("Массив пустой")
+} // Массив пустой
+// COMMENTS:
+/*
+1. проверка - является ли массив пустым? Если да, функция возвращает СРАЗУ nil
+2. методы 'max()'/'min()' возвращают ОПЦИОНАЛЬНЫЕ значения (т.е. Double?) т.к. если массив пуст, то 'max()'/'min()'значения НЕ СУЩЕСТВУЕТ.
+3. используй 'guard let'для БЕЗОПАСНОГО извлечения опционалов м выхода из функции, если значение = nil.  Код стал БЕЗОПАСЕН + ЧИТАЕМ.
+4. функция 'getMinMaxRenge' теперь возвращает опциональный КОРТЕЖ  - (maximum: Double, minimum: Double, renge: Double)?
+5. это означает: функция может вернуть либо кортеж с результатами, либо nil, если массив пустой.
+6. нет необходимости преобразовывать Double -> в Int */
+
+// ЗАДАЧА 12: создай КОРТЕЖ для хранения инфы о студенте(имя, возраст, специальность). Напиши функцию, которая принимает массив таких кортежей и выводит инфу о каждом студенте в консоль.
+
+typealias Student = (name: String, age: Int, speciality: String)
+func printStudentInfo(student: Student) {
+    print("Имя: \(student.name), Возраст: \(student.age), Специальность: \(student.speciality)")
+}
+// функция для вывода инфы о массиве студентов
+func printStudentInfo(students: [Student]) {
+    for student in students {
+        printStudentInfo(student: student)
+    }
+}
+// пример использования
+let student1: Student = ("Ann", 21, "IT")
+let student2: Student = ("Bob", 22, "IT")
+let student3: Student = ("Ron", 20, "IT")
+
+let studentArray: [Student] = [student1, student2, student3]
+printStudentInfo(students: studentArray) /* Имя: Ann, Возраст: 21, Специальность: IT
+Имя: Bob, Возраст: 22, Специальность: IT, Имя: Ron, Возраст: 20, Специальность: IT */
+
+// COMMENTS:
+/*
+1. typealias Student = (name: String, age: Int, speciality: String) - эта строка создает псевдоним типа 'Student' для кортежа, содержащего имя, возраст и спец-ть студента.
+    Использование псевдонима - несколько ПРЕИМУЩЕСТВ:
+    - читаемость кода: вместо того, чтобы КАЖДЫЙ раз писать (name: String, age: Int, speciality: String) -> используй короткое + понятное 'Student'. Особенно удобно, когда КОРТЕЖ использован в НСКОЛЬКИХ местах.
+    - избегай ОШИБОК + упрощай поддержку кода: если нужно ИЗМЕНИТЬ структуру кортежа(напр. добавить поле "курс") -> нужно изменить ТОЛЬКО определение псевдонима 'Student', а НЕ ВСЕ места, где используется этот кортеж.
+    - СЕМАНТИЧЕСКАЯ ясность: псевдоним 'Student' сразу дает понять: кортеж содержит инфу о студенте.
+2. функция  'printStudentsInfo(students: Student)' принимает МАССИВ КОРТЕЖЕЙ типа 'Student'. Она ПЕРЕБИРАЕТ масссив и для КАЖДОГО студента вызывает функцию 'printStudentInfo' чтобы вывести его данные в консоль.
+3. в примере использования создай ТРИ кортежа 'student1', 'student2', 'student3' - они представляют ИНФУ о РАЗНЫХ студентах.
+4. Затем они ОБЪЕДИНЯЮТСЯ в массив 'studentArray', который передается в функцию 'printStudentsInfo' для вывода инфы обо ВСЕХ студентах.  */
