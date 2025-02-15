@@ -17,12 +17,18 @@ arrayDouble.firstIndex(of: 3.14159)
 var arrayStudents = ["Andy", "Arny", "Ashli", "Addy"]
 arrayStudents[0]
 
+var arrayBool = [true, true,false, false, true, false]
+arrayBool.append(true)
+arrayBool.count
+
 // REPEATING SINTAX: Dictionaries
 let dictNames = ["Bob": 12, "Joe": 21]
 dictNames.index(forKey:"Joe")
 
-let dictStudents = ["Roy": "ID = 112", "Joy": "ID = 112", "Key": "ID = 113"]
-                    
+var dictStudents = ["Roy": "ID = 112", "Joy": "ID = 112", "Key": "ID = 113"]
+dictStudents.removeValue(forKey: "Roy")
+print(dictStudents)
+
                     
 // REPEATING SINTAX: Sets
 
