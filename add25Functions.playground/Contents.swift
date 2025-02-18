@@ -294,3 +294,11 @@ let anagramCheck = areAnagrams("Listen", "Silent")
     }
     let vowelCount = countVowels(in: "Hello, World!")
     print("Number of vowels: \(vowelCount)") // 25 функций
+
+// ЗАДАЧА: напиши функцию, которая принимает два числа (min, max) и возвращает случайное число в этом диапазоне
+
+func randomInRange(min: Int, max: Int) -> Int {
+    return Int.random(in: min...max)
+}
+let randomNumber = randomInRange(min: 2, max: 8)
+print("Random number between 2 and 8: \(randomNumber)") // 26 функций
