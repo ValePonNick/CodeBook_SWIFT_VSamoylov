@@ -71,7 +71,7 @@ func maxOnThree(a: Int, b: Int, c: Int) -> Int {
 let maxOnNumber = maxOnThree(a: 12, b: 21, c: 11)
 let maxOnNumber1 = maxOnThree(a: 12, b: 12, c: 12)
 
-/* задача: переведи градусы Цельсия в Фаренгейта
+/* ЗАДАЧА: переведи градусы Цельсия в Фаренгейта
 функция принимает температуру по Цельсию, а возвращает эквивалент по Фаренгейту */
 
 func celsiusToFahrenheit(celsius: Double) -> Double {
@@ -85,7 +85,7 @@ let tempCelsius1: Double = 12.12
 let tempFahrenheit1 = celsiusToFahrenheit(celsius: tempCelsius1) // переводим в Фаренгейт
 print("Температура \(tempCelsius1)'С равна \(tempFahrenheit1)'F")
 
-/* Задача: напиши функцию, которая принимает массив строк в качестве параметра и выводит каждый элемент массива на отдельной строке */
+/* ЗАДАЧА: напиши функцию, которая принимает массив строк в качестве параметра и выводит каждый элемент массива на отдельной строке */
 let arrayNames = ["Ann", "Bob", "Duglas", "James"]
 func printArray(array: [String]) { // параметр д.б. МАССИВОМ строк
     for name in array {
@@ -121,7 +121,7 @@ outputSquaresOfIntegers(array: arrayInts)
 /*
  ЗАДАЧА: напиши функцию, которая принимает массив строк в качестве параметра и возвращает количество символов в каждой строке. Функция д.б. вывести количество символов для КАЖДОЙ строки на отдельной строке. */
 
-// решение вариант 1
+// РЕШЕНИЕ: вариант 1
 
 let names = ["Alice", "Bob", "Vincent"]
 func countLettersInString(array: [String]) {
@@ -132,7 +132,7 @@ func countLettersInString(array: [String]) {
 }
 countLettersInString(array: names)
 
-// решение: вариант 2 - используй 'forEach'
+// РЕШЕНИЕ: вариант 2 - используй 'forEach'
 /* семантически правилен метод `forEach`, он предназначен именно для выполнения действий над элементами массива */
 let namesChild = ["Alice", "Bob", "Vincent"]
 func countLetters(array: [String]) {
@@ -146,7 +146,7 @@ countLetters(array: namesChild)
 /* Comments:
 1. myERROR - метод 'forEach' д.б. вызван НА МАССИВЕ, переданном в функцию 'array', а НЕ НА САМОЙ функции */
 
-/* решение: вариант 3 - используй 'map' для СОЗДАНИЯ НОВОГО массива, который содержит количество символов в КАЖДОЙ строке */
+/* РЕШЕНИЕ: вариант 3 - используй 'map' для СОЗДАНИЯ НОВОГО массива, который содержит количество символов в КАЖДОЙ строке */
 let namesChildren = ["Margery", "Boris", "Valentina"]
 
 func displayCharCounts(array: [String]) -> [Int] {
@@ -181,3 +181,116 @@ displayCharacterCounts(array: namesChildrens)
  - хочешь создать НОВЫЙ МАССИВ, преобразовав элементы исходного массива
  - нужно СОХРАНИТЬ результат преобразования для ДАЛЬНЕЙШЕГО использования
  2. если задача: просто выполнить действие для КАЖДОГО элемента массива -> используй метод 'forEach' */ // 5 функций за 1 час
+
+/*
+ ЗАДАЧА: Факториал числа. Создай функцию, принимающую целое число в качестве параметра и возвращает его факториал(произведение ВСЕХ целых чисел от 1 до n). Вызови функцию с разными числами и выведи результат. */
+
+// Итеративный метод - используй цикл for - in
+func factorial(n: Int) -> Int {
+    var result = 1
+    for i in 1...n {
+        result *= i
+    }
+    return result
+}
+let result = factorial(n: 5) // пример использования
+print(result) // 120
+
+// Рекурсивный метод - используй цикл if - else
+func calculateFactorial(n: Int) -> Int {
+    if n == 0 {
+        return 1 // базовый случай
+    } else {
+        return n * calculateFactorial(n: n - 1) // рекурсивный метод
+    }
+}
+let res = calculateFactorial(n: 4)
+print(res) // 24
+/* COMMENTS:
+ Факториалы ШИРОКО применяются в реальной жизни:
+ 1. сколькими способами расстваить 5 книг на полке
+ 2. рассчитать способы рассадки гостей на вечеринке
+ 3. факториал(52!) -> для определения вероятности различных комбинаций карт в колоде
+ 4. в IT -> в алгоритмах, связанных с перестановками / комбинациями */
+
+/*
+ ЗАДАЧА: расставь 4 книги на полке с использованием ФАКТОРИАЛА */
+func addFactorial(n: Int) -> Int {
+    if n == 0 {
+        return 1 // базовый случай: 0! = 1
+    } else {
+        return n * factorial(n: n - 1) // рекурсивный метод
+    }
+}
+let numberOfBooks = 4 // количество книг
+let numberOfWays = addFactorial(n: numberOfBooks) // вычисляем факториал для количества книг
+print("Количество способов расставить \(numberOfBooks) книги на полке: \(numberOfWays)")
+
+/* ЗАДАЧА: проверка на палиндром (строка): напиши функцию, которая принимает строку в качестве параметра и возвращает 'true', если строка читается ОДИНАКОВО в обоих направлениях и 'false' - в противном случае. NB: игнорируй регистр! Вызови функцию с РАЗНЫМИ строками и выведи результат. */
+func isPalindrome(_ str: String) -> Bool {
+    // приводим строку к нижнему регистру и удаляем ВСЕ пробелы
+    let cleanedStr = str.lowercased().replacingOccurrences(of: " ", with: "")
+    // сравниваем строку с обратной версией
+    let reversedStr = String(cleanedStr.reversed())
+    
+    return cleanedStr == reversedStr
+}
+// вызов функции с разными строками и вывод результата
+print(isPalindrome("12321")) //
+print(isPalindrome("no lemon, no melon")) //
+print(isPalindrome("was it a car or a cat i saw?")) //
+print(isPalindrome("a man, a plan, a canal, Panama!")) //
+
+/* ЗАДАЧА: напиши функцию, которая принимает МАССИВ чисел и возвращает max значение */
+func findMax(numbers: [Int]) -> Int? {
+    return numbers.max()
+}
+if let maxNumber = findMax(numbers: [1,3,5,7,9]) {
+    print("Max number: \(maxNumber)")
+} // Max number: 9
+    
+/* ЗАДАЧА: напиши функцию, которая принимает строку и возвращает ее реверированную версию */
+func reverseString(_ str: String) -> String {
+    return String(str.reversed())
+    }
+let reversed = reverseString("Hello, World!")
+print("Reversed string: \(reversed))") //
+    
+/* ЗАДАЧА: напиши функцию, которая принимает ДВЕ строки и возвращает 'true', если они
+ анаграммы (содержат одни и теже буквы в разном порядке) */
+
+func areAnagrams(_ str1: String, _ str2: String) -> Bool {
+        let sortedStr1 = str1.lowercased().sorted()
+        let sortedStr2 = str2.lowercased().sorted()
+        return sortedStr1 == sortedStr2
+}
+let anagramCheck = areAnagrams("Listen", "Silent")
+    print("Are anagrams: \(anagramCheck)")
+    
+    /* ЗАДАЧА: напиши функцию, котора принимает МАССИВ чисел и возвращает среднее значение */
+    func average(of numbers: [Double]) -> Double? {
+        guard !numbers.isEmpty else { return nil }
+        let sum = numbers.reduce(0, +)
+        return sum / Double(numbers.count)
+    }
+    if let avg = average(of: [12.12, 12.18, 12.0, 12,88]) {
+        print("Average: \(avg)")
+    } else {
+        print("Array is empty.")
+    }
+    /* ЗАДАЧА: напиши функцию, которая принимает МАССИВ чисел и возвращает min значение */
+    
+    func findMin(numbers: [Int]) -> Int? {
+        return numbers.min()
+    }
+    if let minNumber = findMin(numbers: [12, 4, 6, 8, -12]) {
+        print("Min number: \(minNumber)")
+    }
+    /* ЗАДАЧА: напиши функцию, которая принимает строку и возвращает количество гласных букв в ней. */
+    
+    func countVowels(in str: String) -> Int {
+        let vowels = "aeiouAEIOU"
+        return str.filter { vowels.contains($0) }.count
+    }
+    let vowelCount = countVowels(in: "Hello, World!")
+    print("Number of vowels: \(vowelCount)") // 25 функций
