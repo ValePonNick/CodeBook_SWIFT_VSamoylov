@@ -42,6 +42,7 @@ func calculateArea(width: Double, height: Double) -> Double {
     return area
 }
 let areaResult = calculateArea(width: 4, height: 6) // вызов функции расчета площади
+
 // функция проверки числа на четность, возвращает true / false
 func isEven(number: Int) -> Bool {
     return number % 2 == 0
@@ -86,7 +87,7 @@ print("Температура \(tempCelsius1)'С равна \(tempFahrenheit1)'F
 
 /* Задача: напиши функцию, которая принимает массив строк в качестве параметра и выводит каждый элемент массива на отдельной строке */
 let arrayNames = ["Ann", "Bob", "Duglas", "James"]
-func printArray(array: [String]) {
+func printArray(array: [String]) { // параметр д.б. МАССИВОМ строк
     for name in array {
         print(name)
     }
@@ -95,9 +96,88 @@ printArray(array: arrayNames)
 
 // используй цикл 'forEach'
 let arrayNames1 = ["Andy", "Bobby", "Dug", "John"]
-func printArray1(array: [String]) {
-    arrayNames1.forEach { name in
-        print(name)
+func printArray1(array: [String]) { // параметр д.б. МАССИВОМ строк
+    arrayNames1.forEach { name in // используй 'forEach' для перебора элеметов массива
+        print(name) // выводим имя на отдельной мтроке
     }
 }
-printArray1(array: arrayNames1)
+printArray1(array: arrayNames1) // вызов функции с массивом имен                            10 функций за 2 часа
+
+/*
+ ЗАДАЧА: напиши функцию, принимающую массив Int в кчестве параметра и выводящую квадрат КАЖДОГО числа на отдельной строке */
+let arrayInts = [1, 2, 3, 4, 5, 6, 7]
+func outputSquaresOfIntegers(array: [Int]) {
+    for number in array { // используй переданный параметр array
+    let square = number * number
+        print(square)
+    }
+}
+outputSquaresOfIntegers(array: arrayInts)
+/* COMMENTS:
+ 1. функция использует переданный параметр 'array', а Не захардкоженный массив 'arrayInt'
+ 2. это сделало функцию > универсальной: ее можно использовать с ЛЮБЫМИ массивами целых чисел
+ 3. ПЕРЕДАННЫЙ ПАРАМЕТР - это входные параметры, которые при ВЫЗОВЕ функции передают значения внутрь функции и используются для вычисления */
+
+/*
+ ЗАДАЧА: напиши функцию, которая принимает массив строк в качестве параметра и возвращает количество символов в каждой строке. Функция д.б. вывести количество символов для КАЖДОЙ строки на отдельной строке. */
+
+// решение вариант 1
+
+let names = ["Alice", "Bob", "Vincent"]
+func countLettersInString(array: [String]) {
+    for string in array {
+        let countLtrs = string.count
+        print(countLtrs)
+    }
+}
+countLettersInString(array: names)
+
+// решение: вариант 2 - используй 'forEach'
+/* семантически правилен метод `forEach`, он предназначен именно для выполнения действий над элементами массива */
+let namesChild = ["Alice", "Bob", "Vincent"]
+func countLetters(array: [String]) {
+    array.forEach { string in // используй 'forEach'на массиве array
+        let countLetrs = string.count // подсчитай количество символов
+        print(countLetrs) // выведи количество символов
+    }
+}
+// вызови функцию с маасивом имен
+countLetters(array: namesChild)
+/* Comments:
+1. myERROR - метод 'forEach' д.б. вызван НА МАССИВЕ, переданном в функцию 'array', а НЕ НА САМОЙ функции */
+
+/* решение: вариант 3 - используй 'map' для СОЗДАНИЯ НОВОГО массива, который содержит количество символов в КАЖДОЙ строке */
+let namesChildren = ["Margery", "Boris", "Valentina"]
+
+func displayCharCounts(array: [String]) -> [Int] {
+    let charCounts = array.map { $0.count } // создаем НОВЫЙ МАССИВ с длинами строк
+    return charCounts // возвращаем массив
+}
+// вызов функции и сохранение результата
+let counts = displayCharCounts(array: namesChildren)
+print(counts) // [7, 5, 9] выводим результат
+
+/*
+ семантически правильно - используй метод `forEach`, который предназначен именно для выполнения действий над элементами массива */
+
+// АЛЬТЕРНАТИВНЫЙ вариант 4: сразу вывести результат - 'map' + 'forEach'
+
+let namesChildrens = ["Margery", "Boris", "Valentina", "Bob"]
+
+func displayCharacterCounts(array: [String]) {
+    array.map { $0.count } // создаем НОВЫЙ МАССИВ с длинами строк
+        .forEach { print($0) }
+}
+// вызов функции
+displayCharacterCounts(array: namesChildrens)
+/*
+7
+5
+9
+3 */
+
+/* COMMENTS:
+ 1. используй метод 'map' если:
+ - хочешь создать НОВЫЙ МАССИВ, преобразовав элементы исходного массива
+ - нужно СОХРАНИТЬ результат преобразования для ДАЛЬНЕЙШЕГО использования
+ 2. если задача: просто выполнить действие для КАЖДОГО элемента массива -> используй метод 'forEach' */ // 5 функций за 1 час
