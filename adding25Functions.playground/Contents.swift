@@ -269,3 +269,40 @@ func joinArrayElements(elements: [String], separator: String) -> String {
 let fruits = ["apple", "banana", "orange", "kiwi"]
 let joinedString = joinArrayElements(elements: fruits, separator: ", ")
 print(joinedString) // apple, banana, orange, kiwi
+
+// ЗАДАЧА: простая функция без параметров
+func greetingchildren() {
+    print("Good morning, children!")
+}
+
+/* ЗАДАЧА: создай функцию с ДВУМЯ входящими параметрами - имя и возраст. Функция д.б. вывести сообщение "меня зовут 'name', мне 'age' лет." */
+func greetingChild(name: String, age: Int) -> String {
+    let str = "My name is \(name), I am \(age) yers old."
+    return str
+}
+greetingChild(name: "Bob", age: 12)
+
+/* ЗАДАЧА: напиши функцию, кототрая принимает радиус круга и возвращает его площадь -  S = pi * radius в квадрате */
+let pi = 3.14159
+func calculateAreaCircle(radius: Double) -> Double {
+    let area = pi * (radius * radius)
+    return area
+}
+let radius = 12 // объявляем константу радиус
+let area = calculateAreaCircle(radius: 12)
+print("Площадь круга с радиусом \(radius) равна \(calculateAreaCircle(radius: 12))")
+
+/* ЗАДАЧА: напиши функцию, которая принимает два параметра ('length' - длина, 'width' - ширина) типа Double. Функция д.б. вернуть площадь прямоугольника: area = length * width. Однако если один из параметров меньше или равен нулю, функция должна возвращать nil и выводить сообщение об ошибке. */
+
+func calcAreaRectangle(lenght: Double, width: Double) -> Double? {
+    let areaRectangle = lenght * width
+    if lenght != 0 && width != 0.0 {
+        return areaRectangle
+    } else {
+        print("Error!")
+        return nil
+    }
+}
+calcAreaRectangle(lenght: 12.12, width: 12.12)
+calcAreaRectangle(lenght: 0, width: 12.12)
+// 25 functions!
