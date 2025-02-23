@@ -120,4 +120,32 @@ Charlie: 71 */
 
 // Сортировка строк по ДЛИНЕ и АЛФАВИТУ
 
+let sortedWords = words.sorted {
+    if $0.count == $1.count {
+        return $0 < $1 // если длина одинакова, сортируем по алфавииту
+    }
+    return $0.count < $1.count // сортируем по длине
+}
+print(sortedWords) // "Date", "Lime", "kiwi", "Melon", "mango", "Grapes"
+
 // СОРТИРОВКА СЛОВАРЕЙ по НЕСКОЛЬКИМ ключам
+/* ЗАДАЧА: есть массив словарей, отсортируй его по нескольким ключам: по оценке и возрасту */
+
+let students = [
+    ["name": "John", "age": 21, "score": 98],
+    ["name": "Doe", "age": 23, "score": 96],
+    ["name": "Jane", "age": 20, "score": 100]
+    ]
+ // сортируем сначала по 'age',  затем - по 'score'
+let sortedStudents = students.sorted {
+    if ($0["age"] as! Int) == ($1["age"] as! Int) {
+        return ($0["score"] as! Int) > ($1["Score"] as! Int) // по убыванию оценок
+    }
+    return ($0["age"] as! Int) < ($1["age"] as! Int) // по возрастанию возраста
+}
+for student in students {
+    print("Student: \(student["name"]!), Age:  \(student ["age"]!), Score: \(student ["score"]!)")
+}
+/*  Student: John, Age:  21, Score: 98
+    Student: Doe, Age:  23, Score: 96
+    Student: Jane, Age:  20, Score: 100 */
