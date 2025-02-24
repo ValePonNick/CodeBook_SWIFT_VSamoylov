@@ -41,6 +41,92 @@ func greet() {
 }
 greet() // Hi, Valery!  -  для ее ВЫЗОВА просто используй ее ИМЯ
 
+// ЗАДАЧА: напиши УСЛОЖНЕННУЮ функцию приветствия, которое меняется с учетом времени суток
+
+func greet(name: String) {
+    let date = Date()
+    let calendar = Calendar.current
+    let hour = calendar.component(.hour, from: date)
+    
+    let greeting: String
+    
+    switch hour {
+    case 0...11:
+        greeting = "Доброе утро, \(name)!"
+    case 12...17:
+        greeting = "Добрый день, \(name)!"
+    case 18...21:
+        greeting = "Добрый вечер, \(name)!"
+    default:
+        greeting = "Доброй ночи, \(name)!"
+    }
+    print(greeting)
+}
+// пример использования
+greet(name: "Мама Люся") // Доброе утро, Мама Люся!
+print(greet(name: "Мама Люся")) // Доброе утро, Мама Люся!
+
+/*
+ ЗАДАЧА: напиши функцию, которая принимает имя и возраст м выводит поздравления с днем рождения, учитывая возраст.*/
+func congratulateBirthDay(name: String, age: Int) {
+    let congratulation: String
+    
+    switch age {
+    case 0...12:
+        congratulation = "С днем рождения, \(name). Желаем тебе веселого дня и новых приключений!"
+    case 13...19:
+        congratulation = "С днем рождения, \(name). Пусть этот год будет полон интересных открытий!"
+    case 20...64:
+        congratulation = "С днем рождения, \(name). Желаем тебе успехов и счастья в новом году жизни!"
+    default:
+        congratulation = "С днем рождения, \(name). Пусть этот год будет наполнен теплом и любовью!"
+    }
+    print(congratulation)
+}
+// пример использования
+congratulateBirthDay(name: "John", age: 65)
+congratulateBirthDay(name: "Bob", age: 12)
+congratulateBirthDay(name:"Vincent", age: 22)
+
+// вариант 2 - функция возвращает строку
+func congrateBirthDay(name: String, age: Int) -> String {
+    let congratulate: String
+    
+    switch age {
+    case 0...12:
+        congratulate = "С днем рождения, \(name). Желаем тебе веселого дня и новых приключений!"
+    case 13...19:
+        congratulate = "С днем рождения, \(name)! Пусть этот год будет полон интересных открытий!"
+    case 20...64:
+        congratulate = "С днем рождения, \(name)! Желаем тебе успехов и счастья в новом году жизни!"
+    default:
+        congratulate = "С днем рождения, \(name)! Пусть этот год будет наполнен теплом и любовью близких!"
+    }
+    return congratulate
+}
+// пример использования
+print(congrateBirthDay(name: "Mary", age: 68))
+print(congrateBirthDay(name: "Ann", age: 7))
+print(congrateBirthDay(name:"Valery", age: 21))
+/*
+ COMMENTS:
+ 1. Функция БЕЗ возвращаемого значения -> НЕ требует доп. памяти
+    - функция выполняет действия ВНУТРИ себя и выводит сообщение с помощью 'print'
+    - создается строка ВНУТРИ функции - она ЗАНИМАЕТ ПАМЯТЬ, но после выполнения функции эта память ОСВОБОЖДАЕТСЯ
+    - пример ВЫЗОВА функции congratulateBirthDay(name: "Bob", age: 12)
+ 2. Функция С ВОЗВРАЩАЕМЫМ значением -> String
+    - функция возвращает строку -> требует доп. память для СОХРАНЕНИЯ возвращаемого значения
+    - функция вычисляет поздравления и ВОЗВРАЩАЕТ его как строку, которую можно ИСПОЛЬЗОВАТЬ в дальнейшем
+    - пример вызова print(congrateBirthDay(name: "Ann", age: 7))
+    - после ВЫЗОВА функции возвращаемая строка ОСТАЕТСЯ в памяти до тех пор, пока:
+ 1. она не будет ЯВНО УДАЛЕНА
+ 2. выйдет из области ВИДИМОСТИ
+ 
+ КЛЮЧЕВЫЕ РАЗЛИЧИЯ:
+ 1. первая функция НЕ возвращает НИЧЕГО, а вторая - строку
+ 2. в первой функции результат выводится НАПРЯМУЮ ВНУТРИ функции, а во второй - результат возвращается и м.б. использован ВНЕШНИМ КОДОМ для сохранения / вывода
+ 3. функция, возвращающая значение - более ГИБКАЯ, т.к. позволяет использовать результат в разных контекстах */
+      
 func outerFunction() {
     func innerFunction() {
         print("This is an inner function")
@@ -50,10 +136,62 @@ func outerFunction() {
 
 /*
 2. ПОЛЬЗОВАТЕЛЬСКАЯ ФУНКЦИЯ с ВХОДНЫМИ ПАРАМЕТРАМИ: создаются кодером для решения конкретных задач */
+
+/* ЗАДАЧА: напиши функцию, которая принимает ТРИ целых числа и возвращает их сумму */
+func addSum(num1 a: Int, num2 b: Int, num3 c: Int) -> Int {
+    let summa = a + b + c
+    return summa
+}
+// пример использования
+let sum = addSum(num1: 1, num2: 2, num3: 3)
+print(sum)
+
+// КРАТКАЯ ЗАПИСЬ
+func addSumma(_ a: Int, _ b: Int, _ c: Int) -> Int {
+    return a + b + c // 12
+}
+addSumma(12, -12, 12)  // 12
+
+
 func multiplie(_ a: Double, _ b: Double) -> Double {
     return a * b
 }
 let multiply = multiplie(1.34, 2.45) // 3.283
+
+/*
+ЗАДАЧА: проверка наличия символа: напиши функцию, которая принимает строку и символ и возвращает 'true' если символ присутствует в строке и 'false'  - в противном случае */
+func checkPresenceOfSymbol(input: String, symbol: Character) -> Bool {
+    for char in input {
+        if char == symbol {
+            return true
+        }
+    }
+    return false
+}
+// пример использования
+let inputString = "Hello, World!"
+print(checkPresenceOfSymbol(input: inputString, symbol: "!")) // true
+    
+// вариант 2: ПРОСТО + ЭФФЕКТИВНО - преобразуй символ в строку
+
+func checkingPresenceOfSymbol(input: String, symbol: Character) -> Bool {
+    return input.contains(String(symbol))
+}
+// пример использования
+let inputStr = "Hi, World!"
+print(checkingPresenceOfSymbol(input: inputStr, symbol: "!")) // true
+// вариант 3 ЛАКОНИЧНО + ЭФФЕКТИВНО - метод 'first(where:)' для поиска ВХОЖДЕНИЯ символа
+
+func checkPresenceSymbol(_ input: String, _ symbol: Character) -> Bool {
+    return input.first(where: { $0 == symbol }) != nil
+}
+// пример использования
+let str = "Hi, World!"
+let symbol: Character = "?"
+print(checkPresenceSymbol(str, symbol)) // false
+/*
+ COMMENTS:
+ Именно ЭТОТ метод наиболее ЛАКОНИЧЕН + ЭФФЕКТИВЕН, ибо он ОСТАНАВЛИВАЕТСЯ при ПЕРВОМ нахождении совпадения */
 
 /*
  3. ФУНКЦИЯ из стандартной БИБЛИОТЕКИ: встроенные функции языка Swift, которые можно использовать БЕЗ создания собственных
@@ -170,3 +308,5 @@ func calculateCostOfTrip(distance: Double, fuelConsumption: Double, fuelPrice: D
 }
 let costTripToKemerovo = calculateCostOfTrip(distance: 500.0, fuelConsumption: 10.0, fuelPrice: 55.0, passengers: 4)
 print("Общая стоимость поездки: \(costTripToKemerovo) рублей") // Общая стоимость поездки: 687.5 рублей
+
+
