@@ -6,7 +6,7 @@ import UIKit
 func greet(name: String, job: String) {
     print("Hello, my name - \(name), I'm - \(job)")
 }
-greet(name: "John Travolta", job: "actor")
+greet(name: "John Travolta", job: "actor") // Hello, my name - John Travolta, I'm - actor
 /*
  2. МЕТОДЫ - это функции, которые ПРИНАДЛЕЖАТ class/struct/enum. Они имеют ДОСТУП к СВОЙСТВАМ и др. МЕТОДАМ своего класса / структуры. */
 class Actor {
@@ -27,7 +27,7 @@ let actor = Actor(name: "Tom Hanks", film: "Cast Away", yearOfReleased: 2000)
 print(actor.name) // Tom Hanks
 print(actor.film) // Cast Away
 print(actor.yearOfReleased) // 2000
-actor.infa()
+actor.infa() // In 2000, the main actor in the film 'Cast Away'was is Tom Hanks.
 
 /* ЗАДАЧА: напиши функцию, которая рассчитывает периметр треугольника по длинам его сторон и метод для класса 'Triangle', который также вычисляет периметр треугольника */
 var a = 3.14
@@ -125,11 +125,11 @@ func convertToFahreinheit() -> Double {
 }
 // пример использования функции
 let tempFahrenheitDirect = convertCelsiusToFahrenheit(celsius: 32.0)
-print("Прямое преобразование: \(tempFahrenheitDirect)")
+print("Прямое преобразование: \(tempFahrenheitDirect)") // Прямое преобразование: 89.6
 // пример использования класса
 let tempConverter = TemperatureConverter(tempCelsius: -12.2)
 let tempFahrenheitViaClass = tempConverter.convertToFahreinheit()
-print("Преобразование через класс: \(tempFahrenheitViaClass)")
+print("Преобразование через класс: \(tempFahrenheitViaClass)") // Преобразование через класс: 10.04
 /*
  ЗАДАЧА: Расчет среднего значения: Создай функцию, которая рассчитывает среднее значение набора чисел, и метод для класса `StatisticsCalculator`, который также рассчитывает среднее значение. */
 
@@ -152,11 +152,46 @@ class StatisticsCalculator {
 // пример использования функции
 var numbers = [1.1, 2.2, 3.3, 4.4, 5.5]
 let meanDirect = calculateMean(numbers: numbers)
-print("Среднее значение (функция): \(meanDirect)")
+print("Среднее значение (функция): \(meanDirect)") // Среднее значение (функция): 3.3
 // пример использования класса
 let myStatisticCalc = StatisticsCalculator(numbers: numbers)
 let meanViaClass = myStatisticCalc.calculateMean()
-print("Среднее значение (класс): \(meanViaClass)")
+print("Среднее значение (класс): \(meanViaClass)") // Среднее значение (класс): 3.3
 
  /*
   ЗАДАЧА: Проверка пароля: Напиши функцию, которая проверяет, соответствует ли пароль заданным критериям безопасности (например, длине и наличию цифр), и метод для класса `PasswordValidator`, который проверяет пароль на соответствие этим критериям. */
+// функция для прямой проверки пароля
+func validatePassword(password: String, minLength: Int, minNumbers: Int) -> Bool {
+    let numbers = CharacterSet.decimalDigits
+// подсчет количества цифр
+    let digitCount = password.unicodeScalars.filter { numbers.contains($0) }.count
+    
+    return password.count >= minLength && digitCount >= minNumbers
+}
+// класс 'PasswordValidator'
+class PasswordValidator {
+    var minLength: Int
+    var minNumbers: Int
+    
+    init(minLength: Int, minNumbers: Int) {
+        self.minLength = minLength
+        self.minNumbers = minNumbers
+    }
+// метод для проверки пароля
+    func validatePassword(password: String) -> Bool {
+        let numbers = CharacterSet.decimalDigits
+// подсчет количества цифр
+        let digitCount = password.unicodeScalars.filter { numbers.contains($0) }.count
+        
+        return password.count >= minLength && digitCount >= minNumbers
+    }
+}
+// пример использования функции
+let password = "Password1234"
+let isValidDirect = validatePassword(password: password, minLength: 7, minNumbers: 4)
+print("Валидный пароль (функция): \(isValidDirect)") // Валидный пароль (функция): true
+
+// пример использования класса
+let validator = PasswordValidator(minLength: 7, minNumbers: 4)
+let isValidViaClass = validator.validatePassword(password: password)
+print("Валидный пароль (класс): \(isValidViaClass)") // Валидный пароль (класс): true
