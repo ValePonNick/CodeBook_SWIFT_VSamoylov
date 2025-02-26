@@ -63,20 +63,92 @@ print("До добавления: \(value)")
 addValue(num: &value, n: n)
 print("После добавления: \(value)")
 
+// пример функции ВНУТРИ структуры
 var a = 5
 var b = 12
-
 struct Playground {
-    
-    func swapNumbers(firstNum a:  inout Int, secondNum b:  inout Int) {
-        var temp = a // перелили молоко в пустой стакан сохранили значение 'a' в константе
+    func swapNumbers(a: inout Int, b: inout Int) {
+        let temp = a // перелили молоко в пустой стакан сохранили значение 'a' в константе
         a = b // перелили воду в стакан из-под молока присвоили значение a -> b
         b = temp // перелили из временного стакана молоко в стакан из-под воды
         // присвоили значение  b -> temp
     }
-} //  мы пытаемся вызвать ФУНКЦИЮ - error!
+}
 let play = Playground()
-play.swapNumbers(firstNum: &a, secondNum: &b)
-
-print(a)
+play.swapNumbers(a: &a, b: &b)
+print("После обмена a = \(a), b = \(b)")
 print(b)
+
+// УНИВЕРСАЛЬНАЯ функция ОБМЕНА
+func swapValues<T>(_ aa: inout T, _ bb: inout T) {
+    let temp = aa
+    aa = bb
+    bb = temp
+}
+var someInt = 21
+var anotherInt = 12
+swapValues(&someInt, &anotherInt)
+print("Теперь someInt = \(someInt), а anotherInt = \(anotherInt)")
+var someString = "Hello"
+var anotherString = "world"
+swapValues(&someString, &anotherString)
+print("Теперь someString = \(someString), а anotherString = \(anotherString)")
+
+// ЗАДАЧА: решение для РАЗНЫХ ТИПОВ - пример с КОРТЕЖАМИ
+
+var firstTuple: (Int, String) = (12, "дюжина")
+var secondTuple: (Int, String) = (21, "очко")
+
+func swapTuples(_ w: inout(Int, String), _ q: inout (Int, String)) {
+    let temp = w
+    w = q
+    q = temp
+}
+swapTuples(&firstTuple, &secondTuple)
+print("Теперь первый кортеж равен \(firstTuple), а второй кортеж - \(secondTuple)")
+
+// Замена значений в СТРУКТУРАХ ДАННЫХ - МАССИВАХ и СЛОВАРЯХ
+
+// поменяем значения элементов в МАССИВЕ
+var numbers = [1, 2, 3, 4, 5, 6, 7]
+func swapElements(at index1: Int, and index2: Int, in array: inout [Int]) {
+    let temp = array[index1]
+    array[index1] = array[index2]
+    array[index2] = temp
+}
+swapElements(at: 1, and: 5, in: &numbers)
+print(numbers)
+
+// поменяем значения элементов в СЛОВАРЕ
+var myDict:[String: Any] = ["name": "Bob", "age": 12]
+// замена значений по КЛЮЧУ
+myDict["name"] = "Jane"
+print(myDict)
+
+// использование ВРЕМЕННОЙ ПЕРЕМЕННОЙ
+
+// обмен значений КЛЮЧЕЙ в СЛОВАРЕ
+let tmp = myDict["name"]
+myDict["name"] = myDict["age"]
+myDict["age"] = tmp
+
+print(myDict)
+
+// обмен значений с использованием КОРТЕЖЕЙ
+var myDictionary: [String: String] = ["child": "Vincent", "job": "IT"]
+
+// создание КОРТЕЖЕЙ
+var anyTuple: (String, String) = (myDictionary["child"] ?? "", myDictionary["job"] ?? "")
+var anotherTuple: (String, String) = ("uncnoun", "uncnoun")
+// обмен значениями КОРТЕЖЕЙ
+func swapTwoTuples(_ f: inout (String, String), _ g: inout (String, String)) {
+    let temp = f
+    f = g
+    g = temp
+}
+// инициализация ВТОРОГО КОРТЕЖА правильными значениями
+anotherTuple = ("Parent", "Developer")
+// обмен кортежей
+swapTwoTuples(&anyTuple, &anotherTuple)
+print("anyTuple after swap: \(anyTuple)")
+print("anotherTuple after swap: \(anotherTuple)")
