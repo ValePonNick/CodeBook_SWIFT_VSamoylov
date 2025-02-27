@@ -160,11 +160,74 @@ COMMENTS:
  4. РЕАЛЬНЫЕ ПРОЕКТЫ:
     НАГЛЯДНЫЙ ПРИМЕР -
     - есть два словаря настроек пользователя: один - по умолчанию, второй - пользовательские. ОБЪЕДИНИ их так, чтобы ПОЛЬЗОВАТельские настройки ПЕРЕОПРЕДЕЛЯЛИ настройки по умолчанию */
+
 let defaultSettings: [String: String] = ["theme": "light", "language": "en"]
 let userStrings: [String: String] = ["theme": "dark", "language": "rus"]
 let mergedSettings = defaultSettings.merging(userStrings) { $1 }
-print(mergedSettings) // "theme": "dark", "language": "rus"]
+print(mergedSettings) // ["theme": "dark", "language": "rus"]
 
 /* ЗАДАЧА: напиши функцию, которая принимает массив КОРТЕЖЕЙ и возвращает МНОЖЕСТВО уникальных элементов из этих кортежей */
 
+func extractUnuqueElements(from tuples: [(Int, Int, Int)]) -> Set<Int> {
+    var uniqueElements: Set<Int> = []
+    
+    for tup in tuples {
+        for element in [tup.0, tup.1, tup.2] {
+        uniqueElements.insert(element)
+        }
+    }
+    return uniqueElements
+}
+// пример использования
+let tuples: [(Int, Int, Int)] = [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+let unicueElements = extractUnuqueElements(from: tuples)
+print(unicueElements) // [1, 3, 2, 4, 5]
+/*
+ COMMENTS:
+ 1. функция ПРИНИМАЕТ массив кортежей
+ 2. ВНЕШНИЙ цикл - итерируем по КАЖДОМУ кортежу ВНУТРИ массива
+ 3. ВНУТРЕННИЙ цикл - итерируем по КАЖДОМУ элементу кортежа, используя массив 'tup.0, tup.1, tup.2'
+ 4. добавляем КАЖДЫЙ элемент во МНОЖЕСТВО. */
+
+// если использовать массивы вместо кортежей - это будет проще
+func extractUniqueElements(from arrays: [[Int]]) -> Set<Int> {
+    var uniqueElements: Set<Int> = []
+    
+    for array in arrays {
+        for element in array {
+            uniqueElements.insert(element)
+        }
+    }
+    return uniqueElements
+}
+// пример использования
+let arrays: [[Int]] = [[11, 12, 13], [12, 13, 14], [13, 14, 15]]
+let uniqueElements = extractUniqueElements(from: arrays)
+print(uniqueElements) // [13, 12, 11, 14, 15]
+
 /* ЗАДАЧА: напиши функцию, которая принимает СЛОВАРЬ и МНОЖЕСТВО ключей и возвращает НОВЫЙ словарь, содержащий только ТЕ пары ключ-значение, ключи которых находятся в ЗАДАННОМ множестве. */
+func filterDict(_ dict: [String: Int], keys: Set<String>) -> [String: Int] {
+    var filteredDictionary: [String: Int] = [:]
+    
+    for (key, value) in dict {
+        if keys.contains(key) {
+            filteredDictionary[key] = value
+        }
+    }
+    return filteredDictionary
+}
+// пример использования
+let dicti: [String: Int] = ["a": 12, "b": 10, "c": 21, "d": 32]
+let keys: Set<String> = ["a", "e", "f"]
+let filteredDict = filterDict(dicti, keys: keys)
+print(filteredDict) // ["a": 12]
+
+// упрощение кода - используй метод 'filter' и инициализатор словаря
+func filterDicti(_ dicti: [String: Int], keys: Set<String>) -> [String: Int] {
+    return Dictionary(uniqueKeysWithValues: dicti.filter { keys.contains($0.key) })
+}
+// пример использования
+let dictio: [String: Int] = ["a": 22, "b": 20, "c": 27, "d": 38]
+let keys1: Set<String> = ["b", "d"]
+let filterDict = filterDicti(dicti, keys: keys1)
+print(filterDict) // ["b": 10, "d": 32]
