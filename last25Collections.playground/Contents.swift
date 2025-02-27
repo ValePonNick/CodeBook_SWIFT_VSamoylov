@@ -93,3 +93,48 @@ for  string in optionalStrings {
 // объявление массива с ОПЦИОНальными целыми числами
 var optionalInts: [Int?] = [1, nil, 2, 3, nil, 7, 6]
 
+/* ЗАДАЧА: создай класс 'Book' со свойствами 'title' и 'author'. Создайте массив экземпляров этого класса и выведите инфу о каждой книге */
+class Book {
+    let title: String
+    let author: String
+    let yearOfPublication: Int
+    
+    init(title: String, author: String, yearOfPublication: Int) {
+        self.title = title
+        self.author = author
+        self.yearOfPublication = yearOfPublication
+    }
+        func printInfa() {
+            print("В \(yearOfPublication) году \(author) написал книгу '\(title)'.")
+    }
+}
+// создание массива экземпляров класса
+let arrayBooks = [
+    Book(title: "Hobbit", author: "J.R.R.Tolkien", yearOfPublication: 1937),
+    Book(title: "Treasure Island", author: "R.L.Stevenson", yearOfPublication:  1883),
+    Book(title: "The White Company", author: "A.Conan Doyle", yearOfPublication:  1891)
+]
+// вывод инфы о КАЖДОЙ книге
+for book in arrayBooks {
+    book.printInfa()
+}
+/*
+ ЗАДАЧА: создай структуру 'Movie' со свойствами 'title', 'director', 'yearOfRelease'. Создай массив экземпляров этой структуры и выведи инфу о каждом вильме в формате: "В году режиссер снял фильм с названием" */
+
+struct Movie {
+    let title: String
+    let director: String
+    let yearOfRelease: Int
+    
+    func description() {
+        print("In \(yearOfRelease) year, famous director \(director) made the film \(title).")
+    }
+}
+let arrayMovies = [
+    Movie(title: "The Good, the Bad and the Ugly", director: "Sergio Leone", yearOfRelease: 1966),
+    Movie(title: "Unforgiven", director: "Clint Eastwood", yearOfRelease: 1992),
+    Movie(title: "Once Upon a Time in the West", director: "Sergio Leone", yearOfRelease: 1968)
+]
+for movie in arrayMovies {
+    movie.description() // вызов метода для вывода инфы
+}
