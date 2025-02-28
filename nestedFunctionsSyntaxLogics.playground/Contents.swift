@@ -26,7 +26,7 @@ func greetMessage() {
     func displayName() {
         print("Good morning, Joe!")
     }
-    displayName()
+    displayName() // эта функция ВЛОЖЕНа и м.б. ВЫЗВАНА только ВНУТРИ greetMessage()
 }
 greetMessage() // Good morning, Joe!
 
@@ -54,17 +54,8 @@ func operate(symbol: String) -> (Int, Int) -> Int {
     return operation
 }
 let operation = operate(symbol: "+")
-let result = operation(9, 12)
-print("Results:", result)
-// 9 + 12 = 21
-// Results: 21
-
-/*
-COMMENTS:
- 1.
- 2.
- 3.
- */
+let result = operation(9, 12) // 9 + 12 = 21
+print("Results:", result) // Results: 21
 
 // верни ОБЕ функции, используя ЗАМЫКАНИЕ
 func operated(symbol: String) -> ((Int, Int) -> Int, (Int, Int) -> Int) {
@@ -113,3 +104,46 @@ func isEvenNumber(num: Int) {
     operation()
 }
 isEvenNumber(num: 27) // Это число нечетное - 27
+
+/* напиши функцию, которая принимает строку и проверяет: является ли она палиндромом - для этого создай вложенную функцию 'reverseString', которая вернет перевернутую строку */
+func isPalindrom(_ input: String) -> Bool {
+    func reverseString(_ a: String) -> String {
+            return String(a.reversed())
+        }
+        let reversed = reverseString(input)
+        return input == reversed
+    }
+// пример использования
+print(isPalindrom("level")) // true
+print(isPalindrom("Hobbit")) // false
+
+/* напиши функцию, которая принимает строку и проверяет: является ли она палиндромом БЕЗ вложенной функции */
+func is_Palindrom(_ input: String) -> Bool {
+    return input == String(input.reversed())
+}
+print(is_Palindrom("Gondor")) // false
+print(is_Palindrom("step on no pets")) // true
+
+// еще короче функция
+func isPalindRom(_ a: String) -> Bool {
+    a == String(a.reversed())
+}
+// пример использования
+// вызов функции БЕЗ 'print'
+isPalindRom("bob") // результат НЕ виден на экране
+// вызов функции с 'print'
+print(isPalindRom("string")) // результат виден на экране - false
+
+/* ЗАДАЧА: напиши функцию, которая принимает массив целых чисел и возвращает сумму всех четных чисел в этом массиве. Используй вложенную функцию для проверки: является ли число четным? */
+func sumEvenNumbers(_: [Int]) -> Int {
+    return ...
+}
+/* ЗАДАЧА: создай функцию, которая принимает строку и возвращает количество гласных в этой строке. Вложенная функция д.б. проверть: является ли символ гласной? */
+func countVowels(_: String) {
+    ...
+}
+
+// ЗАДАЧА: напиши функцию, которая принимает массив чисел с плавающей точкой и возвращает среднее всех положительных чисел в этом массиве. Вложенная функция д.б. проверить: является ли число положительным? */
+func averagePositiveNumbers(_: [Int]) {
+    ...
+}
