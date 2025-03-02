@@ -135,15 +135,44 @@ isPalindRom("bob") // результат НЕ виден на экране
 print(isPalindRom("string")) // результат виден на экране - false
 
 /* ЗАДАЧА: напиши функцию, которая принимает массив целых чисел и возвращает сумму всех четных чисел в этом массиве. Используй вложенную функцию для проверки: является ли число четным? */
-func sumEvenNumbers(_: [Int]) -> Int {
-    return ...
+func sumEvenNumbers(arrayEven: [Int]) -> Int {
+    func isEven(_ number: Int) -> Bool {
+        return number % 2 == 0
+        }
+        return arrayEven.filter(isEven).reduce(0, +)
 }
-/* ЗАДАЧА: создай функцию, которая принимает строку и возвращает количество гласных в этой строке. Вложенная функция д.б. проверть: является ли символ гласной? */
-func countVowels(_: String) {
-    ...
+let arrayEven = [2, 4, 6, 8, 10, 12]
+let summa = sumEvenNumbers(arrayEven: arrayEven)
+print("Сумма четных чисел: \(summa)")
+
+/* ЗАДАЧА: создай функцию, которая принимает строку и возвращает количество гласных в этой строке. Вложенная функция д.б. проверь: является ли символ гласной? */
+func countVowels(_ input: String) -> Int {
+    func isVowel(_ char: Character) -> Bool {
+        let vowels: [Character] = ["a", "e", "o", "u", "i", "A", "I", "O", "U"]
+        return vowels.contains(char)
+    }
+    return input.filter(isVowel).count
 }
+let input = "Hobbit"
+let countVowelsInInput = countVowels(input)
+print("Количество гласных в строке \(input) = \(countVowelsInInput)")
 
 // ЗАДАЧА: напиши функцию, которая принимает массив чисел с плавающей точкой и возвращает среднее всех положительных чисел в этом массиве. Вложенная функция д.б. проверить: является ли число положительным? */
-func averagePositiveNumbers(_: [Int]) {
-    ...
+func averagePositiveNumbers(_ input: [Double]) -> Double? {
+    func isPositive(number: Double) -> Bool {
+        return number > 0
+        }
+    let positiveNumbers = input.filter(isPositive)
+    
+    guard !positiveNumbers.isEmpty else {
+        return nil // возвращаем nil если нет положительных чисел
+    }
+    return positiveNumbers.reduce(0, +) / Double(positiveNumbers.count)
+    }
+// пример использования
+let numbers = [12.14, -11.1, -4.44, 21.22, 3.36]
+if let average = averagePositiveNumbers(numbers) {
+    print("Среднее значение положительных чисел: \(average)")
+} else {
+    print("В массиве нет положительных чисел")
 }
