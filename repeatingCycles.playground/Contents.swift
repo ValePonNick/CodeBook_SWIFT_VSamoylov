@@ -135,3 +135,200 @@ while indexOuter < nums.count {
  5 * 3  = 15
  5 * 4  = 20
  5 * 5  = 25 */
+
+// ЗАДАЧА 6: выеди числа от 12 до 15 с помощью цикла
+var num = 12
+while num <= 15 {
+    print(num)
+    num += 1 // НЕ ЗАБЫВАЙ про ИНКРЕМЕНТ! иначе - БЕСконечный цикл
+}
+
+// ЗАДАЧА 7: выведи числа, кратные 3-м
+
+// вар. 1
+let arr = [14, 21, -33, 51, -60, 71]
+for num in arr {
+    if num % 3 == 0 {
+        print(num) // 21, -33, 51, -60
+
+    }
+}
+// вар. 2
+var indexArr = 0
+while indexArr < arr.count {
+    if arr[indexArr] % 3 == 0 {
+        print(arr[indexArr])
+    }
+    indexArr += 1
+} // 21, -33, 51, -60
+
+
+// вар. 3 используй метод '.filter'
+let multiplesOfThree = arr.filter { $0 % 3 == 0 }
+for num in arr {
+    print(num)
+} // 21, -33, 51, -60
+
+// ЗАДАЧА 8: найди и выведи индекс элемента со значением 23 с помощью цикла
+
+// вар. 1 с помощью цикла 'for'
+let arrNumb = [0, 12, -55, 23, -23] // создай массив
+var indexArrNumb = 0 // создай переменную для хранения индекса
+// цикл для обхода массива
+for num in arrNumb {
+    if num == 23 {
+        print(indexArrNumb) // вывод индекса элемента со значением 23
+    }
+    indexArrNumb += 1 // ИНКРЕМЕНТ индекса для перехода к следующему элементу
+}
+
+// вар. 2 с помощью цикла 'for' и проверкой на отсутствие искомого элемента
+let arrNumbers = [12, 27, 300, -777, 888]
+var indexArrNumbers = 0 // создай переменную для хранения индекса
+var found = false // ФЛАГ для проверки наличия элемента
+for num in arrNumb {
+    if num == 21 {
+        print("Индекс элемента 21: \(indexArrNumb)")
+        found = true
+    }
+    indexArrNumb += 1
+}
+if !found {
+    print("Элемент 21 не найден в массиве")
+}
+// ЗАДАЧА 9:  - таблица деления для чисел от 1 до 5 с помощью циклов
+
+// вар. 1 - используй цикл 'while'
+let arrNums1_5 = [1, 2, 3, 4, 5]
+var outerIndex = 0 // создай переменную для хранения ВНЕШНЕГО индекса
+var innerIndex = 0 // создай переменную для хранения ВНУТРЕНЕГО индекса
+
+while outerIndex < arrNums1_5.count {
+    print("Таблица деления для \(arrNums1_5[outerIndex]):")
+    print() // пустая строка
+    innerIndex = 1 // начало ВНУТРЕННЕГО цикла с единицы - на НОЛЬ делить НЕЛЬЗЯ
+    
+    while  innerIndex <= arrNums1_5.count {
+        let result = Double(arrNums1_5[outerIndex]) / Double(innerIndex)
+        print("\(arrNums1_5[outerIndex]) / (innerIndex) = \(result)")
+
+        innerIndex += 1
+    }
+    print()
+    outerIndex += 1
+}
+/*
+ Таблица деления для 1:
+
+ 1 / (innerIndex) = 1.0
+ 1 / (innerIndex) = 0.5
+ 1 / (innerIndex) = 0.3333333333333333
+ 1 / (innerIndex) = 0.25
+ 1 / (innerIndex) = 0.2
+
+ Таблица деления для 2:
+
+ 2 / (innerIndex) = 2.0
+ 2 / (innerIndex) = 1.0
+ 2 / (innerIndex) = 0.6666666666666666
+ 2 / (innerIndex) = 0.5
+ 2 / (innerIndex) = 0.4
+
+ Таблица деления для 3:
+
+ 3 / (innerIndex) = 3.0
+ 3 / (innerIndex) = 1.5
+ 3 / (innerIndex) = 1.0
+ 3 / (innerIndex) = 0.75
+ 3 / (innerIndex) = 0.6
+
+ Таблица деления для 4:
+
+ 4 / (innerIndex) = 4.0
+ 4 / (innerIndex) = 2.0
+ 4 / (innerIndex) = 1.3333333333333333
+ 4 / (innerIndex) = 1.0
+ 4 / (innerIndex) = 0.8
+
+ Таблица деления для 5:
+
+ 5 / (innerIndex) = 5.0
+ 5 / (innerIndex) = 2.5
+ 5 / (innerIndex) = 1.6666666666666667
+ 5 / (innerIndex) = 1.25
+ 5 / (innerIndex) = 1.0 */
+
+// вар. 2 - используй цикл 'for'
+while outerIndex < arrNums1_5.count {
+    print("Таблица деления для \(arrNums1_5[outerIndex]):")
+    print()
+    
+    for innerIndex in 1...5 {
+        let result = Double(arrNums1_5[outerIndex]) / Double(innerIndex)
+        print("\(arrNums1_5[outerIndex]) / (innerIndex) = \(result)")
+    }
+    print()
+    outerIndex += 1
+} // тот же результат на консоли
+
+// ЗАДАЧА 10: вычислить сумму чисел от 1 до n
+
+// вар. 1
+// запроси число у юзера
+func requestNumber(testInput: String) -> Int {
+    if let number = Int(testInput), number > 0 && number <= 30 {
+        return number
+    } else {
+        fatalError("Invalid input")
+    }
+}
+// вычисли сумму чисел от 1 до n
+func calculateSum(n: Int) -> Int {
+    return n * (n + 1) / 2
+}
+// ОСНОВНАЯ ФУНКЦИЯ
+func main() {
+    let testInputs = ["15", "21", "30"] // задай тестовое значение
+    for input in testInputs {
+        let n = requestNumber(testInput: input)
+        let sum = calculateSum(n: n)
+        print("The sum of numbers from 1 to \(n) is: \(sum)")
+    }
+}
+main()
+/*
+ The sum of numbers from 1 to 15 is: 120
+ The sum of numbers from 1 to 21 is: 231
+ The sum of numbers from 1 to 30 is: 465 */
+
+// вар. 2
+// запроси число у юзера
+func requestNumbers(testInput: String) -> Int? {
+    if let number = Int(testInput), number > 0 && number <= 30 {
+        return number
+    } else {
+        return nil
+    }
+}
+// вычисли сумму чисел от 1 до n
+func calculateSumma(n: Int) -> Int {
+    return n * (n + 1) / 2
+}
+// ОСНОВНАЯ ФУНКЦИЯ
+func mainFunc() {
+    let testInputs = ["12", "27", "33"] // задай тестовое значение
+    for input in testInputs {
+        if let n = requestNumbers(testInput: input) {
+            let sum = calculateSumma(n: n)
+            print("The sum of numbers from 1 to \(n) is: \(sum)")
+    } else {
+        print("Invalid input: \(input). Pleas enter a number between 1 and 30.")
+    }
+}
+}
+mainFunc()
+/*
+ The sum of numbers from 1 to 12 is: 78
+ The sum of numbers from 1 to 27 is: 378
+ Invalid input: 33. Pleas enter a number between 1 and 30. */
+
