@@ -1,6 +1,6 @@
 import UIKit
 
-// Repeated CYCLES: 'for' & 'while'
+// Repeated CYCLES: 'for' & 'while' + Array / Function
 
 /* ЗАДАЧА 1. напиши программу, которая выводит ВСЕ целые числа от 1 до N (где N вводится пользователем) */
 
@@ -101,7 +101,7 @@ displayNumsReverse(upperNum: userNum)
 
 let userNumbe = 21
 
-func displayAllNumsInReverse(upperNum: Int) -> [Int] {
+func displayAllNumsReverse(upperNum: Int) -> [Int] {
     var array = [Int]()
     var i = upperNum
     while i >= 1 {
@@ -111,6 +111,82 @@ func displayAllNumsInReverse(upperNum: Int) -> [Int] {
     }
     return array
 }
-displayAllNumsInReverse(upperNum: userNumbe)
+displayAllNumsReverse(upperNum: userNumbe)
 
-// вар. 3 используй цикл 'for'
+// вар. 3 вернуть массив чисел
+
+func displayAllNumsInReverse(upperNum: Int) -> [Int] {
+    return Array((1...upperNum).reversed())
+}
+let inputNumber = 9
+displayAllNumsInReverse(upperNum: inputNumber) // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+// вар. 4 напиши функцию, которая принимает целое число 'N' и выводит/ВОЗВРАЩАЕТ все числа от 'N' до 1 в ОБРАТНОМ порядке, используй ТРАДИЦИОННЫЙ цикл 'for'
+
+func displayNumbersInReverse( upperNum: Int) {
+    var i = upperNum
+    for num in (1...i).reversed() {
+        print(num)
+    }
+}
+let userN = 18
+displayNumbersInReverse(upperNum: userN)
+
+// вар. 5 КРАТКО, используй функцию stride(from: through: by:) + цикл 'for'
+func displayNumsInReverse(upperNum: Int) {
+    for i in stride(from: upperNum, through: 1, by: -1) {
+        print(i)
+    }
+}
+let inputNumbe = 3
+displayNumsInReverse(upperNum: inputNumbe) // 1, 2, 3
+// COMMENTS:
+/*
+1. эта функция использует функцию stride(from: through: by:), которая позволяет создать последовательность чисел от 'upperNum' до 1 с шагом '-1', что означает ОБРАТНЫЙ порядок.
+ 2. эта функция генерирует последовательность чисел, начиная с главного значения ('from') и заканчивая другим заданным значением ('througt') и увеличиваясь на определенный шаг ('by').
+ 3. эта функция позволяет создавать ЦИКЛЫ, которые могут пропускать орпеделенные элементы / генерировать последовательности с заданным шагом.
+ 4. есть разновидность этой функции - 'stride(from: to: by)' - она НЕ всключает конечное значение ('to') в последовательность
+ 5. если передать ОТРРИЦАТЕЛЬНОЕ значение в качестве шага ('by'), то последовательность будет генерировать в обратном порядке.
+ ИТАК: функцию stride(from: through: by:) - это МОЩНЫЙ инструмент для создания ЦИКЛОВ с заданным шагом и НАПРАВЛЕНИЕМ - она ПОЛЕЗНА для обработки массивов / генерации числовых последовательностей. */
+
+/* ПРОСТАЯ ЗАДАЧА: напиши функцию, которая принимает целое число и выводит ВСЕ четные числа от 1 до 'N'всключительно. */
+
+func printAllNums(upperNum: Int) {
+    for num in 1...upperNum {
+        if num % 2 == 0 {
+            print(num)
+        }
+    }
+}
+let inputN = 12
+printAllNums(upperNum: inputN)
+
+/* ПРОСТАЯ ЗАДАЧА: напиши функцию, которая принимает целое число и выводит ВСЕ четные числа от 1 до 'N'всключительно - используй цикл 'for' + функцию stride(from: through: by:) */
+
+func printAllEvenNums(upperNum: Int) {
+    for num in stride(from: 2, through: upperNum, by: 2) {
+    }
+}
+let maxNumber = 12
+printAllEvenNums(upperNum: maxNumber) // 2, 4, 6, 8, 10, 12
+
+/* СЛОЖНАЯ ЗАДАЧА: напиши функцию, которая принимает МАССИВ целых чисел и возвращает НОВЫЙ МАССИВ, содержащий только УНИКАЛЬНЫЕ элементы из исходного массива. */
+// вар. 1
+func returnUnicNums(inputArray: [Int]) -> [Int] {
+    let unicNums: Set<Int> = Set(inputArray)
+    let uniqueArray = Array(unicNums)
+    return uniqueArray
+}
+let userArray = [3, 28, 7, 28, 7, 21, 21, 7, 3, 3]
+print(returnUnicNums(inputArray: userArray)) // [21, 3, 7, 28]
+
+// вар. 2
+func returnUnicumNums(inputArray:[Int]) -> [Int] {
+    return Array(Set(inputArray))
+}
+let numbers = [3, 28, 7, 28, 7, 21, 21, 7, 3, 3]
+print(returnUnicumNums(inputArray: numbers)) // [21, 3, 7, 28]
+
+/* АЛГОРИТМИЧЕСКАЯ ЗАДАЧА: реализуй алгоритм сортировки пузырьком для массива целых чисел. Напиши функцию, которая принимает массив целых чисел и возвращает отсортированный массив в порядке возрастания */
+
+ 
