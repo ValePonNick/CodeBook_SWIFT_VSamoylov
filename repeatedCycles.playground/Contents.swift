@@ -190,23 +190,25 @@ print(returnUnicumNums(inputArray: numbers)) // [21, 3, 7, 28]
 /* АЛГОРИТМИЧЕСКАЯ ЗАДАЧА: реализуй алгоритм сортировки пузырьком для массива целых чисел. Напиши функцию, которая принимает массив целых чисел и возвращает отсортированный массив в порядке возрастания */
 
 func bubleSort(inputArr: [Int]) -> [Int] {
-    var arr = inputArr
-    let n = arr.count
-    
+    var arr = inputArr // создай КОПИЮ, чтобы НЕ менять оригинал
+    let n = arr.count // считай количество элементов в массиве
+ 
+    // ВНЕШНИЙ цикл: кол-во итераций = кол-во элементов минус 1 - ??? - с каждым проходом самый БОЛЬШОЙ элемент/пузырек "ВСПЛЫВАЕТ" в конец и он нам уже НЕ нужен
     for i in 0..<n - 1 {
         for j in 0..<n - i - 1 {
-            if arr[j] > arr[j + 1] {
-                // обмен элементов
-                let temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
+            // ВНУТРЕННИЙ цикл: он будет проходить по массиву каждый раз короче на 1 элемент - ??? - мы уже ЗНАЕМ, что последний элемент i УЖЕ ОТСОРТИРОВАН
+            if arr[j] > arr[j + 1] { // проверь: ТЕКУЩИЙ элемент БОЛЬШЕ следующего?
+                let temp = arr[j]   // если ДА, то меняй их местами: используй временную переменную для ХРАНЕНИЯ значения текущего элемента
+                arr[j] = arr[j + 1] // ТЕКУЩИЙ элемент стал -> СЛЕДУЮЩИМ
+                arr[j + 1] = temp // следующий элемент стал ТЕКУЩИМ (он СОХРАНЕН во временной переменной0
             }
         }
     }
-    return arr
+    return arr // после ВСЕХ итераций верни отсортированный массив
 }
-
+// пример использования
 let nums = [3, 28, 7, 28, 7, 21, 21, 7, 3, 3]
+// вызываем функцию и сохраняем результат в НОВОМ массиве
 print(bubleSort(inputArr: nums)) // [3, 3, 3, 7, 7, 7, 21, 21, 28, 28]
 
 // вар. 2 используй встроенную фунакцию 'sorted()'
@@ -216,4 +218,63 @@ func sortedArray(inputArr: [Int]) -> [Int] {
 let userNumbers = [3, 1, 7, 2, 9, 7, 4, 4, 10, 2, 12]
 print(sortedArray(inputArr: userNumbers)) // [1, 2, 2, 3, 4, 4, 7, 7, 9, 10, 12]
 
+
 /* ПРАКТИЧЕСКАЯ ЗАДАЧА: напиши функцию, которая моделирует простой банковский счет: принимает массив операций ( напр.: 'deposit 100', 'withdraw 50', 'deposit 200') и возвращает конечный баланс счета. Операции м.б. либо депозитами (зачисление денег), либо выводами(снятие денег). Если баланс становится отрицательным, функция д. вернуть сообщение об ошибке */
+
+func bankAccount(inputOperations: [String]) -> String {
+    // эта переменная для баланса будет использована ПОЗЖЕ
+    var balance: Double = 0.0
+    for operation in inputOperations {
+        let parts = operation.components(separatedBy: " ")
+        let command = parts[0]
+        var summa = parts[1]
+        let summaDouble = Double(summa) ?? 0
+        
+        switch command {
+        case "deposit":
+            balance += summaDouble
+        case "withdraw":
+            if balance - summaDouble < 0 {
+                return "Ошибка баланс становтся отрицательным"
+            }
+            balance -= summaDouble
+        default:
+            return "Ошибка: неизвестная команда"
+        }
+    }
+    return "Конечный баланс: \(balance)"
+}
+// пример использования
+var operations = ["deposit 100", "deposit 100", "withdraw 180"]
+let result = bankAccount(inputOperations: operations)
+print(result)
+
+/* ЗАДАЧА: напиши функцию, которая моделирует простой магазин. Функция принимает массив заказов, где каждый заказ - это строка в формате "товар количество" ("apple 12", "banana 42"). Функция д.б. вернуть СЛОВАРЬ, где ключи - название товаров, а значения - общее кол-во каждого товара. Если в заказе указано отрицательное кол-во товара, функция д.б. вернуть сообщение об ошибке. */
+
+func processOrders(currentOrders: [String]) -> [String: Int]? {
+    var ordersSummary: [String: Int] = [:] // инициализация словаря
+    
+    for order in currentOrders { // разбери каждый новый заказ га название товара и количество
+        let components = order.components(separatedBy: " ")
+        let product = components[0]
+        let quantity = Int(components[1]) ?? 0
+        
+        if quantity < 0 {
+            return [:] // или можно вернуть собщение об ошибке
+        }
+        // ОБНОВЛЕНИЕ СЛОВАРЯ
+        if var currentQuantity = ordersSummary[product] {
+            ordersSummary[product] = currentQuantity + quantity
+        } else {
+            ordersSummary[product] = quantity
+        }
+    }
+    return ordersSummary
+}
+// пример использования
+let orders = ["apple 21", "banana 44", "apple 12", "banana 6", "limon 12"]
+if let result = processOrders(currentOrders: orders) {
+    print(result)
+} else {
+    print("Ошибка: отрицательное количество товара.")
+}
