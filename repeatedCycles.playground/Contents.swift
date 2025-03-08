@@ -298,3 +298,26 @@ let results = countBookOccurences(bookTitles: bookTitles)
 print(results) // ["The Treasure Island": 1, "Pide and Prejudence": 2, "Harry Potter": 2, "The Lord of Rings": 2]
 
 /* ЗАДАЧА: напиши функцию, которая принимает массив строк, где каждая строка содержит количество ингридиентов в граммах (напр.: "250 грамм муки", "150 грамм сахара", "100 грамм какао"). Функция д.б. вернуть сумму всех ингридиентов в граммах. */
+func calculateWeightIngredients(inputIngredients: [String]) -> Double {
+    var totalWeight: Double = 0.0
+    
+    for ingredient in inputIngredients {
+        let components = ingredient.components(separatedBy: " ")
+        if let weight = Double(components[0]) {
+            totalWeight += weight
+        } else {
+            print("Ошибка, неверный фолрмат веса")
+        }
+    }
+    return totalWeight
+}
+// пример использования
+let ingredients = ["250 грамм муки", "150 грамм сахара", "100 грамм какао", "120 грамм масла"]
+let res = calculateWeightIngredients(inputIngredients: ingredients)
+print(res) // 620.0
+/*
+ COMMENTS:
+ 1. итерируем по каждому ингредиенту и разбиваем строку на компоненты
+ 2. извлекаем вес как ПЕРВОЕ слово в строке и проверяем: можно ли его преобразовать в число
+ 3. если вес УСПЕШНО преобразован, прибавь его к общему весу
+ 4. если вес НЕ м.б. преобразован, выведи сообщение об ошибке */
