@@ -281,4 +281,20 @@ if let result = processOrders(currentOrders: orders) {
 
 /* ЗАДАЧА: КНИЖНАЯ БИБЛИОТЕКА - напиши функцию, которая принимает массив названий книг и возвращает словарь, где ключи - названия книг, а значения - количество каждой книги в массиве. */
 
+func countBookOccurences(bookTitles: [String]) -> [String: Int] {
+    var bookCounts = [String: Int]() //  инициализировали словарь
+    for title in bookTitles { // итерация по массиву книг
+        if var count = bookCounts[title] {
+            bookCounts[title] = count + 1
+        } else {
+            bookCounts[title] = 1
+        }
+    }
+    return bookCounts
+}
+// пример использования
+let bookTitles = ["Harry Potter", "Pide and Prejudence", "The Lord of Rings", "The Treasure Island", "Harry Potter", "Pide and Prejudence", "The Lord of Rings"]
+let results = countBookOccurences(bookTitles: bookTitles)
+print(results) // ["The Treasure Island": 1, "Pide and Prejudence": 2, "Harry Potter": 2, "The Lord of Rings": 2]
+
 /* ЗАДАЧА: напиши функцию, которая принимает массив строк, где каждая строка содержит количество ингридиентов в граммах (напр.: "250 грамм муки", "150 грамм сахара", "100 грамм какао"). Функция д.б. вернуть сумму всех ингридиентов в граммах. */
