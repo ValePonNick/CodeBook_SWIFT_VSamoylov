@@ -34,6 +34,28 @@ if !numbers.isEmpty {
 
 /* ЗАДАЧА от O'Reilly 'HEAD FIRST. LEARNING SWIFT': напиши функцию, которая из списка ингредиентов для пиццы, выберет четыре случайных ингредиента и сгенерирует случайную пиццу.  НО шеф-повару не понравилось, что один и тот же ингредиент может повторяться несколько раз. Напиши код так, чтобы этого НИКОГДА не произошло. */
 
+// ЗАДАЧА: используй цикл 'for' & 'while'
+var uniqueIngreds = ["ananas", "mozzarella", "bazil", "bacon", "tomato", "mashroom", "ham", "chicken", "salami", "jalapeno", "feta", "capers", "pesto"]
+
+var tempIngredsList = uniqueIngreds // создай КОПИЮ исходного массива
+
+
+var pizza: [String] = [] // создай переменную для хранения пустого массива строк
+let count = 4
+for _ in 1...count { // повтори цикл четыре раза
+    if tempIngredsList.count >= 1 {
+        let tempIngred = tempIngredsList.randomElement()
+        pizza.append(tempIngred!)
+        if let index = tempIngredsList.firstIndex(of: tempIngred!) {
+            tempIngredsList.remove(at: index)
+        } else {
+            print("Не хватает ингридиентов для пиццы")
+            break
+        }
+    }
+}
+print("Состав пиццы: \(pizza)") // Состав пиццы: ["bacon", "jalapeno", "mozzarella", "chicken"]
+
 // вар. 1
 let unicumIngredients = ["ananas", "mozzarella", "bazil", "bacon", "tomato", "mashroom", "ham", "chicken", "salami", "jalapeno", "feta", "capers", "pesto"]
 
@@ -136,15 +158,11 @@ for (index, pizza) in randomPizzas.enumerated() {
      •    Используется для удаления дубликатов из списка ингредиентов. `Set` в Swift — это структура данных, которая хранит только уникальные элементы.
  Эти структуры данных являются линейными, где массивы — это наиболее простая и широко используемая структура данных, а `Set` — это специализированная структура, которая помогает с удалением дубликатов.
  
- В коде использованы операции с массивами:
-     1.    Удаление дубликатов:
-     •    Используется `Set` для удаления дубликатов из массива ингредиентов.
-     2.    Перемешивание элементов:
-     •    Метод `shuffled()` используется для перемешивания элементов в массиве.
-     3.    Срез массива:
-     •    Используется для извлечения части массива, например, `Array(shuffledIngredientsi..<i+maxIngredientsPerPizza)`.
-     4.    Добавление элементов в массив:
-     •    массив `pizzas` заполняется сгенерированными пиццами с помощью метода `append()`. */
+ В коде использованы операции с МАССИВАМИ:
+     1. `Set`  - для удаления дубликатов из массива ингредиентов.
+     2. Метод `shuffled()` - для перемешивания элементов в массиве.
+     3. для извлечения части массива - `Array(shuffledIngredientsi..<i+maxIngredientsPerPizza)`.
+     4.   массив `pizzas` заполняется сгенерированными пиццами - метод `append()`. */
 
 // ЗАДАЧА 3: код ОПТИМИЗИРОВАН
 
@@ -168,7 +186,7 @@ func generatedRandomPizzas(ingredients: [String], count: Int, maxIngredientsPerP
         pizzas.append(pizza)
         
         remainingIngredients = Array(remainingIngredients.dropFirst(maxIngredientsPerPizza))
-    } // Удаление использованных ингредиентов
+    } // Удаление ИСПОЛЬЗОВАННЫХ ингредиентов
     
     return pizzas
 }
@@ -176,11 +194,13 @@ func generatedRandomPizzas(ingredients: [String], count: Int, maxIngredientsPerP
 // Вызов функции и вывод результатов
 let randomsPizzas = generatedRandomPizzas(ingredients: ingredientsForPizza, count: 4, maxIngredientsPerPizza: 4)
 
-for (index, pizza) in randomsPizzas.enumerated() { // это КОРТЕЖ + метод '.enumerated()' возвращает последовательность пар, где каждый элемент: индекс + значение ИСХОДНОЙ коллекции
+for (index, pizza) in randomsPizzas.enumerated() { // это КОРТЕЖ + метод '.enumerated()'
     print("Пицца - уникум: \(index + 1): \(pizza)")
 }
 // COMMENTS:
 /*
- Разложение пары в цикле
-1. `(index, pizza)` — это разложение пары, возвращаемой методом `enumerated()` - это синтаксическая конструкция, позволяющая присвоить индекс и значение разным переменным в цикле.
+ 1. метод '.enumerated()' возвращает последовательность пар, где каждый элемент: индекс + значение ИСХОДНОЙ коллекции
+ 
+ Разложение пары в цикле:
+1. `(index, pizza)` — это разложение пары, возвращаемой методом `enumerated()` - это синтаксическая конструкция, позволяющая присвоить индекс + значение разным переменным в цикле.
  2. `enumerated()` возвращает последовательность пар, где каждый элемент — это кортеж `(offset, element)`, но в Swift это не обязательно явный кортеж, а скорее пара значений, которую можно разложить на две переменные. */
