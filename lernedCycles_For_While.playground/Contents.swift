@@ -181,3 +181,20 @@ multiplicateTable(multiplier: 6, input: 4)
  2 * 6 = 12
  3 * 6 = 18
  4 * 6 = 24 */
+
+// Задача 9: напиши программу, которая выводит числа от 5 до 15 с помощью цикла 'for' и 'while'
+func displayNums() {
+    for num in 5...15 {
+        print(num)
+    }
+}
+displayNums( )
+
+func displayNumbers() {
+    var num: Int = 5
+    while num >= 5 && num <= 15 {
+        print(num)
+        num += 1 // увеличивай, чтобы цикл НЕ был бесконечным
+    }
+}
+displayNumbers()
