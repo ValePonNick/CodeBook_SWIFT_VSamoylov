@@ -84,7 +84,7 @@ func calculateSummaOfNums(inputNum: Int) {
 }
 calculateSummaOfNums(inputNum: 7) // 28
 
-// Задача: вывести все четные числа от 2 до 12
+// Задача 5: вывести все четные числа от 2 до 12
 // вар. 1
 func displayEvenNums(input: Int) {
     for num in 2...input {
@@ -101,3 +101,83 @@ func displayEvenNumbs(input: Int) {
     }
 }
 displayEvenNumbs(input: 8)
+
+// Задача 6: вывести все НЕчетные числа от 1 до 15
+func displayOddNums(input: Int) {
+    for num in 1...input {
+        if num % 2 != 0 {
+            print(num)
+        }
+    }
+}
+displayOddNums(input: 15) //
+3
+5
+7
+9
+11
+13
+15
+
+// Задача 7: напиши программу, которая находит количество делителей заданного числа
+
+// вар. 1
+func countDevisors(input: Int) {
+    var divisorCount: Int = 0
+    for num in 1...input {
+        if input % num == 0 {
+            divisorCount += 1
+        }
+    }
+    print(divisorCount)
+}
+countDevisors(input: 5040) // 60
+
+// вар. 2 ОПТИМИЗИРОВАН для БОЛЬШИХ чисел
+func countOfDivisors(input: Int) {
+    var divisorsCount = 0
+    let sqrtInput = Int(sqrt(Double(input)))
+    
+    for num in 1...sqrtInput {
+        if input % num == 0 {
+            if num * num == input {
+                divisorsCount += 1
+            } else {
+                divisorsCount += 2
+            }
+        }
+    }
+    print(divisorsCount)
+}
+countOfDivisors(input: 5040) // 60
+// COMMENTS:
+/*
+1. ОТЛИЧИЕ: цикл перебирает числа только до КВАДРАТНОГО КОРНЯ из 'input' (А НЕ самого 'input').
+ 2. ??? - каждый делитель числа имеет ПАРУ, которая также является делителем.
+ 3. напр.: если 'num' - делитель 'input' -> 'input / num' также является делителем. */
+
+// Задача 8: напиши программу, которая выводит таблицу умножения на 3 от 1 до 12
+func multiplicationTable( input: Int) {
+    let someNumber: Int = 3
+    for num in 1...input {
+        print("\(num) * \(someNumber) = \(num * someNumber)")
+    }
+}
+multiplicationTable(input: 4)
+/* 1 * 3 = 3
+2 * 3 = 6
+3 * 3 = 9
+4 * 3 = 12 */
+
+// вар. 2 УНИВЕРСАЛЬНЫЙ КОД
+func multiplicateTable(multiplier: Int, input: Int) {
+    for num in 1...input {
+        print("\(num) * \(multiplier) = \(num * multiplier)")
+    }
+}
+multiplicateTable(multiplier: 6, input: 4)
+/*
+ 1 * 6 = 6
+ 2 * 6 = 12
+ 3 * 6 = 18
+ 4 * 6 = 24 */
