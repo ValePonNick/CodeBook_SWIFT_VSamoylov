@@ -198,3 +198,17 @@ func displayNumbers() {
     }
 }
 displayNumbers()
+
+// Задача 10. напиши программу, которая выводит нечетные числа от 1 до 21 с помощью цикла 'while'
+func displayOddNums(upperNum: Int) {
+    var num: Int = 1
+    while num >= 1 && num <= upperNum {
+        if num % 2 != 0 {
+            print(num)
+        }
+        num += 1 // увеличение num ВНЕ условия 'if' - независимо четное/Нечетное число!!!
+    }
+}
+displayOddNums(upperNum: 21)
+
+
