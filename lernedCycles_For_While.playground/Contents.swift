@@ -290,7 +290,69 @@ func displayNumbers(n: Int) {
 }
 displayNumbers(n: 6) // 6,5,4,3,2,1
 
- // Задача: вложенные циклы 'for' и 'while' (таблица умножения, комбинация элементов из двух списков)
+// Задача 13: наприши программу, которая запрашивает у пользователя 5 чисел и вычисляет их среднее арифметическое
+
+// вар. 1
+let inputs = ["12", "21", "8", "10", "24"]
+
+func requestNumsFromUser(count: Int) -> Double {
+    // код для запроса чисел у пользователя
+    var sum: Double = 0 // переменная для суммы
+    var inputIndex = 0
+    
+    for num in 1...count {
+        print("Введите число \(inputIndex + 1):")
+        
+        // СИМУЛЯЦИЯ ввода - запроса числа у юзера и его конвертация в Double
+        if let input = Double(inputs[inputIndex]) {
+            sum += input // суммирование введенных чисел
+            print("Вы ввели: \(input)")
+        } else {
+            print("Некорректный ввод")
+            return 0 // или как то обработать ошибку
+        }
+        inputIndex += 1
+    }
+    let average = sum / Double(count)
+    
+    return average
+}
+// пример использования
+let average = requestNumsFromUser(count: 5)
+    print("Среднее арифметическое равно: \(average)") // Среднее арифметическое равно: 15.0
+
+// вар. 2 используй цикл 'while'
+let numsArray = ["1", "2", "3", "4", "5"]
+
+func calculatedAverage() -> Double {
+    var totalSum: Double = 0
+    var arrayIndex = 0
+    
+    while arrayIndex < numsArray.count {
+        if let currentNum = Double(numsArray[arrayIndex]) {
+            totalSum += currentNum
+            print("Вы ввели: \(currentNum)")
+        } else {
+            print("Некорректный ввод")
+        }
+        arrayIndex += 1
+    }
+    return totalSum / Double(numsArray.count)
+}
+let averageResult = calculatedAverage()
+print("Среднее арифметическое равно: \(averageResult)") // Среднее арифметическое равно: 3.0
+
+
+// вар. 3 КРАТКО + ЯСНО - встроенные функции
+func calculateAverage() -> Double {
+    let numbers = inputs.compactMap { Double($0) }
+    return numbers.reduce(0, +) / Double(numbers.count)
+}
+let averageNums = calculateAverage()
+print("Среднее арифметическое равно: \(averageNums)") // Среднее арифметическое равно: 15.0
+ 
+
+// Задача: вложенные циклы 'for' и 'while' (таблица умножения, комбинация элементов из двух списков)
  
  
 // ЗАДАЧА с пиццей: напиши программу для вывода случайно сгенерированной пиццы с 4-мя ингредиентами из 20, чтобы ни один ингредиент НЕ повторялся, используя цикл 'for' и 'while'
