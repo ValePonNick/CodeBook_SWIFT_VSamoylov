@@ -379,18 +379,17 @@ print("Доступ разрешен")
     2. цикл 'while' ЗАВЕРШАЕТСЯ, кода пароль становится "frend'
     3. вывод сообщенй показывает КАК будет работать программа в РЕАЛЬНОМ сценарии. */
 
-// ЗАДАЧА 15: напиши программу, которая запрашивает пароль у пользователя до тех пор, пока он не введет 'frend', используя цикл 'while'
+// ЗАДАЧА 15: напиши программу, которая запрашивает пароль у пользователя до тех пор, пока он не введет 'mellon', используя цикл 'while'
 
 let passwordsToMoria = ["open", "annon", "edro", "mellon"] // имитируем ввод пароля юзером
-var truePass: String = ""
 var indexPass = 0 // ДОСТУП по индексу к элементам массива
 
 while indexPass < passwordsToMoria.count { // цикл 'while' с проверкой
     print(" Введите пароль:")
-    truePass = passwordsToMoria[indexPass]
+    let userPass = passwordsToMoria[indexPass]
     indexPass += 1
     
-    if truePass != "mellon" {
+    if userPass != "mellon" {
         print("Пароль не верен. Пжлста, попробуй еще раз.")
     } else {
         print("Врата Мории открыты. Скажи 'друг' и войдешь.")
