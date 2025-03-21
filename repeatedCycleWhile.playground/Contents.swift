@@ -173,7 +173,7 @@ playList(songTitles: playListOfSongs)
      •    `return` — для передачи результата функции.
  В вашем случае нужен `print()`, чтобы сообщение было ВИДНО. */
 
-/* ЗАДАЧА: напиши функцию, которая выводит число от 1 до ЗАДАННОГО числа, но с УСЛОВИЕМ - если число:
+/* ЗАДАЧА 4: напиши функцию, которая выводит число от 1 до ЗАДАННОГО числа, но с УСЛОВИЕМ - если число:
     - четное - выводи его значение,
     - НЕ четное - выводите слово "нечетное" */
 
@@ -189,3 +189,25 @@ func displayNums(inputNum: Int) {
 }
 
 displayNums(inputNum: 12)
+
+// ЗАДАЧА 5: напиши цикл 'while', который умножает число на 2, пока его значение остается < 100.
+var number = 1
+while number < 12 {
+    number = number * 2
+}
+
+// ЗАДАЧА 6: напиши цикл 'repeat-while', который умножает число на 2, пока его значение остается < 100.
+var num = 1
+repeat {
+    num = num * 2
+} while num < 21
+
+// ЗАДАЧА 7: напиши простую игру, которая начинается с уровня 1 и завершается на уровне 12, используя цикл 'repeat-while'.
+var currentLevel = 1
+var winningLevel = 12
+
+repeat {
+    print("We're at level \(currentLevel) of \(winningLevel)!")
+    currentLevel = currentLevel + 1
+} while currentLevel < winningLevel
+print("Game finished!")
