@@ -2,8 +2,7 @@ import UIKit
 
 // repeated Optional Types: syntax & logic
 
-var number: Int! = nil
-number = 21
+/* ЗАДАЧА 1: напиши код, который содержит любимую цитату, а в случае ее отсутствия - выведи сообщение "I don't have a favorite quote". */
 
 var favoriteQuote: String = "In a Hole in the ground there lived a Hobbit..."
 
@@ -13,14 +12,10 @@ if favoriteQuote != "" {
     print("I don't have a favorite quote")
 }
 // COMMENTS:
-/*
-    1. НО если любимой цитаты НЕТ и строка - ПУСТА, программа выыведет сообщение: "I don't have a favorite quote". ОДНАКО пустая строка - это просто ПУСТАЯ СТРОКА, а не любимая цитата.
-    2. эту проблему решают опционалы - они способны представить ПОТЕНЦИАЛЬНОЕ отсутствие чего-либо.
- */
+/*  1. НО если любимой цитаты НЕТ и строка - ПУСТА, программа выыведет сообщение: "I don't have a favorite quote". ОДНАКО пустая строка - это просто ПУСТАЯ СТРОКА, а не любимая цитата.
+    2. эту проблему решают опционалы - они способны представить ПОТЕНЦИАЛЬНОЕ отсутствие чего-либо. */
 
-// Для чего нужны опциолнальные ТИПЫ?
-
-/* Задача: напиши код, который содержит структуру person и два экземпяра. Один пьет много чашек кофе ежедневно, а другой - вообще НЕ пьет - БЕЗ ОПЦИОНАЛА */
+/* Задача 2: напиши код, который содержит структуру person и два экземпяра. Один пьет много чашек кофе ежедневно, а другой - вообще НЕ пьет - БЕЗ ОПЦИОНАЛА */
 struct Person {
     let name: String
     let coffeesConsumed: Int
@@ -104,19 +99,19 @@ if let coffees = alex.coffeesConsumed {
     4. опциональный ТИП может содержать все, что может содержать обычнй ТИП или же значение 'nil' как полное отсутствие какого-либо значения.
     5. обращение к данным в опциональном типе ТРЕБУЕТ дополнительного шага - т.н. РАСПАКОВКИ. */
 
-// ЗАДАЧА:
+// ЗАДАЧА 3:
 var magicNumber: Int? = nil
 magicNumber = 5
 magicNumber = nil
 if let number = magicNumber {
-    if(number == 5) {
+    if number == 5 {
         print("Magic!")
     }
 } else {
     print("No magic!")
 } // No magic!
 
-// ЗАДАЧА:
+// ЗАДАЧА 4:
 var soupOfTheDay: String? = "French Onion"
 if let soup = soupOfTheDay {
     print("The soup of the day is \(soup)")
@@ -124,18 +119,27 @@ if let soup = soupOfTheDay {
     print("There is no soup of the day today!")
 } // The soup of the day is French Onion"
 
-// ЗАДАЧА:
+// ЗАДАЧА 5:
 var mineral: String? = "Quartz"
 if let stone = mineral {
     print("The minereal is \(stone)")
 } // The minereal is Quartz
 
-// ЗАДАЧА:
+// ЗАДАЧА 6:
 var name: String? = "Bob"
 if let person = name {
-    if (person == "Bob") {
+    if person == "Bob" {
         print("Bye, Bob!")
     }
 } // Bye, Bob!
 
-//
+// ЗАДАЧА 7: 
+var cupsOfCoffeeSam: Int = 6
+var cupsOfCoffeeTom: Int?
+var cupsOfCoffeeBob: Int? = nil
+cupsOfCoffeeBob = 2
+cupsOfCoffeeSam = 0
+print(cupsOfCoffeeBob)
+print(cupsOfCoffeeTom)
+print(cupsOfCoffeeSam)
+
