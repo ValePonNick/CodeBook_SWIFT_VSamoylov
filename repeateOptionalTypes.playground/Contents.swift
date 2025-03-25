@@ -217,3 +217,52 @@ if let yearOfPublication = swiftForKids.yearOfPublication {
     print("Год публикации не указан")
     print("Книга не классифицируется")
 }
+let unknownBook = Book(title: "Unknown Book", author: "Unknown Author", yearOfPublication: nil)
+print(unknownBook) // Book(title: "Unknown Book", author: "Unknown Author", yearOfPublication: nil)
+let modernBook = Book(title: "Modern Book", author: "Modern Author", yearOfPublication: 2020)
+print(modernBook) // Book(title: "Modern Book", author: "Modern Author", yearOfPublication: Optional(2020))
+let classicBook = Book(title: "Classic Book", author: "Classic Author", yearOfPublication: 1950)
+print(classicBook) // Book(title: "Classic Book", author: "Classic Author", yearOfPublication: Optional(1950))
+
+/*
+ Задача 10:
+ Создайте структуру `AdvanturesBook`, которая имеет следующие свойства: `title` (строка), `author` (строка) и `yearOfPublic` (целое число). Одно из свойств должно быть опциональным.
+ Назначьте значения этим свойствам и выведите их на экран.
+ Добавьте условие: если год публикации книги позже 2000 года, то выведите сообщение “Книга современная”. Если год публикации между 1900 и 2000 годами (включительно), то выведите “Книга классическая”. Если год публикации раньше 1900 года, то выведите “Книга древняя”. Если год публикации не указан, то выведите “Год публикации не указан” и “Книга не классифицируется”. */
+
+struct AdvanturesBook { // создание структуры AdvanturesBook
+    let title: String
+    let author: String
+    var yearOfPublic: Int?
+}
+
+// создание ЭКЗЕМПЛЯРА AdvanturesBook
+let treasureIsland = AdvanturesBook(title: "Treasure Island", author: "Robert Louis Stevenson", yearOfPublic: 1883)
+
+// вывод ИНФЫ о книге
+print(treasureIsland.title) // Treasure Island
+print(treasureIsland.author) // Robert Louis Stevenson
+
+if let year = treasureIsland.yearOfPublic {
+    print("Книга написана в \(year) году") // Книга написана в 1883 году
+    
+    if year > 2000 {
+        print("Книга современная")
+    } else if year >= 1900 && year <= 2000 {
+        print("Книга классическая")
+    } else {
+        print("Книга древняя")
+    }
+} else {
+    print("Год публикации не указан")
+    print("Книга не классифицируется")
+}
+// вывод ВСЕЙ ИНФЫ о книге
+print("Название:  \(treasureIsland.title), Автор: \(treasureIsland.author).") // Название:  Treasure Island, Автор: Robert Louis Stevenson.
+if let year = treasureIsland.yearOfPublic {
+    print("Книга написана в \(year) году.") // Книга написана в 1883 году.
+} else {
+    print("Год публикации не указан")
+}
+
+
