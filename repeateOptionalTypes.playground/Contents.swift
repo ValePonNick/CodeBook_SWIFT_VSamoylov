@@ -133,13 +133,20 @@ if let person = name {
     }
 } // Bye, Bob!
 
-// ЗАДАЧА 7: 
-var cupsOfCoffeeSam: Int = 6
-var cupsOfCoffeeTom: Int?
-var cupsOfCoffeeBob: Int? = nil
-cupsOfCoffeeBob = 2
-cupsOfCoffeeSam = 0
-print(cupsOfCoffeeBob)
-print(cupsOfCoffeeTom)
-print(cupsOfCoffeeSam)
+/* Задача 7: Создай структуру `Book`, которая имеет следующие свойства: `title` (строка), `author` (строка) и `yearOfPublication` (целое число). Одно из свойств должно быть опциональным. Назначьте значения этим свойствам и выведите их на экран. */
+
+struct Book {
+    let title: String
+    let author: String
+    var yearOfPublication: Int?
+}
+
+let hobbit = Book(title: "Hobbit", author: "J.R.R.Tolkien", yearOfPublication: nil)
+print(hobbit.title)
+print(hobbit.author)
+if let yearOfPublication = hobbit.yearOfPublication {
+print("Год публикации: \(yearOfPublication)")
+} else {
+    print("Год публикации не указан")
+}
 
