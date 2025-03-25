@@ -135,18 +135,85 @@ if let person = name {
 
 /* Задача 7: Создай структуру `Book`, которая имеет следующие свойства: `title` (строка), `author` (строка) и `yearOfPublication` (целое число). Одно из свойств должно быть опциональным. Назначьте значения этим свойствам и выведите их на экран. */
 
+struct FantasyBook {
+    let title: String
+    let author: String
+    var yearOfPublication: Int?
+}
+
+let hobbitBook = FantasyBook (title: "Hobbit", author: "J.R.R.Tolkien", yearOfPublication: 1934)
+print(hobbitBook.title) // Hobbit
+print(hobbitBook.author) // J.R.R.Tolkien
+if let yearOfPublication = hobbitBook.yearOfPublication {
+print("Год публикации: \(yearOfPublication)")
+} else {
+    print("Год публикации не указан") // Год публикации: 1934
+}
+
+// COMMENTS:
+/*
+ 1. инициализируем экземпляр `Book` и выводим его свойства.
+ 2. Для опционального свойства `yearOfPublication` - используем `if let`, чтобы безопасно распаковать его значение и вывести на экран.
+ 3. Если значение `nil`, то будет выведено сообщение об отсутствии года публикации. */
+
+// Задача 8:
+/*
+Добавьте условие: если год публикации книги позже 2000 года, то выведите сообщение “Книга современная”. Иначе выведите “Книга классическая”. */
 struct Book {
     let title: String
     let author: String
     var yearOfPublication: Int?
 }
 
-let hobbit = Book(title: "Hobbit", author: "J.R.R.Tolkien", yearOfPublication: nil)
-print(hobbit.title)
-print(hobbit.author)
+let hobbit = Book(title: "Hobbit", author: "J.R.R.Tolkien", yearOfPublication: 1934)
+print(hobbit.title) // Hobbit
+print(hobbit.author) // J.R.R.Tolkien
 if let yearOfPublication = hobbit.yearOfPublication {
-print("Год публикации: \(yearOfPublication)")
+    print("Год публикации: \(yearOfPublication)") // Год публикации: 1934
+    
+    if yearOfPublication > 2000 {
+        print("Эта книга современная")
+    } else {
+        print("Эта книга классическая") // Эта книга классическая
+    }
 } else {
     print("Год публикации не указан")
+    print("Книга не классифицируется")
 }
+// COMMENTS:
+/*
+ 1. условие для классификации книги как современной/классической находится ВНУТРИ блока `if let`, где мы УЖЕ знаем, что год публикации существует.
+ 2. Если год публикации `nil`, то выводится сообщение о том, что книга не классифицируется. */
 
+/* ЗАДАЧА 9. проверь условие для нескольких книг: создай несколько экземпляров `Book` с разными годами публикации и проверь, как работает код для каждого из них. */
+
+let lordOfRings = Book(title: "The Lord of the Rings", author: "J.R.R.Tolkien", yearOfPublication: 1954)
+print(lordOfRings.title)
+print(lordOfRings.author)
+if let yearOfPublication = lordOfRings.yearOfPublication {
+    print("Год публикации: \(yearOfPublication)") // Год публикации: 1954
+    
+    if yearOfPublication > 2000 {
+        print("Эта книга современная")
+    } else {
+        print("Эта книга классическая") // Эта книга классическая
+    }
+} else {
+    print("Год публикации не указан")
+    print("Книга не классифицируется")
+}
+let swiftForKids = Book(title: "Coding iPhone Apps for Kids", author: "Gloria Winquist ", yearOfPublication: 2017)
+print(swiftForKids.title) // Coding iPhone Apps for Kids
+print(swiftForKids.author) // Gloria Winquist
+if let yearOfPublication = swiftForKids.yearOfPublication {
+    print("Год публикации: \(yearOfPublication)") // Год публикации: 2017
+    
+    if yearOfPublication > 2000 {
+        print("Эта книга современная")
+    } else {
+        print("Эта книга классическая") // Эта книга современная
+    }
+} else {
+    print("Год публикации не указан")
+    print("Книга не классифицируется")
+}
