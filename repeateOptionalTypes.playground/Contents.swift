@@ -264,28 +264,41 @@ if let year = treasureIsland.yearOfPublic {
 } else {
     print("Год публикации не указан")
 }
-// ЗАДАЧИ НА ОПЦИОНАЛЬНЫЙ ТИП:
+// ЗАДАЧИ НА ОПЦИОНАЛЬНЫЙ ТИП: Стань компилятором Swift и исправь ошибки
 
-// ЗАДАЧА 1.
+// ЗАДАЧА A.
 typealias Moolah = Int
 let bankBalanceAtEndOfMonth: Moolah? = 746
-var statementBalance1 = bankBalanceAtEndOfMonth!
-print("Принудительное развертывание: \(statementBalance1)") // Принудительное развертывание: 746
+var statementBalance = bankBalanceAtEndOfMonth!
+// COMMENTS:
+/*
+ 1. объявлен псевдоним типа Moolah - корректно,
+ 2. объявлена константа опционального типа Moolah и инициализириована значением 746, что не равно 'nil' - корректно,
+ 3. принудительное развертывание - корректно - ??? - bankBalanceAtEndOfMonth != nil,
+ Потенциальная проблема:
+- использование принудительного разворачивания НЕ рекомендовано, если значение м.б. nil */
 
-// использование принудительного разворачивания НЕ рекомендовано, если значение м.б. nil
-
-// используй безопасное развертывание 'if let'
-
+// ЗАДАЧА А: КОРРЕКТНЫЙ КОД
+// вар. 1 безопасное развертывание 'if let'
 if let balance = bankBalanceAtEndOfMonth {
-    var statementBalance2 = balance
-    print("Безопасное развертывение: \(balance)") // Безопасное развертывение: 746
+    var statementBalance1 = balance
+    print("Безопасное развертывание: \(statementBalance1)") // Безопасное развертывение: 746
 } else {
     print("Баланс не доступен")
 }
 
-// используй оператор объединения с `nil`
+
+// вар. 2: оператор объединения с `nil` ('??')
 var statementBalanceSafe = bankBalanceAtEndOfMonth ?? 0
 print("Оператор объединения с nil: \(statementBalanceSafe)") // Оператор объединения с nil: 746
+
+// вар. 3: принудительное развертывание ('!') с проверкой
+if bankBalanceAtEndOfMonth != nil {
+    var statementBalance2 = bankBalanceAtEndOfMonth!
+    print("Принудительное развертывание с проверкой: \(statementBalance2)") // Принудительное развертывание с проверкой: 746
+} else {
+    print("Баланс не доступен")
+}
 
 // COMMENTS:
 /*
@@ -293,4 +306,62 @@ print("Оператор объединения с nil: \(statementBalanceSafe)")
  2.    Безопасное развертывание (`if let`): - позволяет безопасно развернуть опционал и выполнить код только если значение не равно `nil`.
  3.    Оператор объединения с nil (`??`): - позволяет задать значение по умолчанию, если опционал равен `nil`. */
 
+// ЗАДАЧА B
 
+var moolah = 100
+func addMoney(amount moolah: Int) -> Int? {
+    return nil
+}
+// var myMoney = (moolah + addMoney(amount: 12)!) // error
+
+// COMMENTS:
+/*
+ 1. переменная с именем moolah инициализирована значением Int - это корректно,
+ 2. функция объявлена с именем addMoney, имеет входной параметр и возвращает опциональный тип Int? - это корректно,
+ 3. объявлена переменная myMoney и ей присвоено значение суммы значений переменной и функции, которая всегда возвращает nil, которая принудительно распакована - это error!
+ */
+// ЗАДАЧА B: КОРРЕКТНЫЙ КОД
+
+// вар. 1 безопасное развертывание 'if let'
+var wealth = 100
+func addWealth(amount wealth: Int) -> Int? {
+    return wealth
+}
+if let addedWealth = addWealth(amount: 155) {
+    var newWealth = wealth + addedWealth
+    print("Безопасное развертывание: новый баланс - \(newWealth)") // Безопасное развертывание: новый баланс - 255
+} else {
+    print("Денег нет, но вы держитесь там.")
+}
+
+// вар. 2  оператор объединения с `nil` ('??')
+var finance = 500
+func addFinance(amount: Int) -> Int? {
+    return amount
+}
+var myFinance = finance + (addFinance(amount: 555) ?? 0)
+print("Оператор объединения: новый баланс - \(myFinance)") // Оператор объединения: новый баланс - 1055
+// COMMENTS:
+/*
+ 1. объявлена переменная 'finance' типа Int с начальным значением 500 - это корректно
+ 2. объявлна функция 'addFinance', которая принимает параметр 'amount finance' типа Int и возвращает опциональный Int.
+ 3. В теле функции возвращаем значение 'finance' - это корректно
+ 4. используй оператор объединения с `nil` ('??') для безопасного добавления результата функции addFinance(amount: 555) к переменной 'finance'.
+ 5. если функция вернет 'nil' - будет использовано значение ПО УМОЛЧАНИЮ ('0') */
+
+// ЗАДАЧА С.
+/*
+ func countPasswordChars(password: String?) -> Int {
+ let pass = password! - error!
+    return pass.count
+}
+print(countPasswordChars(password: "IAcceptTheRisk")) */
+
+// COMMENTS:
+/*
+ 1. переменная 'pass' используется, но она не объявлена
+ 2. принудительное развертывание вызовет ошибку времени выполнения, если 'password' будет 'nil' */
+
+// ЗАДАЧА C: КОРРЕКТНЫЙ КОД
+
+// вар. 1 безопасное развертывание 'if let'
