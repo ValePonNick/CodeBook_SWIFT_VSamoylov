@@ -264,5 +264,33 @@ if let year = treasureIsland.yearOfPublic {
 } else {
     print("Год публикации не указан")
 }
+// ЗАДАЧИ НА ОПЦИОНАЛЬНЫЙ ТИП:
+
+// ЗАДАЧА 1.
+typealias Moolah = Int
+let bankBalanceAtEndOfMonth: Moolah? = 746
+var statementBalance1 = bankBalanceAtEndOfMonth!
+print("Принудительное развертывание: \(statementBalance1)") // Принудительное развертывание: 746
+
+// использование принудительного разворачивания НЕ рекомендовано, если значение м.б. nil
+
+// используй безопасное развертывание 'if let'
+
+if let balance = bankBalanceAtEndOfMonth {
+    var statementBalance2 = balance
+    print("Безопасное развертывение: \(balance)") // Безопасное развертывение: 746
+} else {
+    print("Баланс не доступен")
+}
+
+// используй оператор объединения с `nil`
+var statementBalanceSafe = bankBalanceAtEndOfMonth ?? 0
+print("Оператор объединения с nil: \(statementBalanceSafe)") // Оператор объединения с nil: 746
+
+// COMMENTS:
+/*
+ 1.    Принудительное развертывание (`!`): - самый простой способ, но он может вызвать ошибку времени выполнения, если значение равно `nil`.
+ 2.    Безопасное развертывание (`if let`): - позволяет безопасно развернуть опционал и выполнить код только если значение не равно `nil`.
+ 3.    Оператор объединения с nil (`??`): - позволяет задать значение по умолчанию, если опционал равен `nil`. */
 
 
