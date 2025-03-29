@@ -94,6 +94,30 @@ func displayLength(inputOptionalString: String?) throws -> Int {
       5.    Если предмет не существует или не является известным, бросай ошибку.
       6.    Обработай ошибку в вызывающем коде.
   */
+
+enum StringErr: Error {
+    case stringDoesNotExist
+}
+
+func display(inputString: String?) throws -> String {
+    if let treasure = inputString {
+        return treasure
+    } else {
+        throw StringErr.stringDoesNotExist
+    }
+}
+
+do {
+    let tresuresHobbit = try display(inputString: "troll's gold")
+    print("Бильбо Баггинс нашел в пещере троллей сокровище:  \(tresuresHobbit)")
+} catch StringErr.stringDoesNotExist {
+    print("Такого сокровища Бильбо Баггинс не находил")
+} catch {
+    print("Неизвестная ошибка \(error)")
+}
+
+
+
 /* ЗАДАЧА 2.    Работа с опциональными массивами: Создай функцию, которая принимает опциональный массив целых чисел и возвращает сумму всех элементов в массиве. Если массив не существует, функция должна вернуть ноль. */
 
 /* ЗАДАЧА 3.    Объединение опциональных строк: Напиши функцию, которая принимает две опциональные строки и возвращает одну строку, объединив их через пробел. Если обе строки не существуют, функция должна вернуть пустую строку. */
