@@ -95,26 +95,46 @@ func displayLength(inputOptionalString: String?) throws -> Int {
       6.    Обработай ошибку в вызывающем коде.
   */
 
-enum StringErr: Error {
-    case stringDoesNotExist
+enum TreasureError: Error {
+    case treasureDoesNotExist
+    case unknownTreasure
 }
 
-func display(inputString: String?) throws -> String {
-    if let treasure = inputString {
-        return treasure
+let knownTreasures = [
+    "troll's gold",
+    "The One Ring",
+    "Sting",
+    "Arkenstoun"
+]
+
+func displayTreasures(inputString: String?) throws -> String {
+    guard let treasure = inputString else {
+        throw TreasureError.treasureDoesNotExist
+    }
+
+    if knownTreasures.contains(treasure) {
+        return "Хоббит Бильбо Баггинс нашел \(treasure)"
     } else {
-        throw StringErr.stringDoesNotExist
+        throw TreasureError.unknownTreasure
     }
 }
 
 do {
-    let tresuresHobbit = try display(inputString: "troll's gold")
-    print("Бильбо Баггинс нашел в пещере троллей сокровище:  \(tresuresHobbit)")
-} catch StringErr.stringDoesNotExist {
+    let tresureMessage = try displayTreasures(inputString: "troll's gold")
+    print(tresureMessage)
+} catch TreasureError.treasureDoesNotExist {
     print("Такого сокровища Бильбо Баггинс не находил")
+} catch TreasureError.unknownTreasure {
+    print("Это неизвестное сокровище")
 } catch {
     print("Неизвестная ошибка \(error)")
 }
+// COMMENTS: изменения ->
+/*
+1. перечисление ошибок: добавь ошибку 'unknownTreasure' для НЕизвестных предметов
+2. проверка ИЗВЕСТНЫХ предметов - создн массив известных предметов и + проверка с помощью '.contains'
+3. функция теперь возвращает сообщение в НУЖНОМ формате
+4. обработка ошибок в вызывающем коде улучшена для ОБОИХ ТИПОВ ошибок */
 
 
 
