@@ -213,6 +213,22 @@ print(displayWealth(inputString: "другое сокровище")) // Пред
 
 /* ЗАДАЧА 3.    Объединение опциональных строк: Напиши функцию, которая принимает две опциональные строки и возвращает одну строку, объединив их через пробел. Если обе строки не существуют, функция должна вернуть пустую строку. */
 
+// вар. 1
+func combineTwoStrings(firstString: String?, secondString: String?) -> String {
+    let combined = (firstString ?? "") + " " + (secondString ?? "")
+    return combined.trimmingCharacters(in: .whitespaces)
+    }
+
+print(
+    combineTwoStrings(firstString: "Bilbo", secondString: "Baggins"))
+
+// вар. 2
+func combinedTwoStrings(firstString: String?, secondString: String?) -> String {
+    return [(firstString ?? ""), (secondString ?? "")].compactMap { $0 }.joined(separator: " ")
+}
+print(combinedTwoStrings(firstString: "Frodo", secondString: "Torbins"))
+print("Результат: \(combinedTwoStrings(firstString: "", secondString: ""))")
+
 /* ЗАДАЧА 4.    Проверка опциональных значений: Напиши функцию, которая принимает опциональное значение и проверяет, существует ли оно. Если значение существует, функция должна вывести в консоль сообщение “Значение существует”, иначе — “Значение не существует”.*/
 
 /* ЗАДАЧА 5.    Преобразование опционального значения в неопциональное: Напиши функцию, которая принимает опциональное целое число и возвращает неопциональное целое число. Если опциональное значение не существует, функция должна вернуть по умолчанию ноль. */
