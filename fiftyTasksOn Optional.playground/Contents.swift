@@ -172,7 +172,6 @@ do {
 }
 
 // ИТАК: В обоих случаях код - корректен, но версия с `guard let`  -> > ЛАКОНИЧНА + ЧИТАБЕЛЬНА
-// Список известных предметов
 
 // вар. 3 используй оператор объединения нулей (`??`)
 let knownWealth = [
@@ -229,6 +228,75 @@ func combinedTwoStrings(firstString: String?, secondString: String?) -> String {
 print(combinedTwoStrings(firstString: "Frodo", secondString: "Torbins"))
 print("Результат: \(combinedTwoStrings(firstString: "", secondString: ""))")
 
+var num: Int? = 333
+
+if let number = num { print(number) } else { print("no number") }
+
+/*  ЗАДАЧА 1.    Создайте переменную типа `String?`, присвойте ей значение `nil`, затем измените на строку.*/
+
+// вар. 1 используй 'if let' + force unwrapped + func
+func main() { // `main` — это точка входа программы, где начинается выполнение кода.
+    var optionalName: String? = nil
+
+    if let unwrappedString = optionalName { // когда выполняется оператор"if let'-> он ПРОВЕРЯЕТ: содержит ли 'optionalName' значение? т.к. nil => условие НЕ выполняется и код переходит в блок 'else'
+        print("Теперь значение строки НЕ опциональное - \(unwrappedString)")
+    } else {
+        optionalName = "Bilbo" // присвоим НОВОЕ значение свойству 'optionalName'
+        print("optionalName теперь имеет значение: \(optionalName!)")
+    }
+}
+
+// Вызов функции main()
+main() // "optionalName теперь имеет значение: Bilbo"
+/* COMMENTS:
+ •    Использует `if let`: Проверяет, содержит ли опционал значение. Если значение есть, оно извлекается в новую переменную (`unwrappedString`).
+     •    Принудительное извлечение (`!`): Используется для вывода значения `optionalName`, когда оно уже известно, что не равно `nil`.
+     •    Блок `else`: Выполняется, если опционал равен `nil`, и присваивает новое значение.
+ */
+// вар. 2 - используй func + 'if - else' + force unwrapped
+func start() {
+    var optionalName: String? = nil // инициализация переменной значение 'nil'
+
+    if optionalName == nil { // ПРЯМАЯ проверка на 'nil' - условие выполняется т.к. optionalName равна nil
+        optionalName = "Bilbo Baggins" // присвоение нового значения
+        print("optionalName теперь имеет значение: \(optionalName!)") // используем принудительное извлечение т.к. уже известно, что optionalName больше НЕ равно nil
+    } else {
+        print("optionalName уже имеет значение: \(optionalName!)") // блок НЕ выполняется
+    }
+}
+
+// Вызов функции start()
+start() // optionalName теперь имеет значение: Bilbo Baggins
+
+/*  ЗАДАЧА 2.    Создайте переменную типа `Int?`, присвойте ей значение `nil`, затем измените на Int.*/
+
+// вар. 1 - используй 'if - else' + force unwrapped + func
+func run1() {
+    var optionalInt: Int? = nil // инициализация переменной значением 'nil'
+    if optionalInt == nil {
+        optionalInt = 1212 // присвой НОВОЕ значение
+        print("optionalInt теперь имеет значение - \(optionalInt!)") // optionalInt теперь имеет значение - 1212
+    } else {
+        print("optionalInt уже имеет значение: \(optionalInt!)") // блок НЕ выполняется
+    }
+}
+
+run1()
+
+// вар. 2
+
+func run2() {
+    var optionalInt: Int? = nil
+    
+    if let unwrappedInt = optionalInt { // проверка на 'nil' -> условие ВЕРНО => блок выполняется
+        print("Теперь целочисленное значение - НЕ ОПЦИОНАЛЬНО! - \(unwrappedInt)")
+    } else {
+        optionalInt = 8888
+        print("Опциональное число теперь не nil, оно имеет значение - \(optionalInt!)")
+    } // Опциональное число теперь не nil, оно имеет значение - 8888
+}
+run2()
+// finis
 /* ЗАДАЧА 4.    Проверка опциональных значений: Напиши функцию, которая принимает опциональное значение и проверяет, существует ли оно. Если значение существует, функция должна вывести в консоль сообщение “Значение существует”, иначе — “Значение не существует”.*/
 
 /* ЗАДАЧА 5.    Преобразование опционального значения в неопциональное: Напиши функцию, которая принимает опциональное целое число и возвращает неопциональное целое число. Если опциональное значение не существует, функция должна вернуть по умолчанию ноль. */
