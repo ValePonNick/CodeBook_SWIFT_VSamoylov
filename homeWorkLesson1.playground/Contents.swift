@@ -2,12 +2,23 @@ import UIKit
 
 /* Задача 1. объяви константу 'firstString' со значением 'I can' и 'secondString' со значением 'code'. Выведи фразу на консоль: 'I can code!' */
 
-let firstString = "I can "
-let secondString = "code "
-print(firstString + secondString + "!")
+let firstString = "I can"
+let secondString = "code"
+
+print(firstString + " " + secondString + "!") // КОНКАТЕНАЦИЯ строк
+print("\(firstString) \(secondString)!") // ИНТЕРПОЛЯЦИЯ строк
 
 // Задача 2:
 
+let alenaAge = 6
+let alenaAgeInTenYears = alenaAge + 10
+let daysInOneYear = 365.25
+
+let passedAllDays = Float(alenaAgeInTenYears) * Float(daysInOneYear)
+
+print("Возраст Алены \(alenaAge) лет. Через 10 лет Алене будет \(alenaAgeInTenYears). С момента рождения Алены прошло \(passedAllDays) дней.")
+
+// вар. 2 - СЛОЖНЫЙ + ТОЧНЫЙ
 // 2.1 объяви свойство 'myAge' и присвой ему значение своего возраста
 let myAge = 58
 
@@ -19,7 +30,7 @@ let daysInYear = 365.25
 
 /* 2.4 Объяви свойство daysPassed c типом Float и присвой ему значение кол-ва дней с момента вашего рождения + 10 лет. Используй для этого myAgeInTenYears + daysInYear */
 
-let daysPassed: Float = Float(myAgeInTenYears) * Float(daysInYear)
+let daysPassed = Float(myAgeInTenYears) * Float(daysInYear)
 
 // Дополнительные переменные для учета дня и месяца рождения
 let dayOfBirth = 2.0
@@ -42,38 +53,38 @@ print("Мой возраст \(myAge). Через 10 лет мне будет \(
  1.  более точный способ учесть день и месяц рождения, хотя и упрощённый. Он рассчитывает дни с момента рождения и до последнего дня рождения, а затем добавляет 10 лет.
  2. учитывает день и месяц рождения. */
 
-// вар.2
-let myAge2 = 58
-let myAgeInTenYears2 = myAge + 10
-let daysInYear2 = 365.25
+// вар.3 БОЛЕЕ ТОЧНЫЙ + ПОНЯТНЫЙ
 
-let daysPassed2: Float = Float(myAgeInTenYears) * Float(daysInYear)
+let tomAge = 58
+let tomAgeInTenYears = tomAge + 10
+let daysIntoYear = 365.25
 
-let dayOfBirth2 = 2.0
-let monthBeforeMyBirth2 = 3.0
-let monthsInYear2 = 12.0
-let daysInOneMonth2: Double = daysInYear2 / monthsInYear2
+let allDaysPassed = Float(tomAgeInTenYears) * Float(daysIntoYear)
 
-let daysUntilBirthdayThisYear2 = Double(monthBeforeMyBirth2) * daysInOneMonth2 + Double(dayOfBirth2)
+let dayBirth = 2
+let monthBeforeBirth = 3
+let monthsOneYear = 12
+let daysOneMonth = daysIntoYear / Double(monthsOneYear)
 
-let daysSinceLastBirthday2 = Double(daysPassed2) - daysUntilBirthdayThisYear2
+let daysUntilBirthThisYear = Double(monthBeforeBirth) * daysOneMonth + Double(dayBirth)
+let daysSinceLastBirth = Double(allDaysPassed) - daysUntilBirthThisYear
 
-print("Мой возраст \(myAge2). Через 10 лет мне будет \(myAgeInTenYears2). С момента рождения пройдет \(daysSinceLastBirthday2).")
+print("Возраст Тома \(tomAge). Через 10 лет Тому будет \(tomAgeInTenYears). С момента рождения пройдет \(daysSinceLastBirth).")
 /*
  Задача 3: вычислить площадь и пеример прямоугольного треугольника: катет AC = 8.0 катет CB = 6.0. Гипотенузу AB вычисли при помощи func sqrt(Double), поместив в скобки вместо Double сумму квадратов катетов. NB: функцию pow НЕ используй. */
 
 // длины катетов
-let oneSide = 8.0
-let secondSide = 6.0
+let sideAC = 8.0
+let sideCB = 6.0
 
 // вычисли площадь треугольника
-let squreOfTriangle = oneSide * secondSide / 2
-let hypotenuse = sqrt(oneSide * oneSide + secondSide * secondSide)
+let triangleArea = sideAC * sideCB / 2
+let sideAB = sqrt(sideAC * sideAC + sideCB * sideCB) // вычисли гипотенузу
 
 // вычислить периметр треугольника
-let perimeterOfTriangle = oneSide + secondSide + hypotenuse
-print("Площадь треугольника - \(squreOfTriangle).")
-print("Периметр треугольника - \(perimeterOfTriangle).")
+let trianglePerimeter = sideAB + sideCB + sideAC
+print("Площадь треугольника - \(triangleArea).")
+print("Периметр треугольника - \(trianglePerimeter).")
 
 /* COMMENTS:
 Функция `sqrt` вычисляет квадратный корень из суммы квадратов катетов. */
@@ -85,10 +96,12 @@ print("Периметр треугольника - \(perimeterOfTriangle).")
  
 let a = 10
 let b = 5
+
 let sum = a + b
 let difference = a - b
 let product = a * b
 let quotient = Double(a) / Double(b)
+
 print("Сумма чисел: \(sum), разность чисел: \(difference), произведение чисел: \(product), частное чисел: \(quotient).")
  
  /* Задача 5: Приведение типов:
@@ -97,6 +110,7 @@ let x = 10
 let y = 5.5
 
 let summa = Double(x) + y
+
 print(summa)
 
 /* Задача 6: Работа с типами и операциями:
@@ -106,7 +120,7 @@ let age = 25
 let height = 1.75
 
 let productNum = Double(age) * height
-print(productNum)
 let average = (Double(age) + height) / 2
 
-
+print(productNum)
+print(average)
